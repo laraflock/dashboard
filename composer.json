@@ -1,0 +1,54 @@
+{
+  "name": "odotmedia/dashboard",
+  "description": "Laravel 5.1 (LTS) Dashboard Base",
+  "keywords": [
+    "laravel",
+    "dashboard",
+    "admin",
+    "odotmedia"
+  ],
+  "homepage": "https://github.com/odotmedia/dashboard",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Odot Media LLC",
+      "email": "info@odotmedia.com"
+    },
+    {
+      "name": "Ian Olson",
+      "email": "ian@odotmedia.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "illuminate/support": "~5.1",
+    "adamwathan/bootforms": "^0.6.3",
+    "cartalyst/sentinel": "2.0.*",
+    "laracasts/flash": "~1.3",
+    "laravelista/ekko": "~1.0.3"
+  },
+  "require-dev": {
+    "laravel/laravel": "~5.1",
+    "phpunit/phpunit": "~4.0",
+    "phpspec/phpspec": "~2.1",
+    "scrutinizer/ocular": "~1.1",
+    "fzaninotto/faker": "^1.5"
+  },
+  "autoload": {
+    "classmap": [
+      "tests"
+    ],
+    "psr-4": {
+      "Odotmedia\\Dashboard\\": "src"
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Odotmedia\\Dashboard\\Test\\": "tests"
+      }
+    },
+    "scripts": {
+      "test": "phpunit"
+    }
+  }
+}
