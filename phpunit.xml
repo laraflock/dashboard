@@ -17,6 +17,10 @@
     <filter>
         <whitelist>
             <directory suffix=".php">./src/</directory>
+            <exclude>
+                <file>./src/Database/Migrations/2015_06_26_031155_create_permissions_table.php</file>
+                <directory suffix=".php">./src/Resources/</directory>
+            </exclude>
         </whitelist>
     </filter>
     <php>
