@@ -116,8 +116,10 @@ class AuthService extends BaseService
      * Register and activate user if activations are false.
      *
      * @param array $data
+     * @param bool  $validate
      *
      * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
+     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
      * @throws \Odotmedia\Dashboard\Exceptions\RolesException
      */
     public function registerAndActivate(array $data, $validate = true)

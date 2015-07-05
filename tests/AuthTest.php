@@ -93,7 +93,7 @@ class AuthTest extends TestCase
         $roleService->create($roleData);
 
         $authService = new AuthService();
-        $authService->registerAndActivate($data);
+        $authService->registerAndActivate($data, false);
 
         $this->visit('/auth/login')
              ->submitForm('Login', $data)
@@ -130,7 +130,7 @@ class AuthTest extends TestCase
         $roleService->create($roleData);
 
         $authService = new AuthService();
-        $authService->registerAndActivate($userData);
+        $authService->registerAndActivate($userData, false);
 
         $this->visit('/auth/login')
              ->submitForm('Login', $testData)
@@ -274,7 +274,7 @@ class AuthTest extends TestCase
         $roleService->create($roleData);
 
         $authService = new AuthService();
-        $authService->registerAndActivate($userData);
+        $authService->registerAndActivate($userData, false);
 
         $user = $authService->authenticate($userData);
 
