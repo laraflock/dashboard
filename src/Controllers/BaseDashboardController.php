@@ -22,7 +22,7 @@ class BaseDashboardController extends Controller
      *
      * @var \Odotmedia\Dashboard\Services\Auth\AuthService
      */
-    protected $userService;
+    protected $authService;
 
     /**
      * The constructor.

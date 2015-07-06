@@ -12,6 +12,7 @@
 namespace Odotmedia\Dashboard\Controllers;
 
 use Odotmedia\Dashboard\Controllers\BaseDashboardController;
+use Odotmedia\Dashboard\Services\Auth\AuthService;
 use Odotmedia\Dashboard\Services\User\UserService;
 
 class AccountController extends BaseDashboardController
@@ -27,11 +28,12 @@ class AccountController extends BaseDashboardController
      * The constructor.
      *
      * @param \Odotmedia\Dashboard\Services\User\UserService $userService
+     * @param \Odotmedia\Dashboard\Services\Auth\AuthService $authService
      */
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, AuthService $authService)
     {
         $this->userService = $userService;
-        parent::__construct();
+        parent::__construct($authService);
     }
 
     /**

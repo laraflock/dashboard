@@ -76,7 +76,7 @@ class AuthController extends Controller
     /**
      * Display registration screen.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function register()
     {
