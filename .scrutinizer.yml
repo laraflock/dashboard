@@ -21,8 +21,12 @@ build:
     php: '5.6.9'
   tests:
     before:
+      - 'update-idle-timeout'
       -
+        command: 'update-idle-timeout'
         idle_timeout: 600
+        background: true
+        on_node: 1
     override:
       -
         command: 'phpunit --coverage-clover=coverage.xml'
