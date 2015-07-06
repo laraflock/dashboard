@@ -18,7 +18,7 @@ checks:
     classes_in_camel_caps: true
 build:
   environment:
-    php: 5.6.9
+    php: '5.6.9'
   tests:
     before:
       -
