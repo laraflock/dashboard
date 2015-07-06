@@ -15,17 +15,8 @@ use Exception;
 
 class UsersException extends Exception
 {
-    protected $errors;
-
-    public function __construct($message = '', $errors = [])
+    public function __construct($message = '')
     {
-        $this->errors = $errors;
-
         parent::__construct($message);
-    }
-
-    public function getErrors()
-    {
-        return $this->errors;
     }
 }

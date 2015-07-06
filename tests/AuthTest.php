@@ -283,4 +283,17 @@ class AuthTest extends TestCase
         $this->visit('/auth/logout')
              ->see('Login');
     }
+
+    /**
+     * Test: AuthenticationException
+     *
+     * Description:
+     * Test that the AuthenticationException is working properly.
+     *
+     * @return void
+     */
+    public function testAuthenticationException()
+    {
+
+    }
 }

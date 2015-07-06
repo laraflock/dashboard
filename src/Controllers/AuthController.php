@@ -112,7 +112,6 @@ class AuthController extends Controller
 
             return redirect()
               ->route('auth.register')
-              ->withErrors($e->getErrors())
               ->withInput();
         }
 
