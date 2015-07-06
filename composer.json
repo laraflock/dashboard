@@ -40,15 +40,12 @@
       "tests"
     ],
     "psr-4": {
-      "Odotmedia\\Dashboard\\": "src"
-    },
-    "autoload-dev": {
-      "psr-4": {
-        "Odotmedia\\Dashboard\\Test\\": "tests"
-      }
-    },
-    "scripts": {
-      "test": "phpunit"
+      "Odotmedia\\Dashboard\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Odotmedia\\Dashboard\\Test\\": "tests/"
     }
   }
 }

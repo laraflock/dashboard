@@ -1,7 +1,8 @@
 # Dashboard
+[![Author](https://img.shields.io/badge/author-%40ianmolson-blue.svg)](https://twitter.com/ianmolson)
 [![Build Status](https://img.shields.io/travis/odotmedia/dashboard.svg)](https://travis-ci.org/odotmedia/dashboard)
+[![Codecov](https://img.shields.io/codecov/c/github/odotmedia/dashboard.svg)](https://codecov.io/github/odotmedia/dashboard/)
 [![Github Release](https://img.shields.io/github/release/odotmedia/dashboard.svg)](https://packagist.org/packages/odotmedia/dashboard)
-[![Packagist](https://img.shields.io/packagist/dt/odotmedia/dashboard.svg)](https://packagist.org/packages/odotmedia/dashboard)
 [![License](https://img.shields.io/github/license/odotmedia/dashboard.svg)](https://packagist.org/packages/odotmedia/dashboard)
 
 A Laravel 5.1 (LTS) modern admin dashboard package. This is a base package to use to quickly start a project. Functionality and workflow for events, emails, listeners have all been left out of this package so you can do whatever fits your project.
@@ -10,7 +11,7 @@ A Laravel 5.1 (LTS) modern admin dashboard package. This is a base package to us
 - **Clean Admin** - Based on Bootstrap 3 + SB Admin 2
 - **Clean Preconfigured** - It has default users and models you need.
 - **Powerful** - Utilizes Cartalyst Sentinel for Authorization and Authentication.
-- **Sentinel** - Authorization, Activations, Roles, Permissions all ready to use.
+- **Cartalyst Sentinel** - Authorization, Activations, Roles all ready to use.
 
 ## Setup
 ### Installation
