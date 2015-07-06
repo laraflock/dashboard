@@ -14,7 +14,6 @@ namespace Odotmedia\Dashboard\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Laracasts\Flash\Flash;
-use Odotmedia\Dashboard\Controllers\BaseDashboardController;
 use Odotmedia\Dashboard\Exceptions\FormValidationException;
 use Odotmedia\Dashboard\Exceptions\RolesException;
 use Odotmedia\Dashboard\Services\Auth\AuthService;
@@ -69,7 +68,7 @@ class RolesController extends BaseDashboardController
     {
         $roles = $this->roleService->getAll();
 
-        return view('dashboard::roles.index')->with(['roles' => $roles]);
+        return $this->view('roles.index')->with(['roles' => $roles]);
     }
 
     /**
@@ -81,7 +80,7 @@ class RolesController extends BaseDashboardController
     {
         $permissions = $this->permissionService->getAll();
 
-        return view('dashboard::roles.create')->with(['permissions' => $permissions]);
+        return $this->view('roles.create')->with(['permissions' => $permissions]);
     }
 
     /**
@@ -146,7 +145,7 @@ class RolesController extends BaseDashboardController
 
         $permissions = $this->permissionService->getAll();
 
-        return view('dashboard::roles.edit')->with(['role' => $role, 'permissions' => $permissions]);
+        return $this->view('roles.edit')->with(['role' => $role, 'permissions' => $permissions]);
     }
 
     /**

@@ -11,7 +11,6 @@
 
 namespace Odotmedia\Dashboard\Controllers;
 
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Routing\Controller;
 use Odotmedia\Dashboard\Services\Auth\AuthService;
 
@@ -40,5 +39,17 @@ class BaseDashboardController extends Controller
         $user = $this->authService->getActiveUser();
 
         view()->share('activeUser', $user);
+    }
+
+    /**
+     * Parses a view, using the package view namespace
+     *
+     * @param       $view
+     * @param array $data
+     * @return \Illuminate\View\View
+     */
+    public function view($view, $data = [])
+    {
+        return view(sprintf("%s::%s", config('odotmedia.dashboard.view-namespace'), $view), $data);
     }
 }

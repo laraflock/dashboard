@@ -14,7 +14,6 @@ namespace Odotmedia\Dashboard\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Laracasts\Flash\Flash;
-use Odotmedia\Dashboard\Controllers\BaseDashboardController;
 use Odotmedia\Dashboard\Exceptions\FormValidationException;
 use Odotmedia\Dashboard\Exceptions\UsersException;
 use Odotmedia\Dashboard\Services\Auth\AuthService;
@@ -69,7 +68,7 @@ class UsersController extends BaseDashboardController
     {
         $users = $this->userService->getAllWith('roles');
 
-        return view('dashboard::users.index')->with(['users' => $users]);
+        return $this->view('users.index')->with(['users' => $users]);
     }
 
     /**
@@ -83,14 +82,14 @@ class UsersController extends BaseDashboardController
         $roleChoices = $this->roleService->getAll();
 
         if (empty($roleChoices)) {
-            return view('dashboard::users.create')->with('roles', $roles);
+            return $this->view('users.create')->with('roles', $roles);
         }
 
         foreach ($roleChoices as $role) {
             $roles[$role->slug] = $role->name;
         }
 
-        return view('dashboard::users.create')->with('roles', $roles);
+        return $this->view('users.create')->with('roles', $roles);
     }
 
     /**
@@ -152,7 +151,7 @@ class UsersController extends BaseDashboardController
         $roleChoices = $this->roleService->getAll();
 
         if (empty($roleChoices)) {
-            return view('dashboard::users.create')->with(['user'        => $user,
+            return $this->view('users.create')->with(['user'        => $user,
                                                           'currentRoles' => $currentRoles,
                                                           'roles'       => $roles
             ]);
@@ -162,7 +161,7 @@ class UsersController extends BaseDashboardController
             $roles[$role->slug] = $role->name;
         }
 
-        return view('dashboard::users.edit')->with(['user' => $user, 'currentRoles' => $currentRoles, 'roles' => $roles]);
+        return $this->view('users.edit')->with(['user' => $user, 'currentRoles' => $currentRoles, 'roles' => $roles]);
     }
 
     /**

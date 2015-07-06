@@ -11,7 +11,6 @@
 
 namespace Odotmedia\Dashboard\Controllers;
 
-use Odotmedia\Dashboard\Controllers\BaseDashboardController;
 use Odotmedia\Dashboard\Services\Auth\AuthService;
 
 class DashboardController extends BaseDashboardController
@@ -41,6 +40,6 @@ class DashboardController extends BaseDashboardController
      */
     public function dashboard()
     {
-        return view('dashboard::dashboard.index');
+        return $this->view('dashboard.index');
     }
 }
