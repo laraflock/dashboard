@@ -19,7 +19,6 @@ checks:
 build:
   environment:
     php: 5.6.9
-    hhvm: true
   tests:
     before:
       -
