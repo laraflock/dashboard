@@ -1,8 +1,8 @@
 # Dashboard
 [![Author](https://img.shields.io/badge/author-%40ianmolson-blue.svg)](https://twitter.com/ianmolson)
-[![Build Status](https://img.shields.io/travis/odotmedia/dashboard.svg)](https://travis-ci.org/odotmedia/dashboard)
+[![Scrutinizer Build](https://img.shields.io/scrutinizer/build/g/odotmedia/dashboard.svg)](https://scrutinizer-ci.com/g/odotmedia/dashboard/)
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/odotmedia/dashboard.svg)](https://scrutinizer-ci.com/g/odotmedia/dashboard/)
-[![Codecov](https://img.shields.io/codecov/c/github/odotmedia/dashboard.svg)](https://codecov.io/github/odotmedia/dashboard/)
+[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/odotmedia/dashboard.svg)](https://scrutinizer-ci.com/g/odotmedia/dashboard/)
 [![Github Release](https://img.shields.io/github/release/odotmedia/dashboard.svg)](https://github.com/odotmedia/dashboard)
 [![Packagist](https://img.shields.io/packagist/l/odotmedia/dashboard.svg)](https://packagist.org/packages/odotmedia/dashboard)
 
