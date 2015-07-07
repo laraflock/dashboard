@@ -1,8 +1,8 @@
 # Dashboard
 [![Author](https://img.shields.io/badge/author-%40ianmolson-blue.svg)](https://twitter.com/ianmolson)
-[![Scrutinizer Build](https://img.shields.io/scrutinizer/build/g/odotmedia/dashboard.svg)](https://scrutinizer-ci.com/g/odotmedia/dashboard/)
-[![Scrutinizer](https://img.shields.io/scrutinizer/g/odotmedia/dashboard.svg)](https://scrutinizer-ci.com/g/odotmedia/dashboard/)
-[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/odotmedia/dashboard.svg)](https://scrutinizer-ci.com/g/odotmedia/dashboard/)
+[![Build Status](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/build.png?b=master)](https://scrutinizer-ci.com/g/odotmedia/dashboard/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/odotmedia/dashboard/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/odotmedia/dashboard/?branch=master)
 [![Github Release](https://img.shields.io/github/release/odotmedia/dashboard.svg)](https://github.com/odotmedia/dashboard)
 [![Packagist](https://img.shields.io/packagist/l/odotmedia/dashboard.svg)](https://packagist.org/packages/odotmedia/dashboard)
 
