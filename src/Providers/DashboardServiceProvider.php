@@ -28,6 +28,8 @@ use Laravelista\Ekko\Facades\Ekko;
 use Odotmedia\Dashboard\Commands\FreshCommand;
 use Odotmedia\Dashboard\Commands\InstallerCommand;
 use Odotmedia\Dashboard\Commands\UninstallCommand;
+use Odotmedia\Dashboard\Middleware\UserMiddleware;
+use Odotmedia\Dashboard\Middleware\RoleMiddleware;
 
 class DashboardServiceProvider extends ServiceProvider
 {
@@ -77,6 +79,20 @@ class DashboardServiceProvider extends ServiceProvider
         $this->setupProviders();
         $this->setupFacades();
         $this->setupConsoleCommands();
+        $this->setupMiddleware();
+    }
+
+    /**
+     * Register the middleware to the application
+     *
+     * Register the following middleware:
+     * - \Odotmedia\Dashboard\Middleware\UserMiddleware
+     * - \Odotmedia\Dashboard\Middleware\RoleMiddleware
+     */
+    protected function setupMiddleware()
+    {
+        $this->app['router']->middleware('user', UserMiddleware::class);
+        $this->app['router']->middleware('roles', RoleMiddleware::class);
     }
 
     /**
