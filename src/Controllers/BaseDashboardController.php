@@ -50,6 +50,6 @@ class BaseDashboardController extends Controller
      */
     public function view($view, $data = [])
     {
-        return view(sprintf("%s::%s", config('odotmedia.dashboard.view-namespace'), $view), $data);
+        return view(sprintf("%s::%s", config('odotmedia.dashboard.viewNamespace'), $view), $data);
     }
 }

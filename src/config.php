@@ -4,31 +4,31 @@ return [
     /*
      * Title on pages
      */
-    'title'        => 'Dashboard',
+    'title'          => 'Dashboard',
     /*
      * Credits in footer of page
      */
-    'credits'      => 'Odot Media LLC',
+    'credits'        => 'Odot Media LLC',
     /*
      * Default role during user registration
      */
-    'defaultRole'  => 'registered',
+    'defaultRole'    => 'registered',
     /*
      * Allow registration by new users via registration form
      */
-    'registration' => false,
+    'registration'   => false,
     /*
      * Requires user activate before activation
      */
-    'activations'  => false,
+    'activations'    => false,
     /*
      * Use the default routes
      * - true, odotmedia/dashboard takes care of the routes
      * - false, you'll take care of routing yourself
      */
-    'routes'       => true,
+    'routes'         => true,
     /*
      * Override the view namespace
      */
-    'view-namespace' => 'dashboard',
+    'viewNamespace' => 'dashboard',
 ];
