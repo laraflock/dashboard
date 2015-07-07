@@ -14,7 +14,6 @@ namespace Odotmedia\Dashboard\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Laracasts\Flash\Flash;
-use Odotmedia\Dashboard\Controllers\BaseDashboardController;
 use Odotmedia\Dashboard\Exceptions\FormValidationException;
 use Odotmedia\Dashboard\Exceptions\PermissionsException;
 use Odotmedia\Dashboard\Services\Auth\AuthService;
@@ -59,7 +58,7 @@ class PermissionsController extends BaseDashboardController
     {
         $permissions = $this->permissionService->getAll();
 
-        return view('dashboard::permissions.index')->with(['permissions' => $permissions]);
+        return $this->view('permissions.index')->with(['permissions' => $permissions]);
     }
 
     /**
@@ -69,7 +68,7 @@ class PermissionsController extends BaseDashboardController
      */
     public function create()
     {
-        return view('dashboard::permissions.create');
+        return $this->view('permissions.create');
     }
 
     /**
@@ -112,7 +111,7 @@ class PermissionsController extends BaseDashboardController
             return redirect()->route('permissions.index');
         }
 
-        return view('dashboard::permissions.edit')->with(['permission' => $permission]);
+        return $this->view('permissions.edit')->with(['permission' => $permission]);
     }
 
     /**

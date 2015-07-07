@@ -11,14 +11,13 @@
 
 namespace Odotmedia\Dashboard\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 use Odotmedia\Dashboard\Exceptions\AuthenticationException;
 use Odotmedia\Dashboard\Exceptions\FormValidationException;
 use Odotmedia\Dashboard\Services\Auth\AuthService;
 
-class AuthController extends Controller
+class AuthController extends BaseDashboardController
 {
     /**
      * User service layer.
@@ -44,7 +43,7 @@ class AuthController extends Controller
      */
     public function login()
     {
-        return view('dashboard::auth.login');
+        return $this->view('auth.login');
     }
 
     /**
@@ -86,7 +85,7 @@ class AuthController extends Controller
             return redirect()->route('auth.login');
         }
 
-        return view('dashboard::auth.register');
+        return $this->view('auth.register');
     }
 
     /**
@@ -149,7 +148,7 @@ class AuthController extends Controller
             return redirect()->route('auth.login');
         }
 
-        return view('dashboard::auth.activate')->with(['email' => $email, 'code' => $code]);
+        return $this->view('auth.activate')->with(['email' => $email, 'code' => $code]);
     }
 
     /**
@@ -190,7 +189,7 @@ class AuthController extends Controller
      */
     public function unauthorized()
     {
-        return view('dashboard::auth.unauthorized');
+        return $this->view('auth.unauthorized');
     }
 
     /**

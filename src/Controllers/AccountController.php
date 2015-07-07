@@ -11,7 +11,6 @@
 
 namespace Odotmedia\Dashboard\Controllers;
 
-use Odotmedia\Dashboard\Controllers\BaseDashboardController;
 use Odotmedia\Dashboard\Services\Auth\AuthService;
 use Odotmedia\Dashboard\Services\User\UserService;
 
@@ -43,7 +42,7 @@ class AccountController extends BaseDashboardController
      */
     public function edit()
     {
-        return view('dashboard::account.edit');
+        return $this->view('account.edit');
     }
 
     /**
