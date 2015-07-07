@@ -129,7 +129,7 @@ WELCOME
 <fg=yellow>
 *-----------------------------------------------*
 |                                               |
-|         Step #1: Configure Database           |
+|              Configure Database               |
 |         This package uses MySQL Only          |
 |                                               |
 *-----------------------------------------------*
@@ -202,7 +202,7 @@ STEP
 <fg=yellow>
 *-----------------------------------------------*
 |                                               |
-|       Step #2: Configure Default User         |
+|            Configure Default User             |
 |                                               |
 *-----------------------------------------------*
 </fg=yellow>
@@ -345,13 +345,13 @@ STEP
         $permissionService->create([
           'name' => 'Administrator (Full Access)',
           'slug' => 'admin',
-        ]);
+        ], false);
 
         // Create default role.
         $roleService->create([
           'name' => 'Registered',
           'slug' => 'registered',
-        ]);
+        ], false);
 
         // Create the admin role.
         $role = $roleService->create([
@@ -360,7 +360,7 @@ STEP
           'permissions' => [
             'admin' => "1",
           ],
-        ]);
+        ], false);
 
         // Create the user.
         $user = $authService->registerAndActivate([
@@ -369,7 +369,7 @@ STEP
           'last_name'  => array_get($config, 'last'),
           'password'   => array_get($config, 'pass'),
           'role'       => 'administrator',
-        ]);
+        ], false);
 
         // Attach user to admin role.
         $role->users()

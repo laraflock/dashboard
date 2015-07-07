@@ -27,6 +27,7 @@ use Laravelista\Ekko\EkkoServiceProvider;
 use Laravelista\Ekko\Facades\Ekko;
 use Odotmedia\Dashboard\Commands\FreshCommand;
 use Odotmedia\Dashboard\Commands\InstallerCommand;
+use Odotmedia\Dashboard\Commands\SetupCommand;
 use Odotmedia\Dashboard\Commands\UninstallCommand;
 use Odotmedia\Dashboard\Middleware\UserMiddleware;
 use Odotmedia\Dashboard\Middleware\RoleMiddleware;
@@ -144,6 +145,11 @@ class DashboardServiceProvider extends ServiceProvider
             return new InstallerCommand();
         });
 
+        // Share dashboard:setup command with the application.
+        $this->app['dashboard::setup'] = $this->app->share(function () {
+            return new SetupCommand();
+        });
+
         // Share dashboard:fresh command with the application.
         $this->app['dashboard::fresh'] = $this->app->share(function () {
             return new FreshCommand();
@@ -156,6 +162,9 @@ class DashboardServiceProvider extends ServiceProvider
 
         // Adds dashboard:install to the console kernel.
         $this->commands('dashboard::install');
+
+        // Adds dashboard:setup to the console kernel.
+        $this->commands('dashboard::setup');
 
         // Adds dashboard:fresh to the console kernel.
         $this->commands('dashboard::fresh');
