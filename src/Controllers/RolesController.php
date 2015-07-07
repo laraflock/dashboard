@@ -115,20 +115,6 @@ class RolesController extends BaseDashboardController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     *
-     * @return Response
-     *
-     * @todo finish
-     */
-    public function show($id)
-    {
-
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
