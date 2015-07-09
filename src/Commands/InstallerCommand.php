@@ -308,6 +308,9 @@ STEP
         $this->info('Starting publishing vendor assets.');
         $this->call('vendor:publish');
         $this->info('Publishing vendor assets finished.');
+
+        // Reload config
+        $this->laravel['Illuminate\Foundation\Bootstrap\LoadConfiguration']->bootstrap($this->laravel);
     }
 
     /**
