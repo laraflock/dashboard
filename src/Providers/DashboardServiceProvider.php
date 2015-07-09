@@ -40,9 +40,9 @@ class DashboardServiceProvider extends ServiceProvider
     public function boot()
     {
         // Load & Publish views.
-        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'dashboard');
+        $this->loadViewsFrom(__DIR__ . '/../Resources/views', config('odotmedia.dashboard.viewNamespace'));
         $this->publishes([
-          __DIR__ . '/../Resources/views' => base_path('resources/views/vendor/dashboard'),
+          __DIR__ . '/../Resources/views' => base_path('resources/views/vendor/' . config('odotmedia.dashboard.viewNamespace')),
         ]);
 
         // Use package routes.
