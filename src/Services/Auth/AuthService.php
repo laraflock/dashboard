@@ -146,7 +146,8 @@ class AuthService extends BaseService
             throw new RolesException('Role could not be found.');
         }
 
-        $role->users()->attach($user);
+        $role->users()
+             ->attach($user);
 
         return;
     }
@@ -161,13 +162,34 @@ class AuthService extends BaseService
      */
     public function activate(array $data, $validate = true)
     {
-        $user = $this->authenticate($data);
+        $this->rules = [
+          'email'           => 'required|email',
+          'activation_code' => 'required',
+        ];
 
-        if (!Activation::complete($user, $data['code'])) {
-            throw new AuthenticationException('Activation could not be completd.');
+        if ($validate) {
+            $this->validate($data);
+        }
+
+        $user = $this->findByCredentials(['login' => $data['email']]);
+
+        if (!Activation::complete($user, $data['activation_code'])) {
+            throw new AuthenticationException('Activation could not be completed.');
         }
 
         return;
+    }
+
+    /**
+     * Find user by login credentials.
+     *
+     * @param $credentials
+     *
+     * @return mixed
+     */
+    public function findByCredentials($credentials)
+    {
+        return Sentinel::findByCredentials($credentials);
     }
 
     /**

@@ -8,9 +8,8 @@
         {!! BootForm::open()->post()->action(route('auth.activate')) !!}
         <fieldset>
             {!! BootForm::email('E-mail', 'email')->placeholder('E-mail address')->defaultValue($email)->autofocus() !!}
-            {!! BootForm::password('Password', 'password')->placeholder('Password') !!}
             {!! BootForm::text('Activation Code', 'activation_code')->placeholder('Enter Code Here')->defaultValue($code) !!}
-            {!! BootForm::submit('Login', 'login')->addClass('btn btn-lg btn-success btn-block') !!}
+            {!! BootForm::submit('Activate', 'activate')->addClass('btn btn-lg btn-success btn-block') !!}
             {!! BootForm::close() !!}
         </fieldset>
     </div>

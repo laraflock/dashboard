@@ -73,12 +73,16 @@ class UserTest extends TestCase
           'last_name'             => 'Test Last',
         ];
 
+        $testData = [
+          'email' => 'admin@change.me',
+        ];
+
         $roleService = new RoleService();
         $roleService->create($roleData);
 
         $this->visit('/dashboard/users/create')
              ->submitForm('Save', $userData)
-             ->seeInDatabase('users', ['email' => 'admin@change.me']);
+             ->seeInDatabase('users', $testData);
     }
 
     /**

@@ -53,7 +53,7 @@ class AuthTest extends TestCase
     }
 
     /**
-     * Test: Required Fields
+     * Test: Login Required Fields
      *
      * Description:
      * This will test that the required fields of the login form have been filled out.
@@ -152,6 +152,22 @@ class AuthTest extends TestCase
     }
 
     /**
+     * Test: Registration Active
+     *
+     * Description:
+     * This will test that the user overwrite the config and registrations are active.
+     *
+     * @return void
+     */
+    public function testRegistrationActive()
+    {
+        config(['odotmedia.dashboard.registration' => true]);
+
+        $this->visit('/auth/register')
+             ->assertResponseOk();
+    }
+
+    /**
      * Test: Registration Success
      *
      * Description:
@@ -160,19 +176,56 @@ class AuthTest extends TestCase
      */
     public function testRegistration()
     {
+        config(['odotmedia.dashboard.registration' => true]);
 
+        $roleData = [
+          'name' => 'Registered',
+          'slug' => 'registered',
+        ];
+
+        $userData = [
+          'email'                 => 'admin@change.me',
+          'password'              => 'test',
+          'password_confirmation' => 'test',
+        ];
+
+        $testData = [
+          'email' => 'admin@change.me',
+        ];
+
+        $roleService = new RoleService();
+        $roleService->create($roleData, false);
+
+        $this->visit('/auth/register')
+             ->submitForm('Register', $userData)
+             ->seeInDatabase('users', $testData);
     }
 
     /**
      * Test: Registration Required Fields
      *
      * Description:
+     * This will test that the required fields of the registration form have been filled out.
      *
      * @return void
      */
     public function testRegistrationRequiredFields()
     {
+        config(['odotmedia.dashboard.registration' => true]);
 
+        $roleData = [
+          'name' => 'Registered',
+          'slug' => 'registered',
+        ];
+
+        $roleService = new RoleService();
+        $roleService->create($roleData, false);
+
+        $this->visit('/auth/register')
+             ->submitForm('Register')
+             ->see('The email field is required.')
+             ->see('The password field is required.')
+             ->see('The password confirmation field is required.');
     }
 
     /**
@@ -184,7 +237,28 @@ class AuthTest extends TestCase
      */
     public function testRegistrationUniqueEmail()
     {
+        config(['odotmedia.dashboard.registration' => true]);
 
+        $roleData = [
+          'name' => 'Registered',
+          'slug' => 'registered',
+        ];
+
+        $userData = [
+          'email'                 => 'admin@change.me',
+          'password'              => 'test',
+          'password_confirmation' => 'test',
+        ];
+
+        $roleService = new RoleService();
+        $roleService->create($roleData, false);
+
+        $authService = new AuthService();
+        $authService->register($userData, false);
+
+        $this->visit('/auth/register')
+             ->submitForm('Register', $userData)
+             ->see('The email has already been taken.');
     }
 
     /**
@@ -202,51 +276,120 @@ class AuthTest extends TestCase
     }
 
     /**
-     * Test: Activation Success
+     * Test: Activations Active
      *
      * Description:
+     * This will test that the user overwrite the config and activations are active.
      *
      * @return void
      */
-    public function testActivation()
+    public function testActivationActive()
     {
+        config(['odotmedia.dashboard.activations' => true]);
 
+        $this->visit('/auth/activate')
+             ->see('Activate Account');
     }
 
     /**
      * Test: Activation Required Fields
      *
      * Description:
+     * This will test that the required fields of the activation form have been filled out.
      *
      * @return void
      */
     public function testActivationRequiredFields()
     {
+        config(['odotmedia.dashboard.activations' => true]);
 
+        $this->visit('/auth/activate')
+             ->submitForm('Activate')
+             ->see('The email field is required.')
+             ->see('The activation code field is required.');
     }
 
     /**
      * Test: Activation Code Success
      *
      * Description:
+     * This will test that a user was successfully activated after input of their email and activation code.
      *
      * @return void
      */
     public function testActivationCodeSuccess()
     {
+        config(['odotmedia.dashboard.activations' => true]);
 
+        $roleData = [
+          'name' => 'Registered',
+          'slug' => 'registered',
+        ];
+
+        $userData = [
+          'email'                 => 'admin@change.me',
+          'password'              => 'test',
+          'password_confirmation' => 'test',
+        ];
+
+        $roleService = new RoleService();
+        $roleService->create($roleData, false);
+
+        $authService = new AuthService();
+        $activation  = $authService->register($userData, false);
+
+        $testData = [
+          'email'           => $userData['email'],
+          'activation_code' => $activation->code,
+        ];
+
+        $this->visit('/auth/activate')
+             ->submitForm('Activate', $testData)
+             ->seeInDatabase('activations', [
+               'user_id'   => 1,
+               'code'      => $activation->code,
+               'completed' => true,
+             ])
+             ->see('Account successfully activated.');
     }
 
     /**
      * Test: Activation Code Fail.
      *
      * Description:
+     * This will test a failed activation of a user who input their email but the wrong activation code.
      *
      * @return void
      */
     public function testActivationCodeFail()
     {
+        config(['odotmedia.dashboard.activations' => true]);
 
+        $roleData = [
+          'name' => 'Registered',
+          'slug' => 'registered',
+        ];
+
+        $userData = [
+          'email'                 => 'admin@change.me',
+          'password'              => 'test',
+          'password_confirmation' => 'test',
+        ];
+
+        $roleService = new RoleService();
+        $roleService->create($roleData, false);
+
+        $authService = new AuthService();
+        $authService->register($userData, false);
+
+        $testData = [
+          'email'           => $userData['email'],
+          'activation_code' => 'wrongActivationCode',
+        ];
+
+        $this->visit('/auth/activate')
+             ->submitForm('Activate', $testData)
+             ->see('Activation could not be completed.');
     }
 
     /**
@@ -282,18 +425,5 @@ class AuthTest extends TestCase
 
         $this->visit('/auth/logout')
              ->see('Login');
-    }
-
-    /**
-     * Test: AuthenticationException
-     *
-     * Description:
-     * Test that the AuthenticationException is working properly.
-     *
-     * @return void
-     */
-    public function testAuthenticationException()
-    {
-
     }
 }
