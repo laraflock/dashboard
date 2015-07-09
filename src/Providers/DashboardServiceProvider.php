@@ -39,10 +39,15 @@ class DashboardServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Setup Default namespace until config file is published.
+        if (!$namespace = config('odotmedia.dashboard.viewNamespace')) {
+            $namespace = 'dashboard';
+        }
+
         // Load & Publish views.
-        $this->loadViewsFrom(__DIR__ . '/../Resources/views', config('odotmedia.dashboard.viewNamespace'));
+        $this->loadViewsFrom(__DIR__ . '/../Resources/views', $namespace);
         $this->publishes([
-          __DIR__ . '/../Resources/views' => base_path('resources/views/vendor/' . config('odotmedia.dashboard.viewNamespace')),
+          __DIR__ . '/../Resources/views' => base_path('resources/views/vendor/' . $namespace),
         ]);
 
         // Use package routes.
