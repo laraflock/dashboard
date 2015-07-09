@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('dashboard::global.head')
+    @include($viewNamespace . '::global.head')
     @yield('header-extras')
 </head>
 <body>
 <div id="wrapper">
-    @include('dashboard::global.nav')
+    @include($viewNamespace . '::global.nav')
     <div id="page-wrapper">
         @yield('page-wrapper')
         <div class="row">
@@ -19,7 +19,7 @@
         </div>
     </div>
 </div>
-@include('dashboard::global.footer')
+@include($viewNamespace . '::global.footer')
 {{-- This will be a section that we can throw in scripts for certain pages --}}
 @yield('footer-extras')
 </body>

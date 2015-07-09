@@ -9,7 +9,7 @@
         <a class="navbar-brand" href="{{ route('dashboard.index') }}">{{ config('odotmedia.dashboard.title') }}</a>
     </div>
     {{-- Top Right Navigation --}}
-    @include('dashboard::global.nav-top-right')
+    @include($viewNamespace . '::global.nav-top-right')
     {{-- Sidebar Navigation --}}
-    @include('dashboard::global.nav-sidebar')
+    @include($viewNamespace . '::global.nav-sidebar')
 </nav>

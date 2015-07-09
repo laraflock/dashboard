@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('dashboard::global.head')
+    @include($viewNamespace . '::global.head')
 </head>
 <body>
 <div class="container">
@@ -16,6 +16,6 @@
         </div>
     </div>
 </div>
-@include('dashboard::global.footer')
+@include($viewNamespace . '::global.footer')
 </body>
 </html>

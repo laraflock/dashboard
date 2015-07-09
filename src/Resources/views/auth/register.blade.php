@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.auth')
+@extends($viewNamespace . '::layouts.auth')
 @section('title', 'Register - Dashboard')
 @section('content')
     <div class="panel-heading">

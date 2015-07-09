@@ -34,11 +34,13 @@ class BaseDashboardController extends Controller
 
         $this->middleware('roles:administrator');
 
+        $viewNamespace = config('odotmedia.dashboard.viewNamespace');
+
         $this->authService = $authService;
 
         $user = $this->authService->getActiveUser();
 
-        view()->share('activeUser', $user);
+        view()->share(['activeUser' => $user, 'viewNamespace' => $viewNamespace]);
     }
 
     /**

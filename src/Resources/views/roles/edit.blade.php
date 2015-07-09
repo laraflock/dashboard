@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.master')
+@extends($viewNamespace . '::layouts.master')
 @section('title', 'Edit Role - Dashboard')
 @section('page-wrapper')
     <div class="container-fluid">

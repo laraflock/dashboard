@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.master')
+@extends($viewNamespace . '::layouts.master')
 @section('title', 'Users - Dashboard')
 @section('header-extras')
     {{-- Data Tables Styles --}}

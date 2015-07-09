@@ -34,6 +34,10 @@ class AuthController extends BaseDashboardController
     public function __construct(AuthService $authService)
     {
         $this->authService = $authService;
+
+        $viewNamespace = config('odotmedia.dashboard.viewNamespace');
+
+        view()->share(['viewNamespace' => $viewNamespace]);
     }
 
     /**

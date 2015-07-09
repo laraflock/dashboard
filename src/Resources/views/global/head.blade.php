@@ -4,5 +4,5 @@
 <meta name="description" content="">
 <meta name="author" content="Odot Media LLC">
 <title>@yield('title')</title>
-@include('dashboard::global.styles')
-@include('dashboard::global.header-scripts')
+@include($viewNamespace . '::global.styles')
+@include($viewNamespace . '::global.header-scripts')
