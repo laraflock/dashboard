@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * @package     Dashboard
+ * @version     1.0.0
+ * @author      Ian Olson <ian@odotmedia.com>
+ * @license     MIT
+ * @copyright   2015, Odot Media LLC
+ * @link        https://odotmedia.com
+ */
+
 namespace Odotmedia\Dashboard\Repositories\User;
 
 use Cartalyst\Sentinel\Sentinel;
@@ -12,17 +21,48 @@ use Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
+    /**
+     * Auth interface.
+     *
+     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
+     */
     protected $auth;
+
+    /**
+     * Role interface.
+     *
+     * @var \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface
+     */
     protected $role;
+
+    /**
+     * Sentinel instance.
+     *
+     * @var \Cartalyst\Sentinel\Sentinel
+     */
     protected $sentinel;
+
+    /**
+     * User instance.
+     *
+     * @var \Cartalyst\Sentinel\Users\EloquentUser
+     */
     protected $user;
 
+    /**
+     * The constructor.
+     *
+     * @param \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface $auth
+     * @param \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface $role
+     * @param \Cartalyst\Sentinel\Sentinel                                   $sentinel
+     * @param \Cartalyst\Sentinel\Users\EloquentUser                         $user
+     */
     public function __construct(AuthRepositoryInterface $auth, RoleRepositoryInterface $role, Sentinel $sentinel, EloquentUser $user)
     {
-        $this->auth = $auth;
-        $this->role = $role;
+        $this->auth     = $auth;
+        $this->role     = $role;
         $this->sentinel = $sentinel;
-        $this->user = $user;
+        $this->user     = $user;
     }
 
     /**
@@ -45,7 +85,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function getAllWith($type)
     {
         return $this->user->with($type)
-                           ->get();
+                          ->get();
     }
 
     /**
@@ -71,8 +111,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function getByIdWith($id, $type)
     {
         return $this->user->with($type)
-                           ->where('id', '=', $id)
-                           ->first();
+                          ->where('id', '=', $id)
+                          ->first();
     }
 
     /**
