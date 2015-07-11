@@ -1,26 +1,30 @@
 <?php
 
-/**
- * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
- * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
- */
+namespace Odotmedia\Dashboard\Repositories\User;
 
-namespace Odotmedia\Dashboard\Services\User;
-
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Sentinel\Sentinel;
 use Cartalyst\Sentinel\Users\EloquentUser;
 use Odotmedia\Dashboard\Exceptions\RolesException;
 use Odotmedia\Dashboard\Exceptions\UsersException;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
-use Odotmedia\Dashboard\Services\Base\BaseService;
-use Odotmedia\Dashboard\Services\Role\RoleService;
+use Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface;
+use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
+use Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface;
 
-class UserService extends BaseService
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
+    protected $auth;
+    protected $role;
+    protected $sentinel;
+    protected $user;
+
+    public function __construct(AuthRepositoryInterface $auth, RoleRepositoryInterface $role, Sentinel $sentinel, EloquentUser $user)
+    {
+        $this->auth = $auth;
+        $this->role = $role;
+        $this->sentinel = $sentinel;
+        $this->user = $user;
+    }
+
     /**
      * Return all users.
      *
@@ -28,7 +32,7 @@ class UserService extends BaseService
      */
     public function getAll()
     {
-        return EloquentUser::all();
+        return $this->user->all();
     }
 
     /**
@@ -40,7 +44,7 @@ class UserService extends BaseService
      */
     public function getAllWith($type)
     {
-        return EloquentUser::with($type)
+        return $this->user->with($type)
                            ->get();
     }
 
@@ -53,7 +57,7 @@ class UserService extends BaseService
      */
     public function getById($id)
     {
-        return EloquentUser::find($id);
+        return $this->user->find($id);
     }
 
     /**
@@ -66,7 +70,7 @@ class UserService extends BaseService
      */
     public function getByIdWith($id, $type)
     {
-        return EloquentUser::with($type)
+        return $this->user->with($type)
                            ->where('id', '=', $id)
                            ->first();
     }
@@ -91,8 +95,7 @@ class UserService extends BaseService
             $this->validate($data);
         }
 
-        $authService = new AuthService();
-        $authService->registerAndActivate($data);
+        $this->auth->registerAndActivate($data);
 
         return;
     }
@@ -124,13 +127,11 @@ class UserService extends BaseService
             $this->validate($data);
         }
 
-        Sentinel::update($user, $data);
+        $this->sentinel->update($user, $data);
 
         if (isset($data['role'])) {
 
-            $roleService = new RoleService();
-
-            if (!$role = $roleService->getBySlug($data['role'])) {
+            if (!$role = $this->role->getBySlug($data['role'])) {
                 throw new RolesException('Role could not be found.');
             }
 

@@ -15,25 +15,25 @@ use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 use Odotmedia\Dashboard\Exceptions\AuthenticationException;
 use Odotmedia\Dashboard\Exceptions\FormValidationException;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
+use Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface;
 
 class AuthController extends BaseDashboardController
 {
     /**
-     * User service layer.
+     * Auth interface.
      *
-     * @var AuthService
+     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
      */
-    protected $authService;
+    protected $authRepositoryInterface;
 
     /**
      * The constructor.
      *
-     * @param AuthService $authService
+     * @param \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface $authRepositoryInterface
      */
-    public function __construct(AuthService $authService)
+    public function __construct(AuthRepositoryInterface $authRepositoryInterface)
     {
-        $this->authService = $authService;
+        $this->authRepositoryInterface = $authRepositoryInterface;
 
         $viewNamespace = config('odotmedia.dashboard.viewNamespace');
 
@@ -60,7 +60,7 @@ class AuthController extends BaseDashboardController
     public function authentication(Request $request)
     {
         try {
-            $this->authService->authenticate($request->all());
+            $this->authRepositoryInterface->authenticate($request->all());
         } catch (FormValidationException $e) {
             Flash::error($e->getMessage());
 
@@ -102,7 +102,7 @@ class AuthController extends BaseDashboardController
     public function registration(Request $request)
     {
         try {
-            $this->authService->register($request->all());
+            $this->authRepositoryInterface->register($request->all());
         } catch (FormValidationException $e) {
             Flash::error($e->getMessage());
 
@@ -165,7 +165,7 @@ class AuthController extends BaseDashboardController
     public function activation(Request $request)
     {
         try {
-            $this->authService->activate($request->all());
+            $this->authRepositoryInterface->activate($request->all());
         } catch (FormValidationException $e) {
             Flash::error($e->getMessage());
 
@@ -203,7 +203,7 @@ class AuthController extends BaseDashboardController
      */
     public function logout()
     {
-        $this->authService->logout();
+        $this->authRepositoryInterface->logout();
 
         return redirect()->route('auth.login');
     }

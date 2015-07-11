@@ -12,23 +12,50 @@
 namespace Odotmedia\Dashboard\Controllers;
 
 use Illuminate\Routing\Controller;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
+use Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface;
+use Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface;
+use Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface;
+use Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface;
 
 class BaseDashboardController extends Controller
 {
     /**
-     * Auth service instance.
+     * Auth interface.
      *
-     * @var \Odotmedia\Dashboard\Services\Auth\AuthService
+     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
      */
-    protected $authService;
+    protected $authRepositoryInterface;
+
+    /**
+     * Permission interface.
+     *
+     * @var \Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface
+     */
+    protected $permissionRepositoryInterface;
+
+    /**
+     * Role interface.
+     *
+     * @var \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface
+     */
+    protected $roleRepositoryInterface;
+
+    /**
+     * User interface.
+     *
+     * @var \Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface
+     */
+    protected $userRepositoryInterface;
 
     /**
      * The constructor.
      *
-     * @param \Odotmedia\Dashboard\Services\Auth\AuthService $authService
+     * @param \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface             $authRepositoryInterface
+     * @param \Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface $permissionRepositoryInterface
+     * @param \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface             $roleRepositoryInterface
+     * @param \Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface             $userRepositoryInterface
      */
-    public function __construct(AuthService $authService)
+    public function __construct(AuthRepositoryInterface $authRepositoryInterface, PermissionRepositoryInterface $permissionRepositoryInterface, RoleRepositoryInterface $roleRepositoryInterface, UserRepositoryInterface $userRepositoryInterface)
     {
         $this->middleware('user');
 
@@ -36,9 +63,12 @@ class BaseDashboardController extends Controller
 
         $viewNamespace = config('odotmedia.dashboard.viewNamespace');
 
-        $this->authService = $authService;
+        $this->authRepositoryInterface       = $authRepositoryInterface;
+        $this->permissionRepositoryInterface = $permissionRepositoryInterface;
+        $this->roleRepositoryInterface       = $roleRepositoryInterface;
+        $this->userRepositoryInterface       = $userRepositoryInterface;
 
-        $user = $this->authService->getActiveUser();
+        $user = $this->authRepositoryInterface->getActiveUser();
 
         view()->share(['activeUser' => $user, 'viewNamespace' => $viewNamespace]);
     }
@@ -48,6 +78,7 @@ class BaseDashboardController extends Controller
      *
      * @param       $view
      * @param array $data
+     *
      * @return \Illuminate\View\View
      */
     public function view($view, $data = [])

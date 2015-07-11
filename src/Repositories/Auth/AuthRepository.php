@@ -9,45 +9,59 @@
  * @link        https://odotmedia.com
  */
 
-namespace Odotmedia\Dashboard\Services\Auth;
+namespace Odotmedia\Dashboard\Repositories\Auth;
 
-use Cartalyst\Sentinel\Laravel\Facades\Activation;
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Illuminate\Support\Facades\Validator;
+use Cartalyst\Sentinel\Activations\IlluminateActivationRepository;
+use Cartalyst\Sentinel\Sentinel;
 use Odotmedia\Dashboard\Exceptions\AuthenticationException;
-use Odotmedia\Dashboard\Exceptions\FormValidationException;
 use Odotmedia\Dashboard\Exceptions\RolesException;
-use Odotmedia\Dashboard\Services\Base\BaseService;
+use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
 
-class AuthService extends BaseService
+class AuthRepository extends BaseRepository implements AuthRepositoryInterface
 {
     /**
-     * Get active user.
+     * Activation interface.
      *
-     * @return mixed
+     * @var \Cartalyst\Sentinel\Activations\ActivationRepositoryInterface
+     */
+    protected $illuminateActivationRepository;
+
+    /**
+     * Sentinel instance.
+     *
+     * @var \Cartalyst\Sentinel\Sentinel
+     */
+    protected $sentinel;
+
+    /**
+     * The constructor.
+     *
+     * @param \Cartalyst\Sentinel\Sentinel $sentinel
+     */
+    public function __construct(IlluminateActivationRepository $illuminateActivationRepository, Sentinel $sentinel)
+    {
+        $this->illuminateActivationRepository = $illuminateActivationRepository;
+        $this->sentinel                       = $sentinel;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function getActiveUser()
     {
-        return Sentinel::getUser();
+        return $this->sentinel->getUser();
     }
 
     /**
-     * Check if user is logged in.
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
     public function check()
     {
-        return Sentinel::check();
+        return $this->sentinel->check();
     }
 
     /**
-     * Authenticate the user.
-     *
-     * @param array $data
-     *
-     * @throws AuthenticationException
-     * @throws FormValidationException
+     * {@inheritDoc}
      */
     public function authenticate(array $data)
     {
@@ -64,7 +78,7 @@ class AuthService extends BaseService
 
         $this->validate($data);
 
-        if (!$user = Sentinel::authenticate($data, $remember)) {
+        if (!$user = $this->sentinel->authenticate($data, $remember)) {
             throw new AuthenticationException('Email \ Password combination incorrect.');
         }
 
@@ -72,16 +86,7 @@ class AuthService extends BaseService
     }
 
     /**
-     * Register a user.
-     *
-     * @param array $data
-     * @param bool  $validate
-     *
-     * @return bool
-     *
-     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
+     * {@inheritDoc}
      */
     public function register(array $data, $validate = true)
     {
@@ -101,11 +106,11 @@ class AuthService extends BaseService
             return true;
         }
 
-        if (!$user = Sentinel::register($data)) {
+        if (!$user = $this->sentinel->register($data)) {
             throw new AuthenticationException('User could not be created.');
         }
 
-        if (!$activation = Activation::create($user)) {
+        if (!$activation = $this->illuminateActivationRepository->create($user)) {
             throw new AuthenticationException('Activation could not be created.');
         }
 
@@ -113,14 +118,7 @@ class AuthService extends BaseService
     }
 
     /**
-     * Register and activate user if activations are false.
-     *
-     * @param array $data
-     * @param bool  $validate
-     *
-     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
+     * {@inheritDoc}
      */
     public function registerAndActivate(array $data, $validate = true)
     {
@@ -134,7 +132,7 @@ class AuthService extends BaseService
             $this->validate($data);
         }
 
-        if (!$user = Sentinel::registerAndActivate($data)) {
+        if (!$user = $this->sentinel->registerAndActivate($data)) {
             throw new AuthenticationException('User could not be created.');
         }
 
@@ -142,7 +140,7 @@ class AuthService extends BaseService
             $data['role'] = config('odotmedia.dashboard.defaultRole');
         }
 
-        if (!$role = Sentinel::findRoleBySlug($data['role'])) {
+        if (!$role = $this->sentinel->findRoleBySlug($data['role'])) {
             throw new RolesException('Role could not be found.');
         }
 
@@ -153,12 +151,7 @@ class AuthService extends BaseService
     }
 
     /**
-     * Activate a user.
-     *
-     * @param array $data
-     * @param bool  $validate
-     *
-     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
+     * {@inheritDoc}
      */
     public function activate(array $data, $validate = true)
     {
@@ -173,7 +166,7 @@ class AuthService extends BaseService
 
         $user = $this->findByCredentials(['login' => $data['email']]);
 
-        if (!Activation::complete($user, $data['activation_code'])) {
+        if (!$this->illuminateActivationRepository->complete($user, $data['activation_code'])) {
             throw new AuthenticationException('Activation could not be completed.');
         }
 
@@ -181,25 +174,29 @@ class AuthService extends BaseService
     }
 
     /**
-     * Find user by login credentials.
-     *
-     * @param $credentials
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
-    public function findByCredentials($credentials)
+    public function findByCredentials(array $data)
     {
-        return Sentinel::findByCredentials($credentials);
+        return $this->sentinel->findByCredentials($data);
     }
 
     /**
-     * Logout the user.
-     *
-     * @return void
+     * {@inheritDoc}
+     */
+    public function login($user)
+    {
+        $this->sentinel->login($user);
+
+        return;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function logout()
     {
-        Sentinel::logout();
+        $this->sentinel->logout();
 
         return;
     }

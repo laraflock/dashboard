@@ -9,59 +9,60 @@
  * @link        https://odotmedia.com
  */
 
-namespace Odotmedia\Dashboard\Services\Role;
+namespace Odotmedia\Dashboard\Repositories\Role;
 
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Roles\EloquentRole;
+use Cartalyst\Sentinel\Sentinel;
 use Odotmedia\Dashboard\Exceptions\RolesException;
-use Odotmedia\Dashboard\Services\Base\BaseService;
+use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
 
-class RoleService extends BaseService
+class RoleRepository extends BaseRepository implements RoleRepositoryInterface
 {
     /**
-     * Return all roles.
+     * EloquentRole instance.
      *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @var \Cartalyst\Sentinel\Roles\EloquentRole
+     */
+    protected $role;
+
+    /**
+     * Sentinel instance.
+     *
+     * @var \Cartalyst\Sentinel\Sentinel
+     */
+    protected $sentinel;
+
+    public function __construct(EloquentRole $role, Sentinel $sentinel)
+    {
+        $this->role = $role;
+        $this->sentinel = $sentinel;
+    }
+    /**
+     * {@inheritDoc}
      */
     public function getAll()
     {
-        return EloquentRole::all();
+        return $this->role->all();
     }
 
     /**
-     * Get role by id.
-     *
-     * @param int $id
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
     public function getById($id)
     {
-        return Sentinel::findRoleById($id);
+        return $this->sentinel->findRoleById($id);
     }
 
     /**
-     * Get role by slug.
-     *
-     * @param string $slug
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
     public function getBySlug($slug)
     {
-        return Sentinel::findRoleBySlug($slug);
+        return $this->sentinel->findRoleBySlug($slug);
     }
 
     /**
-     * Create role.
-     *
-     * @param array $data
-     * @param bool  $validate
-     *
-     * @return mixed
-     *
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
+     * {@inheritDoc}
      */
     public function create(array $data, $validate = true)
     {
@@ -74,7 +75,7 @@ class RoleService extends BaseService
             $this->validate($data);
         }
 
-        if (!$role = Sentinel::getRoleRepository()
+        if (!$role = $this->sentinel->getRoleRepository()
                              ->createModel()
                              ->create($data)
         ) {
@@ -85,14 +86,7 @@ class RoleService extends BaseService
     }
 
     /**
-     * Update role.
-     *
-     * @param array $data
-     * @param int   $id
-     * @param bool  $validate
-     *
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
+     * {@inheritDoc}
      */
     public function update(array $data, $id, $validate = true)
     {
@@ -129,11 +123,7 @@ class RoleService extends BaseService
     }
 
     /**
-     * Delete role.
-     *
-     * @param int $id
-     *
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
+     * {@inheritDoc}
      */
     public function delete($id)
     {

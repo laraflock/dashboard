@@ -16,49 +16,9 @@ use Illuminate\Http\Response;
 use Laracasts\Flash\Flash;
 use Odotmedia\Dashboard\Exceptions\FormValidationException;
 use Odotmedia\Dashboard\Exceptions\UsersException;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
-use Odotmedia\Dashboard\Services\Role\RoleService;
-use Odotmedia\Dashboard\Services\User\UserService;
 
 class UsersController extends BaseDashboardController
 {
-    /**
-     * Auth service instance.
-     *
-     * @var \Odotmedia\Dashboard\Services\Auth\AuthService
-     */
-    protected $authService;
-
-    /**
-     * User service instance.
-     *
-     * @var \Odotmedia\Dashboard\Services\User\UserService
-     */
-    protected $userService;
-
-    /**
-     * Role service instance.
-     *
-     * @var \Odotmedia\Dashboard\Services\Role\RoleService
-     */
-    protected $roleService;
-
-    /**
-     * The constructor.
-     *
-     * @param \Odotmedia\Dashboard\Services\Auth\AuthService $authService
-     * @param \Odotmedia\Dashboard\Services\User\UserService $userService
-     * @param \Odotmedia\Dashboard\Services\Role\RoleService $roleService
-     */
-    public function __construct(AuthService $authService, UserService $userService, RoleService $roleService)
-    {
-        $this->authService = $authService;
-        $this->userService = $userService;
-        $this->roleService = $roleService;
-
-        parent::__construct($authService);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -66,7 +26,7 @@ class UsersController extends BaseDashboardController
      */
     public function index()
     {
-        $users = $this->userService->getAllWith('roles');
+        $users = $this->userRepositoryInterface->getAllWith('roles');
 
         return $this->view('users.index')->with(['users' => $users]);
     }
@@ -79,7 +39,7 @@ class UsersController extends BaseDashboardController
     public function create()
     {
         $roles       = [];
-        $roleChoices = $this->roleService->getAll();
+        $roleChoices = $this->roleRepositoryInterface->getAll();
 
         if (empty($roleChoices)) {
             return $this->view('users.create')->with('roles', $roles);
@@ -102,7 +62,7 @@ class UsersController extends BaseDashboardController
     public function store(Request $request)
     {
         try {
-            $this->userService->create($request->all());
+            $this->userRepositoryInterface->create($request->all());
         } catch (FormValidationException $e) {
             Flash::error($e->getMessage());
 
@@ -126,7 +86,7 @@ class UsersController extends BaseDashboardController
      */
     public function edit($id)
     {
-        if (!$user = $this->userService->getByIdWith($id, 'roles')) {
+        if (!$user = $this->userRepositoryInterface->getByIdWith($id, 'roles')) {
             Flash::error('User does not exist.');
 
             return redirect()->route('users.index');
@@ -148,7 +108,7 @@ class UsersController extends BaseDashboardController
         $currentRoles = implode(', ', $currentRoles);
 
         $roles       = [];
-        $roleChoices = $this->roleService->getAll();
+        $roleChoices = $this->roleRepositoryInterface->getAll();
 
         if (empty($roleChoices)) {
             return $this->view('users.create')->with(['user'        => $user,
@@ -175,7 +135,7 @@ class UsersController extends BaseDashboardController
     public function update(Request $request, $id)
     {
         try {
-            $this->userService->update($request->all(), $id);
+            $this->userRepositoryInterface->update($request->all(), $id);
         } catch (FormValidationException $e) {
             Flash::error($e->getMessage());
 
@@ -204,7 +164,7 @@ class UsersController extends BaseDashboardController
     public function delete($id)
     {
         try {
-            $this->userService->delete($id);
+            $this->userRepositoryInterface->delete($id);
         } catch (UsersException $e) {
             Flash::error($e->getMessage());
 

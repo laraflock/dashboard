@@ -9,11 +9,8 @@
  * @link        https://odotmedia.com
  */
 
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
-use Odotmedia\Dashboard\Services\Role\RoleService;
 
 class AuthTest extends TestCase
 {
@@ -89,11 +86,9 @@ class AuthTest extends TestCase
           'password' => 'test',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData);
+        $this->roleRepository->create($roleData);
 
-        $authService = new AuthService();
-        $authService->registerAndActivate($data, false);
+        $this->authRepository->registerAndActivate($data, false);
 
         $this->visit('/auth/login')
              ->submitForm('Login', $data)
@@ -126,11 +121,9 @@ class AuthTest extends TestCase
           'password' => 'test1',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData);
+        $this->roleRepository->create($roleData);
 
-        $authService = new AuthService();
-        $authService->registerAndActivate($userData, false);
+        $this->authRepository->registerAndActivate($userData, false);
 
         $this->visit('/auth/login')
              ->submitForm('Login', $testData)
@@ -193,8 +186,7 @@ class AuthTest extends TestCase
           'email' => 'admin@change.me',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData, false);
+        $this->roleRepository->create($roleData, false);
 
         $this->visit('/auth/register')
              ->submitForm('Register', $userData)
@@ -218,8 +210,7 @@ class AuthTest extends TestCase
           'slug' => 'registered',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData, false);
+        $this->roleRepository->create($roleData, false);
 
         $this->visit('/auth/register')
              ->submitForm('Register')
@@ -250,11 +241,9 @@ class AuthTest extends TestCase
           'password_confirmation' => 'test',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData, false);
+        $this->roleRepository->create($roleData, false);
 
-        $authService = new AuthService();
-        $authService->register($userData, false);
+        $this->authRepository->register($userData, false);
 
         $this->visit('/auth/register')
              ->submitForm('Register', $userData)
@@ -332,11 +321,9 @@ class AuthTest extends TestCase
           'password_confirmation' => 'test',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData, false);
+        $this->roleRepository->create($roleData, false);
 
-        $authService = new AuthService();
-        $activation  = $authService->register($userData, false);
+        $activation = $this->authRepository->register($userData, false);
 
         $testData = [
           'email'           => $userData['email'],
@@ -376,11 +363,9 @@ class AuthTest extends TestCase
           'password_confirmation' => 'test',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData, false);
+        $this->roleRepository->create($roleData, false);
 
-        $authService = new AuthService();
-        $authService->register($userData, false);
+        $this->authRepository->register($userData, false);
 
         $testData = [
           'email'           => $userData['email'],
@@ -413,15 +398,13 @@ class AuthTest extends TestCase
           'password' => 'test',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData);
+        $this->roleRepository->create($roleData);
 
-        $authService = new AuthService();
-        $authService->registerAndActivate($userData, false);
+        $this->authRepository->registerAndActivate($userData, false);
 
-        $user = $authService->authenticate($userData);
+        $user = $this->authRepository->authenticate($userData);
 
-        Sentinel::login($user);
+        $this->authRepository->login($user);
 
         $this->visit('/auth/logout')
              ->see('Login');

@@ -22,41 +22,13 @@ use Odotmedia\Dashboard\Services\Permission\PermissionService;
 class PermissionsController extends BaseDashboardController
 {
     /**
-     * Auth service instance.
-     *
-     * @var \Odotmedia\Dashboard\Services\Auth\AuthService
-     */
-    protected $authService;
-
-    /**
-     * Permission service instance.
-     *
-     * @var \Odotmedia\Dashboard\Services\Permission\PermissionService
-     */
-    protected $permissionService;
-
-    /**
-     * The constructor.
-     *
-     * @param \Odotmedia\Dashboard\Services\Auth\AuthService             $authService
-     * @param \Odotmedia\Dashboard\Services\Permission\PermissionService $permissionService
-     */
-    public function __construct(AuthService $authService, PermissionService $permissionService)
-    {
-        $this->authService       = $authService;
-        $this->permissionService = $permissionService;
-
-        parent::__construct($authService);
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return Response
      */
     public function index()
     {
-        $permissions = $this->permissionService->getAll();
+        $permissions = $this->permissionRepositoryInterface->getAll();
 
         return $this->view('permissions.index')->with(['permissions' => $permissions]);
     }
@@ -81,7 +53,7 @@ class PermissionsController extends BaseDashboardController
     public function store(Request $request)
     {
         try {
-            $this->permissionService->create($request->all());
+            $this->permissionRepositoryInterface->create($request->all());
         } catch (FormValidationException $e) {
             Flash::error($e->getMessage());
 
@@ -105,7 +77,7 @@ class PermissionsController extends BaseDashboardController
      */
     public function edit($id)
     {
-        if (!$permission = $this->permissionService->getById($id)) {
+        if (!$permission = $this->permissionRepositoryInterface->getById($id)) {
             Flash::error('Permission does not exist.');
 
             return redirect()->route('permissions.index');
@@ -125,7 +97,7 @@ class PermissionsController extends BaseDashboardController
     public function update(Request $request, $id)
     {
         try {
-            $this->permissionService->update($request->all(), $id);
+            $this->permissionRepositoryInterface->update($request->all(), $id);
         } catch (FormValidationException $e) {
             Flash::error($e->getMessage());
 
@@ -154,7 +126,7 @@ class PermissionsController extends BaseDashboardController
     public function delete($id)
     {
         try {
-            $this->permissionService->delete($id);
+            $this->permissionRepositoryInterface->delete($id);
         } catch (PermissionsException $e) {
             Flash::error($e->getMessage());
 

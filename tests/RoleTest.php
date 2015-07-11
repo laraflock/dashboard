@@ -9,12 +9,8 @@
  * @link        https://odotmedia.com
  */
 
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Cartalyst\Sentinel\Roles\EloquentRole;
-use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Odotmedia\Dashboard\Services\Role\RoleService;
 
 class RoleTest extends TestCase
 {
@@ -84,8 +80,7 @@ class RoleTest extends TestCase
           'slug' => 'test',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($data, false);
+        $this->roleRepository->create($data, false);
 
         $this->visit('/dashboard/roles')
              ->submitForm('Delete')
@@ -107,8 +102,7 @@ class RoleTest extends TestCase
           'name' => 'Test',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($data, false);
+        $this->roleRepository->create($data, false);
 
         $this->visit('/dashboard/roles/1/edit')
              ->assertResponseOk();
@@ -134,8 +128,7 @@ class RoleTest extends TestCase
             'slug' => 'testrole',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($data, false);
+        $this->roleRepository->create($data, false);
 
         $this->visit('/dashboard/roles/1/edit')
              ->submitForm('Save', $testData)
@@ -162,8 +155,7 @@ class RoleTest extends TestCase
             'slug' => 'testrole2',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($data, false);
+        $this->roleRepository->create($data, false);
 
         $this->visit('/dashboard/roles/1/edit')
              ->submitForm('Save', $testData)

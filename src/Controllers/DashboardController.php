@@ -11,28 +11,8 @@
 
 namespace Odotmedia\Dashboard\Controllers;
 
-use Odotmedia\Dashboard\Services\Auth\AuthService;
-
 class DashboardController extends BaseDashboardController
 {
-    /**
-     * Auth service instance.
-     *
-     * @var \Odotmedia\Dashboard\Services\Auth\AuthService
-     */
-    protected $authService;
-
-    /**
-     * The constructor.
-     *
-     * @param \Odotmedia\Dashboard\Services\Auth\AuthService $authService
-     */
-    public function __construct(AuthService $authService)
-    {
-        $this->authService = $authService;
-
-        parent::__construct($authService);
-    }
     /**
      * The dashboard.
      *

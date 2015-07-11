@@ -9,12 +9,12 @@
  * @link        https://odotmedia.com
  */
 
-namespace Odotmedia\Dashboard\Services\Base;
+namespace Odotmedia\Dashboard\Repositories\Base;
 
 use Illuminate\Support\Facades\Validator;
 use Odotmedia\Dashboard\Exceptions\FormValidationException;
 
-class BaseService
+class BaseRepository
 {
     /**
      * Global rules to use for validation.

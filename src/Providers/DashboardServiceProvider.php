@@ -86,6 +86,7 @@ class DashboardServiceProvider extends ServiceProvider
         $this->setupFacades();
         $this->setupConsoleCommands();
         $this->setupMiddleware();
+        $this->setupInterfaces();
     }
 
     /**
@@ -134,6 +135,36 @@ class DashboardServiceProvider extends ServiceProvider
         // Register Bootstrap Form Package
         // - Used for HTML form building with easy and readable API (Bootstrap 3).
         $this->app->register(BootFormsServiceProvider::class);
+    }
+
+    /**
+     * Register Interface Bindings
+     */
+    protected function setupInterfaces()
+    {
+        // Bind the Auth Repository Interface
+        $this->app->bind(
+          'Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface',
+          'Odotmedia\Dashboard\Repositories\Auth\AuthRepository'
+        );
+
+        // Bind the Permission Repository Interface
+        $this->app->bind(
+          'Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface',
+          'Odotmedia\Dashboard\Repositories\Permission\PermissionRepository'
+        );
+
+        // Bind the Role Repository Interface
+        $this->app->bind(
+          'Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface',
+          'Odotmedia\Dashboard\Repositories\Role\RoleRepository'
+        );
+
+        // Bind the User Repository Interface
+        $this->app->bind(
+          'Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface',
+          'Odotmedia\Dashboard\Repositories\User\UserRepository'
+        );
     }
 
     /**

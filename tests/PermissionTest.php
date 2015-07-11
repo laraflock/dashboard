@@ -12,7 +12,6 @@
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Odotmedia\Dashboard\Services\Permission\PermissionService;
 
 class PermissionTest extends TestCase
 {
@@ -83,8 +82,7 @@ class PermissionTest extends TestCase
           'slug' => 'test',
         ];
 
-        $permissionService = new PermissionService();
-        $permissionService->create($data, false);
+        $this->permissionRepository->create($data, false);
 
         $this->visit('/dashboard/permissions')
              ->submitForm('Delete')
@@ -122,8 +120,7 @@ class PermissionTest extends TestCase
           'slug' => 'test',
         ];
 
-        $permissionService = new PermissionService();
-        $permissionService->create($data, false);
+        $this->permissionRepository->create($data, false);
 
         $this->visit('/dashboard/permissions/1/edit')
              ->assertResponseOk();
@@ -149,8 +146,7 @@ class PermissionTest extends TestCase
           'slug' => 'test2',
         ];
 
-        $permissionService = new PermissionService();
-        $permissionService->create($data, false);
+        $this->permissionRepository->create($data, false);
 
         $this->visit('/dashboard/permissions/1/edit')
              ->submitForm('Save', $data2)
@@ -177,8 +173,7 @@ class PermissionTest extends TestCase
           'slug' => '',
         ];
 
-        $permissionService = new PermissionService();
-        $permissionService->create($data, false);
+        $this->permissionRepository->create($data, false);
 
         $this->visit('/dashboard/permissions/1/edit')
              ->submitForm('Save', $data2)
@@ -202,8 +197,7 @@ class PermissionTest extends TestCase
           'slug' => 'test',
         ];
 
-        $permissionService = new PermissionService();
-        $permissionService->create($data, false);
+        $this->permissionRepository->create($data, false);
 
         $this->visit('/dashboard/permissions/create')
              ->submitForm('Save', [
@@ -233,9 +227,8 @@ class PermissionTest extends TestCase
           'slug' => 'test1',
         ];
 
-        $permissionService = new PermissionService();
-        $permissionService->create($data, false);
-        $permissionService->create($data2, false);
+        $this->permissionRepository->create($data, false);
+        $this->permissionRepository->create($data2, false);
 
         $this->visit('/dashboard/permissions/2/edit')
              ->submitForm('Save', [

@@ -14,10 +14,6 @@ use Odotmedia\Dashboard\Exceptions\FormValidationException;
 use Odotmedia\Dashboard\Exceptions\PermissionsException;
 use Odotmedia\Dashboard\Exceptions\RolesException;
 use Odotmedia\Dashboard\Exceptions\UsersException;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
-use Odotmedia\Dashboard\Services\Permission\PermissionService;
-use Odotmedia\Dashboard\Services\Role\RoleService;
-use Odotmedia\Dashboard\Services\User\UserService;
 
 class ExceptionTest extends TestCase
 {
@@ -59,14 +55,9 @@ class ExceptionTest extends TestCase
           'activation_code' => 'wrongActivationCode',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData, false);
-
-        $authService = new AuthService();
-        $authService->registerAndActivate($userData, false);
-
-        $authService = new AuthService();
-        $authService->activate($testData);
+        $this->roleRepository->create($roleData, false);
+        $this->authRepository->registerAndActivate($userData, false);
+        $this->authRepository->activate($testData);
     }
 
     /**
@@ -91,8 +82,7 @@ class ExceptionTest extends TestCase
 
         $data = [];
 
-        $roleService = new RoleService();
-        $roleService->create($data);
+        $this->roleRepository->create($data);
     }
 
     /**
@@ -106,8 +96,7 @@ class ExceptionTest extends TestCase
 
         $data = [];
 
-        $permissionService = new PermissionService();
-        $permissionService->create($data);
+        $this->permissionRepository->create($data);
     }
 
     /**
@@ -121,8 +110,7 @@ class ExceptionTest extends TestCase
 
         $data = [];
 
-        $userService = new UserService();
-        $userService->create($data);
+        $this->userRepository->create($data);
     }
 
     /**

@@ -9,13 +9,8 @@
  * @link        https://odotmedia.com
  */
 
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
-use Odotmedia\Dashboard\Services\Role\RoleService;
-use Odotmedia\Dashboard\Services\User\UserService;
 
 class UserTest extends TestCase
 {
@@ -77,8 +72,7 @@ class UserTest extends TestCase
           'email' => 'admin@change.me',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData);
+        $this->roleRepository->create($roleData);
 
         $this->visit('/dashboard/users/create')
              ->submitForm('Save', $userData)
@@ -134,11 +128,8 @@ class UserTest extends TestCase
           'last_name'             => 'Test Last',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData);
-
-        $userService = new UserService();
-        $userService->create($userData);
+        $this->roleRepository->create($roleData);
+        $this->userRepository->create($userData);
 
         $this->visit('/dashboard/users/create')
              ->submitForm('Save', $testData)
@@ -168,11 +159,8 @@ class UserTest extends TestCase
           'last_name'             => 'Test Last',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData);
-
-        $userService = new UserService();
-        $userService->create($userData);
+        $this->roleRepository->create($roleData);
+        $this->userRepository->create($userData);
 
         $this->visit('/dashboard/users/1/edit')
              ->assertResponseOk();
@@ -205,11 +193,8 @@ class UserTest extends TestCase
           'email' => '',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData);
-
-        $userService = new UserService();
-        $userService->create($userData);
+        $this->roleRepository->create($roleData);
+        $this->userRepository->create($userData);
 
         $this->visit('/dashboard/users/1/edit')
              ->submitForm('Save', $testData)
@@ -244,11 +229,8 @@ class UserTest extends TestCase
           'last_name'  => 'Test Last Update',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData);
-
-        $userService = new UserService();
-        $userService->create($userData);
+        $this->roleRepository->create($roleData);
+        $this->userRepository->create($userData);
 
         $this->visit('/dashboard/users/1/edit')
              ->submitForm('Save', $testData)
@@ -295,12 +277,9 @@ class UserTest extends TestCase
           'last_name'  => 'Test Last Update',
         ];
 
-        $roleService = new RoleService();
-        $roleService->create($roleData);
-
-        $userService = new UserService();
-        $userService->create($userData);
-        $userService->create($userData2);
+        $this->roleRepository->create($roleData);
+        $this->userRepository->create($userData);
+        $this->userRepository->create($userData2);
 
         $this->visit('/dashboard/users/1/edit')
              ->submitForm('Save', $testData)

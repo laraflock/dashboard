@@ -1,52 +1,48 @@
 <?php
 
-/**
- * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
- * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
- */
-
-namespace Odotmedia\Dashboard\Services\Permission;
+namespace Odotmedia\Dashboard\Repositories\Permission;
 
 use Odotmedia\Dashboard\Exceptions\PermissionsException;
 use Odotmedia\Dashboard\Models\Permission;
-use Odotmedia\Dashboard\Services\Base\BaseService;
+use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
 
-class PermissionService extends BaseService
+class PermissionRepository extends BaseRepository implements PermissionRepositoryInterface
 {
     /**
-     * Return all permissions.
+     * Permission instance.
      *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @var \Odotmedia\Dashboard\Models\Permission
+     */
+    protected $permission;
+
+    /**
+     * The constructor.
+     *
+     * @param \Odotmedia\Dashboard\Models\Permission $permission
+     */
+    public function __construct(Permission $permission)
+    {
+        $this->permission = $permission;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function getAll()
     {
-        return Permission::all();
+        return $this->permission->all();
     }
 
     /**
-     * Get permission by id.
-     *
-     * @param $id
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
     public function getById($id)
     {
-        return Permission::find($id);
+        return $this->permission->find($id);
     }
 
     /**
-     * Create permission.
-     *
-     * @param array $data
-     * @param bool  $validate
-     *
-     * @return static
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
+     * {@inheritDoc}
      */
     public function create(array $data, $validate = true)
     {
@@ -59,18 +55,11 @@ class PermissionService extends BaseService
             $this->validate($data);
         }
 
-        return Permission::create($data);
+        return $this->permission->create($data);
     }
 
     /**
-     * Update permission.
-     *
-     * @param array $data
-     * @param int   $id
-     * @param bool  $validate
-     *
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\PermissionsException
+     * {@inheritDoc}
      */
     public function update(array $data, $id, $validate = true)
     {
@@ -99,11 +88,7 @@ class PermissionService extends BaseService
     }
 
     /**
-     * Delete permission.
-     *
-     * @param int $id
-     *
-     * @throws \Odotmedia\Dashboard\Exceptions\PermissionsException
+     * {@inheritDoc}
      */
     public function delete($id)
     {

@@ -22,6 +22,11 @@ class TestCase extends Base
      */
     protected $baseUrl = 'http://localhost';
 
+    protected $authRepository;
+    protected $permissionRepository;
+    protected $roleRepository;
+    protected $userRepository;
+
     /**
      * Creates the application.
      *
@@ -67,6 +72,11 @@ class TestCase extends Base
 
         // Run migrations.
         $this->artisan('migrate');
+
+        $this->authRepository       = app()->make('Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface');
+        $this->permissionRepository = app()->make('Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface');
+        $this->roleRepository       = app()->make('Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface');
+        $this->userRepository       = app()->make('Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface');
     }
 
     public function tearDown()

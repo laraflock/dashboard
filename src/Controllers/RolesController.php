@@ -16,49 +16,9 @@ use Illuminate\Http\Response;
 use Laracasts\Flash\Flash;
 use Odotmedia\Dashboard\Exceptions\FormValidationException;
 use Odotmedia\Dashboard\Exceptions\RolesException;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
-use Odotmedia\Dashboard\Services\Permission\PermissionService;
-use Odotmedia\Dashboard\Services\Role\RoleService;
 
 class RolesController extends BaseDashboardController
 {
-    /**
-     * Auth service instance.
-     *
-     * @var \Odotmedia\Dashboard\Services\Auth\AuthService
-     */
-    protected $authService;
-
-    /**
-     * Permission service instance.
-     *
-     * @var \Odotmedia\Dashboard\Services\Permission\PermissionService
-     */
-    protected $permissionService;
-
-    /**
-     * Role service instance.
-     *
-     * @var \Odotmedia\Dashboard\Services\Role\RoleService
-     */
-    protected $roleService;
-
-    /**
-     * The constructor.
-     *
-     * @param \Odotmedia\Dashboard\Services\Auth\AuthService             $authService
-     * @param \Odotmedia\Dashboard\Services\Permission\PermissionService $permissionService
-     * @param \Odotmedia\Dashboard\Services\Role\RoleService             $roleService
-     */
-    public function __construct(AuthService $authService, PermissionService $permissionService, RoleService $roleService)
-    {
-        $this->authService = $authService;
-        $this->roleService       = $roleService;
-        $this->permissionService = $permissionService;
-
-        parent::__construct($authService);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -66,7 +26,7 @@ class RolesController extends BaseDashboardController
      */
     public function index()
     {
-        $roles = $this->roleService->getAll();
+        $roles = $this->roleRepositoryInterface->getAll();
 
         return $this->view('roles.index')->with(['roles' => $roles]);
     }
@@ -78,7 +38,7 @@ class RolesController extends BaseDashboardController
      */
     public function create()
     {
-        $permissions = $this->permissionService->getAll();
+        $permissions = $this->permissionRepositoryInterface->getAll();
 
         return $this->view('roles.create')->with(['permissions' => $permissions]);
     }
@@ -93,7 +53,7 @@ class RolesController extends BaseDashboardController
     public function store(Request $request)
     {
         try {
-            $this->roleService->create($request->all());
+            $this->roleRepositoryInterface->create($request->all());
         } catch (FormValidationException $e) {
             Flash::error($e->getMessage());
 
@@ -123,13 +83,13 @@ class RolesController extends BaseDashboardController
      */
     public function edit($id)
     {
-        if (!$role = $this->roleService->getById($id)) {
+        if (!$role = $this->roleRepositoryInterface->getById($id)) {
             Flash::error('Role does not exist.');
 
             return redirect()->route('roles.index');
         }
 
-        $permissions = $this->permissionService->getAll();
+        $permissions = $this->permissionRepositoryInterface->getAll();
 
         return $this->view('roles.edit')->with(['role' => $role, 'permissions' => $permissions]);
     }
@@ -145,7 +105,7 @@ class RolesController extends BaseDashboardController
     public function update(Request $request, $id)
     {
         try {
-            $this->roleService->update($request->all(), $id);
+            $this->roleRepositoryInterface->update($request->all(), $id);
         } catch (FormValidationException $e) {
             Flash::error($e->getMessage());
 
@@ -174,7 +134,7 @@ class RolesController extends BaseDashboardController
     public function delete($id)
     {
         try {
-            $this->roleService->delete($id);
+            $this->roleRepositoryInterface->delete($id);
         } catch (RolesException $e) {
             Flash::error($e->getMessage());
 
