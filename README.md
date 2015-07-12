@@ -1,8 +1,8 @@
 # Dashboard
 [![Author](https://img.shields.io/badge/author-%40ianmolson-blue.svg)](https://twitter.com/ianmolson)
-[![Build Status](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/build.png?b=master)](https://scrutinizer-ci.com/g/odotmedia/dashboard/build-status/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/odotmedia/dashboard/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/odotmedia/dashboard/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/build.png?b=1.0)](https://scrutinizer-ci.com/g/odotmedia/dashboard/build-status/1.0)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/quality-score.png?b=1.0)](https://scrutinizer-ci.com/g/odotmedia/dashboard/?branch=1.0)
+[![Code Coverage](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/coverage.png?b=1.0)](https://scrutinizer-ci.com/g/odotmedia/dashboard/?branch=1.0)
 [![Github Release](https://img.shields.io/github/release/odotmedia/dashboard.svg)](https://github.com/odotmedia/dashboard)
 [![Packagist](https://img.shields.io/packagist/l/odotmedia/dashboard.svg)](https://packagist.org/packages/odotmedia/dashboard)
 
@@ -15,6 +15,8 @@ Reader-friendly Documentation can be found here. [Dashboard Wiki](https://github
 ## Changelog
 
 Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
+
+- v1.0.0 - Initial Release
 
 ## Support
 
