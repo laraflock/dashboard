@@ -36,8 +36,6 @@ class SetupCommand extends InstallerCommand
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
