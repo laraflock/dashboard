@@ -13,9 +13,6 @@ namespace Odotmedia\Dashboard\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
-use Odotmedia\Dashboard\Services\Permission\PermissionService;
-use Odotmedia\Dashboard\Services\Role\RoleService;
 
 class InstallerCommand extends Command
 {
@@ -48,12 +45,37 @@ class InstallerCommand extends Command
     protected $user = array();
 
     /**
+     * Auth interface.
+     *
+     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepository
+     */
+    protected $authRepository;
+
+    /**
+     * Permission interface.
+     *
+     * @var \Odotmedia\Dashboard\Repositories\Permission\PermissionRepository
+     */
+    protected $permissionRepository;
+
+    /**
+     * Role interface.
+     *
+     * @var \Odotmedia\Dashboard\Repositories\Role\RoleRepository
+     */
+    protected $roleRepository;
+
+    /**
      * Create a new command instance.
      *
      * @return void
      */
     public function __construct()
     {
+        $this->authRepository       = app()->make('Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface');
+        $this->permissionRepository = app()->make('Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface');
+        $this->roleRepository       = app()->make('Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface');
+
         parent::__construct();
     }
 
@@ -335,29 +357,20 @@ STEP
         // Get the user configuration data.
         $config = $this->user;
 
-        // Setup auth service.
-        $authService = new AuthService();
-
-        // Setup permission service.
-        $permissionService = new PermissionService();
-
-        // Setup role service.
-        $roleService = new RoleService();
-
         // Create default permission.
-        $permissionService->create([
+        $this->permissionRepository->create([
           'name' => 'Administrator (Full Access)',
           'slug' => 'admin',
         ], false);
 
         // Create default role.
-        $roleService->create([
+        $this->roleRepository->create([
           'name' => 'Registered',
           'slug' => 'registered',
         ], false);
 
         // Create the admin role.
-        $role = $roleService->create([
+        $role = $this->roleRepository->create([
           'name'        => 'Administrator',
           'slug'        => 'administrator',
           'permissions' => [
@@ -366,7 +379,7 @@ STEP
         ], false);
 
         // Create the user.
-        $user = $authService->registerAndActivate([
+        $user = $this->authRepository->registerAndActivate([
           'email'      => array_get($config, 'email'),
           'first_name' => array_get($config, 'first'),
           'last_name'  => array_get($config, 'last'),
