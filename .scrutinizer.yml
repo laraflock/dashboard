@@ -2,6 +2,8 @@ filter:
   excluded_paths:
     - 'tests/*'
     - 'src/Database/*'
+    - 'src/Commands/*'
+    - 'src/routes.php'
 
 checks:
   php:
