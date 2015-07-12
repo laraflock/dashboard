@@ -101,7 +101,7 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
         }
 
         if (!config('odotmedia.dashboard.activations')) {
-            $this->registerAndActivate($data);
+            $this->registerAndActivate($data, false);
 
             return true;
         }
@@ -109,6 +109,17 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
         if (!$user = $this->sentinel->register($data)) {
             throw new AuthenticationException('User could not be created.');
         }
+
+        if (!isset($data['role'])) {
+            $data['role'] = config('odotmedia.dashboard.defaultRole');
+        }
+
+        if (!$role = $this->sentinel->findRoleBySlug($data['role'])) {
+            throw new RolesException('Role could not be found.');
+        }
+
+        $role->users()
+             ->attach($user);
 
         if (!$activation = $this->illuminateActivationRepository->create($user)) {
             throw new AuthenticationException('Activation could not be created.');
@@ -186,9 +197,7 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
      */
     public function login($user)
     {
-        $this->sentinel->login($user);
-
-        return;
+        return $this->sentinel->login($user);
     }
 
     /**
@@ -196,8 +205,6 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
      */
     public function logout()
     {
-        $this->sentinel->logout();
-
-        return;
+        return $this->sentinel->logout();
     }
 }

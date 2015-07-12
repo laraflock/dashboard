@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 use Odotmedia\Dashboard\Exceptions\AuthenticationException;
 use Odotmedia\Dashboard\Exceptions\FormValidationException;
+use Odotmedia\Dashboard\Exceptions\RolesException;
 use Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface;
 
 class AuthController extends BaseDashboardController
@@ -111,6 +112,12 @@ class AuthController extends BaseDashboardController
               ->withErrors($e->getErrors())
               ->withInput();
         } catch (AuthenticationException $e) {
+            Flash::error($e->getMessage());
+
+            return redirect()
+              ->route('auth.register')
+              ->withInput();
+        } catch (RolesException $e) {
             Flash::error($e->getMessage());
 
             return redirect()
