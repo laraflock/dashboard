@@ -1,6 +1,6 @@
 <header class="main-header">
     <a href="{{ route('dashboard.index') }}" class="logo">
-        <span class="logo-mini">{{ config('odotmedia.dashboard.title') }}</span>
+        <span class="logo-mini">{{ config('odotmedia.dashboard.smallTitle') }}</span>
         <span class="logo-lg">{{ config('odotmedia.dashboard.title') }}</span>
     </a>
     <nav class="navbar navbar-static-top" role="navigation">

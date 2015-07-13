@@ -4,7 +4,7 @@
     @include($viewNamespace . '::global.head')
     @yield('header-extras')
 </head>
-<body class="{{ config('odotmedia.dashboard.theme') }}">
+<body class="{{ config('odotmedia.dashboard.theme') }} sidebar-mini">
 <div class="wrapper">
     @include($viewNamespace . '::global.header')
     @include($viewNamespace . '::global.sidebar')
