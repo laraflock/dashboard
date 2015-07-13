@@ -11,29 +11,28 @@
 
 namespace Odotmedia\Dashboard\Middleware;
 
-use Cartalyst\Sentinel\Sentinel;
 use Closure;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
+use Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface;
 
 class UserMiddleware
 {
     /**
-     * Auth service instance.
+     * Auth repository interface.
      *
-     * @var \Odotmedia\Dashboard\Services\Auth\AuthService
+     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
      */
-    protected $authService;
+    protected $authRepositoryInterface;
 
     /**
      * The constructor.
      *
-     * @param \Odotmedia\Dashboard\Services\Auth\AuthService $authService
+     * @param \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface $authRepositoryInterface
      */
-    public function __construct(AuthService $authService)
+    public function __construct(AuthRepositoryInterface $authRepositoryInterface)
     {
-        $this->authService = $authService;
+        $this->authRepositoryInterface = $authRepositoryInterface;
     }
 
     /**
@@ -46,7 +45,7 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$this->authService->check()) {
+        if (!$this->authRepositoryInterface->check()) {
             if ($request->ajax()) {
                 return response('Unauthorized', 401);
             } else {

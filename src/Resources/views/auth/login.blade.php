@@ -1,22 +1,25 @@
 @extends($viewNamespace . '::layouts.auth')
 @section('title', 'Login - Dashboard')
-@section('content')
-    <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-lock"></i> Login</h3>
-    </div>
-    <div class="panel-body">
-        {!! BootForm::open()->post()->action(route('auth.login')) !!}
-        <fieldset>
-            {!! BootForm::email('E-mail', 'email')->placeholder('E-mail address')->autofocus() !!}
-            {!! BootForm::password('Password', 'password')->placeholder('Password') !!}
-            {!! BootForm::checkbox('Remember me', 'remember')->checked() !!}
-            {!! BootForm::submit('Login', 'login')->addClass('btn btn-lg btn-success btn-block') !!}
-            {!! BootForm::close() !!}
-        </fieldset>
-    </div>
-    @if(config('odotmedia.dashboard.registration'))
-        <div class="panel-footer text-right">
-            <a href="{{ route('auth.register') }}">Sign Up</a> | <a href="#">Forgot Password?</a>
+@section('login-box-body')
+    <p class="login-box-msg">Login</p>
+    {!! BootForm::open()->post()->action(route('auth.login')) !!}
+    <fieldset>
+        {!! BootForm::email('E-mail', 'email')->placeholder('E-mail address')->autofocus() !!}
+        {!! BootForm::password('Password', 'password')->placeholder('Password') !!}
+    </fieldset>
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="checkbox">
+                {!! BootForm::checkbox('Remember me', 'remember')->checked() !!}
+            </div>
         </div>
+        <div class="col-xs-4">
+            {!! BootForm::submit('Login', 'login')->addClass('btn btn-primary btn-block btn-flat') !!}
+        </div>
+    </div>
+    {!! BootForm::close() !!}
+    @if(config('odotmedia.dashboard.registration'))
+        <a href="#">I forgot my password</a><br>
+        <a href="{{ route('auth.register') }}" class="text-center">Register a new membership</a>
     @endif
 @stop

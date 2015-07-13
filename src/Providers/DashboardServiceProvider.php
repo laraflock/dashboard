@@ -15,6 +15,7 @@ use AdamWathan\BootForms\BootFormsServiceProvider;
 use AdamWathan\BootForms\Facades\BootForm;
 use AdamWathan\Form\Facades\Form;
 use AdamWathan\Form\FormServiceProvider;
+use Carbon\Carbon;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
@@ -75,6 +76,9 @@ class DashboardServiceProvider extends ServiceProvider
         $this->publishes([
           __DIR__ . '/../Resources/assets' => public_path('vendor/odotmedia'),
         ], 'public');
+
+        // Setup interfaces.
+        $this->setupInterfaces();
     }
 
     /**
@@ -86,7 +90,6 @@ class DashboardServiceProvider extends ServiceProvider
         $this->setupFacades();
         $this->setupConsoleCommands();
         $this->setupMiddleware();
-        $this->setupInterfaces();
     }
 
     /**
@@ -142,23 +145,6 @@ class DashboardServiceProvider extends ServiceProvider
      */
     protected function setupInterfaces()
     {
-        // Check the config for new class, otherwise use defaults.
-        if (!config('odotmedia.dashboard.authRepositoryClass')) {
-            config(['odotmedia.dashboard.authRepositoryClass' => 'Odotmedia\Dashboard\Repositories\Auth\AuthRepository']);
-        }
-
-        if (!config('odotmedia.dashboard.permissionRepositoryClass')) {
-            config(['odotmedia.dashboard.permissionRepositoryClass' => 'Odotmedia\Dashboard\Repositories\Permission\PermissionRepository']);
-        }
-
-        if (!config('odotmedia.dashboard.roleRepositoryClass')) {
-            config(['odotmedia.dashboard.roleRepositoryClass' => 'Odotmedia\Dashboard\Repositories\Role\RoleRepository']);
-        }
-
-        if (!config('odotmedia.dashboard.userRepositoryClass')) {
-            config(['odotmedia.dashboard.userRepositoryClass' => 'Odotmedia\Dashboard\Repositories\User\UserRepository']);
-        }
-
         // Bind the Auth Repository Interface
         $this->app->bind(
           'Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface',
@@ -256,6 +242,9 @@ class DashboardServiceProvider extends ServiceProvider
 
         // Load Ekko
         $loader->alias('Ekko', Ekko::class);
+
+        // Carbon
+        $loader->alias('Carbon', Carbon::class);
 
         // Load Form
         // - Form

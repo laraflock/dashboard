@@ -11,39 +11,38 @@
 
 namespace Odotmedia\Dashboard\Middleware;
 
-use Cartalyst\Sentinel\Sentinel;
 use Closure;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
-use Odotmedia\Dashboard\Services\Auth\AuthService;
-use Odotmedia\Dashboard\Services\Role\RoleService;
+use Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface;
+use Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface;
 
 class RoleMiddleware
 {
     /**
-     * Auth service instance.
+     * Auth repository interface.
      *
-     * @var \Odotmedia\Dashboard\Services\Auth\AuthService
+     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
      */
-    protected $authService;
+    protected $authRepositoryInterface;
 
     /**
-     * Role service instance.
+     * Role repository interface.
      *
-     * @var \Odotmedia\Dashboard\Services\Role\RoleService
+     * @var \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface
      */
-    protected $roleService;
+    protected $roleRepositoryInterface;
 
     /**
      * The constructor.
      *
-     * @param \Odotmedia\Dashboard\Services\Auth\AuthService $authService
-     * @param \Odotmedia\Dashboard\Services\Role\RoleService $roleService
+     * @param \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface $authRepositoryInterface
+     * @param \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface $roleRepositoryInterface
      */
-    public function __construct(AuthService $authService, RoleService $roleService)
+    public function __construct(AuthRepositoryInterface $authRepositoryInterface, RoleRepositoryInterface $roleRepositoryInterface)
     {
-        $this->authService = $authService;
-        $this->roleService = $roleService;
+        $this->authRepositoryInterface = $authRepositoryInterface;
+        $this->roleRepositoryInterface = $roleRepositoryInterface;
     }
 
     /**
@@ -61,13 +60,13 @@ class RoleMiddleware
             return response('Unauthorized', 401);
         }
 
-        if (!$user = $this->authService->getActiveUser()) {
+        if (!$user = $this->authRepositoryInterface->getActiveUser()) {
             Flash::error('Access Denied');
 
             return redirect()->route('auth.login');
         }
 
-        if (!$role = $this->roleService->getBySlug($role)) {
+        if (!$role = $this->roleRepositoryInterface->getBySlug($role)) {
             Flash::error('Access Denied');
 
             return redirect()->route('auth.unauthorized');

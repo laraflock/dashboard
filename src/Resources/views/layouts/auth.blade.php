@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
     @include($viewNamespace . '::global.head')
+    @yield('header-extras')
 </head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel">
-                @include('flash::message')
-            </div>
-            <div class="panel panel-default">
-                @yield('content')
-            </div>
-        </div>
-    </div>
-</div>
-@include($viewNamespace . '::global.footer')
+<body class="login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="{{ route('dashboard.index') }}">{{ config('odotmedia.dashboard.title') }}</a>
+    </div><!-- /.login-logo -->
+    <div class="login-box-body">
+        @include('flash::message')
+        @yield('login-box-body')
+    </div><!-- /.login-box-body -->
+</div><!-- /.login-box -->
+@yield('footer-extras')
+@include($viewNamespace . '::global.footer-scripts')
 </body>
 </html>

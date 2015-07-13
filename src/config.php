@@ -3,6 +3,16 @@
 return [
     /*
     |--------------------------------------------------------------------------
+    | Version
+    |--------------------------------------------------------------------------
+    |
+    | Display version of the application in the footer of the dashboard.
+    |
+    */
+
+    'version'                   => '2.0',
+    /*
+    |--------------------------------------------------------------------------
     | Dashboard Title
     |--------------------------------------------------------------------------
     |
@@ -79,23 +89,6 @@ return [
     'routes'                    => true,
     /*
     |--------------------------------------------------------------------------
-    | Production
-    |--------------------------------------------------------------------------
-    |
-    | By default the assets loaded will be un-minified if they have both
-    | versions of the asset. If you would like to load all the minified
-    | versions of the asset, then set this to true. These will be setup
-    | in two different views for production and non-production assets
-    | already linked.
-    |
-    | - TRUE: Minified assets will be loaded (if applicable)
-    | - FALSE: Un-minified assets will be loaded (if applicable)
-    |
-    */
-
-    'production'                => false,
-    /*
-    |--------------------------------------------------------------------------
     | Override the View Namespace
     |--------------------------------------------------------------------------
     |
@@ -124,7 +117,7 @@ return [
     |
     */
 
-    'authRepositoryClass'       => '',
+    'authRepositoryClass'       => 'Odotmedia\Dashboard\Repositories\Auth\AuthRepository',
     /*
     |--------------------------------------------------------------------------
     | Permission Repository Class
@@ -145,7 +138,7 @@ return [
     |
     */
 
-    'permissionRepositoryClass' => '',
+    'permissionRepositoryClass' => 'Odotmedia\Dashboard\Repositories\Permission\PermissionRepository',
     /*
     |--------------------------------------------------------------------------
     | Role Repository Class
@@ -166,7 +159,7 @@ return [
     |
     */
 
-    'roleRepositoryClass'       => '',
+    'roleRepositoryClass'       => 'Odotmedia\Dashboard\Repositories\Role\RoleRepository',
     /*
     |--------------------------------------------------------------------------
     | User Repository Class
@@ -187,7 +180,7 @@ return [
     |
     */
 
-    'userRepositoryClass'       => '',
+    'userRepositoryClass'       => 'Odotmedia\Dashboard\Repositories\User\UserRepository',
     /*
     |--------------------------------------------------------------------------
     | AdminLTE Theme

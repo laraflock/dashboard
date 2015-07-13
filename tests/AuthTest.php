@@ -72,6 +72,8 @@ class AuthTest extends TestCase
      * This will test that a user who is registered and activated in the database has successfully logged in
      * and is taken to the Dashboard page.
      *
+     * @covers $this->authRepository->__construct
+     *
      * @return void
      */
     public function testSuccessAuth()
@@ -90,9 +92,9 @@ class AuthTest extends TestCase
 
         $this->authRepository->registerAndActivate($data, false);
 
-        $this->visit('/auth/login')
-             ->submitForm('Login', $data)
-             ->see('Dashboard');
+        $user = $this->authRepository->authenticate($data, false);
+
+        $this->assertInstanceOf(\Cartalyst\Sentinel\Users\EloquentUser::class, $user);
     }
 
     /**
