@@ -142,28 +142,45 @@ class DashboardServiceProvider extends ServiceProvider
      */
     protected function setupInterfaces()
     {
+        // Check the config for new class, otherwise use defaults.
+        if (!config('odotmedia.dashboard.authRepositoryClass')) {
+            config(['odotmedia.dashboard.authRepositoryClass' => 'Odotmedia\Dashboard\Repositories\Auth\AuthRepository']);
+        }
+
+        if (!config('odotmedia.dashboard.permissionRepositoryClass')) {
+            config(['odotmedia.dashboard.permissionRepositoryClass' => 'Odotmedia\Dashboard\Repositories\Permission\PermissionRepository']);
+        }
+
+        if (!config('odotmedia.dashboard.roleRepositoryClass')) {
+            config(['odotmedia.dashboard.roleRepositoryClass' => 'Odotmedia\Dashboard\Repositories\Role\RoleRepository']);
+        }
+
+        if (!config('odotmedia.dashboard.userRepositoryClass')) {
+            config(['odotmedia.dashboard.userRepositoryClass' => 'Odotmedia\Dashboard\Repositories\User\UserRepository']);
+        }
+
         // Bind the Auth Repository Interface
         $this->app->bind(
           'Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface',
-          'Odotmedia\Dashboard\Repositories\Auth\AuthRepository'
+          config('odotmedia.dashboard.authRepositoryClass')
         );
 
         // Bind the Permission Repository Interface
         $this->app->bind(
           'Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface',
-          'Odotmedia\Dashboard\Repositories\Permission\PermissionRepository'
+          config('odotmedia.dashboard.permissionRepositoryClass')
         );
 
         // Bind the Role Repository Interface
         $this->app->bind(
           'Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface',
-          'Odotmedia\Dashboard\Repositories\Role\RoleRepository'
+          config('odotmedia.dashboard.roleRepositoryClass')
         );
 
         // Bind the User Repository Interface
         $this->app->bind(
           'Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface',
-          'Odotmedia\Dashboard\Repositories\User\UserRepository'
+          config('odotmedia.dashboard.userRepositoryClass')
         );
     }
 

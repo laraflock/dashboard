@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'title'         => 'Dashboard',
+    'title'                     => 'Dashboard',
     /*
     |--------------------------------------------------------------------------
     | Footer Credits
@@ -23,7 +23,7 @@ return [
     |
     */
 
-    'credits'       => 'Odot Media LLC',
+    'credits'                   => 'Odot Media LLC',
     /*
     |--------------------------------------------------------------------------
     | Default Role on User Creation
@@ -35,7 +35,7 @@ return [
     |
     */
 
-    'defaultRole'   => 'registered',
+    'defaultRole'               => 'registered',
     /*
     |--------------------------------------------------------------------------
     | User Registration
@@ -49,7 +49,7 @@ return [
     |
     */
 
-    'registration'  => false,
+    'registration'              => false,
     /*
     |--------------------------------------------------------------------------
     | User Activations
@@ -62,7 +62,7 @@ return [
     |
     */
 
-    'activations'   => false,
+    'activations'               => false,
     /*
     |--------------------------------------------------------------------------
     | Package routes
@@ -76,7 +76,7 @@ return [
     |
     */
 
-    'routes'        => true,
+    'routes'                    => true,
     /*
     |--------------------------------------------------------------------------
     | Production
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'production'    => false,
+    'production'                => false,
     /*
     |--------------------------------------------------------------------------
     | Override the View Namespace
@@ -103,7 +103,91 @@ return [
     |
     */
 
-    'viewNamespace' => 'dashboard',
+    'viewNamespace'             => 'dashboard',
+    /*
+    |--------------------------------------------------------------------------
+    | Auth Repository Class
+    |--------------------------------------------------------------------------
+    |
+    | Use package auth repository class, or use your own. This will
+    | automatically bind inside the service provider. If left blank the
+    | default repository class will be loaded.
+    |
+    | Default Repository: Odotmedia\Dashboard\Repositories\Auth\AuthRepository
+    |
+    | * NOTICE *
+    | If you would like to use your own repository class, be sure to implement
+    | the following interface and extend the base repository class:
+    |
+    | Base Repository: Odotmedia\Dashboard\Repositories\Base\BaseRepository
+    | Auth Interface: Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
+    |
+    */
+
+    'authRepositoryClass'       => '',
+    /*
+    |--------------------------------------------------------------------------
+    | Permission Repository Class
+    |--------------------------------------------------------------------------
+    |
+    | Use package permission repository class, or use your own. This will
+    | automatically bind inside the service provider. If left blank the
+    | default repository class will be loaded.
+    |
+    | Default Repository: Odotmedia\Dashboard\Repositories\Permission\PermissionRepository
+    |
+    | * NOTICE *
+    | If you would like to use your own repository class, be sure to implement
+    | the following interface and extend the base repository class:
+    |
+    | Base Repository: Odotmedia\Dashboard\Repositories\Base\BaseRepository
+    | Permission Interface: Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface
+    |
+    */
+
+    'permissionRepositoryClass' => '',
+    /*
+    |--------------------------------------------------------------------------
+    | Role Repository Class
+    |--------------------------------------------------------------------------
+    |
+    | Use package role repository class, or use your own. This will
+    | automatically bind inside the service provider. If left blank the
+    | default repository class will be loaded.
+    |
+    | Default Repository: Odotmedia\Dashboard\Repositories\Role\RoleRepository
+    |
+    | * NOTICE *
+    | If you would like to use your own repository class, be sure to implement
+    | the following interface and extend the base repository class:
+    |
+    | Base Repository: Odotmedia\Dashboard\Repositories\Base\BaseRepository
+    | Role Interface: Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface
+    |
+    */
+
+    'roleRepositoryClass'       => '',
+    /*
+    |--------------------------------------------------------------------------
+    | User Repository Class
+    |--------------------------------------------------------------------------
+    |
+    | Use package user repository class, or use your own. This will
+    | automatically bind inside the service provider. If left blank the
+    | default repository class will be loaded.
+    |
+    | Default Repository: Odotmedia\Dashboard\Repositories\User\UserRepository
+    |
+    | * NOTICE *
+    | If you would like to use your own repository class, be sure to implement
+    | the following interface and extend the base repository class:
+    |
+    | Base Repository: Odotmedia\Dashboard\Repositories\Base\BaseRepository
+    | User Interface: Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface
+    |
+    */
+
+    'userRepositoryClass'       => '',
     /*
     |--------------------------------------------------------------------------
     | AdminLTE Theme
@@ -129,5 +213,5 @@ return [
     |
     */
 
-    'theme'         => 'skin-blue',
+    'theme'                     => 'skin-blue',
 ];
