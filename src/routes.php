@@ -26,6 +26,7 @@ $this->app['router']->get('dashboard', ['as' => 'dashboard.index', 'uses' => 'Od
  */
 $this->app['router']->group(['prefix' => 'dashboard/account', 'as' => 'account.', 'namespace' => 'Odotmedia\Dashboard\Controllers'], function () {
     $this->app['router']->get('/', ['as' => 'edit', 'uses' => 'AccountController@edit']);
+    $this->app['router']->post('/{id}', ['as' => 'update', 'uses' => 'AccountController@update']);
 });
 
 /**

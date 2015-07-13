@@ -11,11 +11,15 @@
 
 namespace Odotmedia\Dashboard\Controllers;
 
-use Odotmedia\Dashboard\Services\Auth\AuthService;
-use Odotmedia\Dashboard\Services\User\UserService;
+use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
+use Odotmedia\Dashboard\Exceptions\AuthenticationException;
+use Odotmedia\Dashboard\Exceptions\FormValidationException;
+use Odotmedia\Dashboard\Exceptions\UsersException;
 
 class AccountController extends BaseDashboardController
 {
+
     /**
      * Edit account information.
      *
@@ -29,10 +33,36 @@ class AccountController extends BaseDashboardController
     /**
      * Update account information.
      *
-     * @todo finish this update method
+     * @param \Illuminate\Http\Request $request
+     * @param                          $id
+     *
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function update()
+    public function update(Request $request, $id)
     {
+        if ($request->input('action') == 'update_account') {
+            try {
+                $this->userRepositoryInterface->update($request->all(), $id);
+            } catch (FormValidationException $e) {
+                Flash::error($e->getMessage());
 
+                return redirect()
+                  ->route('account.edit')
+                  ->withErrors($e->getErrors())
+                  ->withInput();
+            } catch (UsersException $e) {
+                Flash::error($e->getMessage());
+
+                return redirect()->route('dashboard.index');
+            }
+
+            Flash::success('Account successfully updated.');
+
+            return redirect()->route('account.edit');
+        }
+
+        if ($request->input('action') == 'change_password') {
+            // Need to setup this.
+        }
     }
 }
