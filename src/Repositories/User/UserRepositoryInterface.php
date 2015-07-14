@@ -72,6 +72,17 @@ interface UserRepositoryInterface
     public function update(array $data, $id, $validate = true);
 
     /**
+     * Update Password
+     *
+     * @param array $data
+     * @param bool  $validate
+     *
+     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
+     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
+     */
+    public function updatePassword(array $data, $validate = true);
+
+    /**
      * Delete user.
      *
      * @param int $id

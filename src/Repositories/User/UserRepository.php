@@ -66,9 +66,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     /**
-     * Return all users.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * {@inheritDoc}
      */
     public function getAll()
     {
@@ -76,11 +74,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     /**
-     * Return all users with relationship.
-     *
-     * @param $type
-     *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * {@inheritDoc}
      */
     public function getAllWith($type)
     {
@@ -89,11 +83,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     /**
-     * Get user by id.
-     *
-     * @param int $id
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
     public function getById($id)
     {
@@ -101,12 +91,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     /**
-     * Get user by id with relationship.
-     *
-     * @param int    $id
-     * @param string $type
-     *
-     * @return $this
+     * {@inheritDoc}
      */
     public function getByIdWith($id, $type)
     {
@@ -116,12 +101,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     /**
-     * Create user.
-     *
-     * @param array $data
-     *
-     * @return bool
-     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
+     * {@inheritDoc}
      */
     public function create(array $data, $validate = true)
     {
@@ -141,15 +121,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     /**
-     * Update user.
-     *
-     * @param array $data
-     * @param int   $id
-     * @param bool  $validate
-     *
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
-     * @throws \Odotmedia\Dashboard\Exceptions\UsersException
+     * {@inheritDoc}
      */
     public function update(array $data, $id, $validate = true)
     {
@@ -187,11 +159,32 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     /**
-     * Delete user.
-     *
-     * @param int $id
-     *
-     * @throws \Odotmedia\Dashboard\Exceptions\UsersException
+     * {@inheritDoc}
+     */
+    public function updatePassword(array $data, $validate = true)
+    {
+        $user = $this->auth->authenticate($data);
+
+        $this->rules = [
+          'new_password'              => 'required|confirmed',
+          'new_password_confirmation' => 'required',
+        ];
+
+        if ($validate) {
+            $this->validate($data);
+        }
+
+        $updatedData = [
+          'password' => $data['new_password'],
+        ];
+
+        $this->sentinel->update($user, $updatedData);
+
+        return;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function delete($id)
     {

@@ -62,7 +62,24 @@ class AccountController extends BaseDashboardController
         }
 
         if ($request->input('action') == 'change_password') {
-            // Need to setup this.
+            try {
+                $this->userRepositoryInterface->updatePassword($request->all());
+            } catch (FormValidationException $e) {
+                Flash::error($e->getMessage());
+
+                return redirect()
+                  ->route('account.edit')
+                  ->withErrors($e->getErrors());
+            } catch (AuthenticationException $e) {
+                Flash::error('Old password is incorrect.');
+
+                return redirect()
+                  ->route('account.edit');
+            }
+
+            Flash::success('Password successfully updated.');
+
+            return redirect()->route('account.edit');
         }
     }
 }
