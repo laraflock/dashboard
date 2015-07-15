@@ -11,6 +11,14 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v2.0.0 - 2015-07-15
+
+- Stable Release
+- AdminLTE Admin Dashboard
+- Repositories for Each Service
+- More Options in Configuration File
+- Better Documentation in Configuration File
+
 ### v1.0.0 - 2015-07-09
 
 - Stable Release

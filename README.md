@@ -16,6 +16,9 @@ Reader-friendly Documentation can be found here. [Dashboard Wiki](https://github
 
 Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
 
+- [2.0](CHANGELOG.md) - 2015-07-15
+- [1.0](CHANGELOG.md) - 2015-07-09
+
 ## Support
 
 The following support channels can be used for contact.
