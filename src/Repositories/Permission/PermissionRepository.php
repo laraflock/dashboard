@@ -11,6 +11,7 @@
 
 namespace Odotmedia\Dashboard\Repositories\Permission;
 
+use Illuminate\Database\QueryException;
 use Odotmedia\Dashboard\Exceptions\PermissionsException;
 use Odotmedia\Dashboard\Models\Permission;
 use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
@@ -64,7 +65,13 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
             $this->validate($data);
         }
 
-        return $this->permission->create($data);
+        try {
+            $permission = $this->permission->create($data);
+        } catch (QueryException $e) {
+            throw new PermissionsException('Permission could not be created.');
+        }
+
+        return $permission;
     }
 
     /**
@@ -93,7 +100,7 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
         $permission->slug = $data['slug'];
         $permission->save();
 
-        return;
+        return $permission;
     }
 
     /**
@@ -107,6 +114,6 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
 
         $permission->delete();
 
-        return;
+        return true;
     }
 }

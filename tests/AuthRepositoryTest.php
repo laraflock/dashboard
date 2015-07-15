@@ -95,12 +95,30 @@ class AuthRepositoryTest extends TestCase
 
     public function testRegister()
     {
-        //
+        config(['odotmedia.dashboard.activations' => true]);
+
+        $data = [
+          'email'    => 'admin2@change.me',
+          'password' => 'test',
+          'role'     => 'registered',
+        ];
+
+        $activation = $this->authRepository->register($data, false);
+
+        $this->assertInstanceOf(\Cartalyst\Sentinel\Activations\EloquentActivation::class, $activation);
     }
 
     public function testRegisterAuthenticationException()
     {
-        //
+        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\AuthenticationException');
+
+        $data = [
+          'email'    => 'admin@change.me',
+          'password' => 'test',
+          'role'     => 'registered',
+        ];
+
+        $this->authRepository->register($data, false);
     }
 
     public function testRegisterRolesException()
@@ -120,17 +138,41 @@ class AuthRepositoryTest extends TestCase
 
     public function testRegisterAndActivate()
     {
-        //
+        $data = [
+          'email'    => 'admin2@change.me',
+          'password' => 'test',
+          'role'     => 'registered',
+        ];
+
+        $user = $this->authRepository->register($data, false);
+
+        $this->assertTrue($user);
     }
 
     public function testRegisterAndActivateFormValidationException()
     {
-        //
+        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\FormValidationException');
+
+        $data = [
+          'email'    => 'admin',
+          'password' => 'test',
+          'role'     => 'registered',
+        ];
+
+        $this->authRepository->registerAndActivate($data, true);
     }
 
     public function testRegisterAndActivateAuthenticationException()
     {
-        //
+        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\AuthenticationException');
+
+        $data = [
+          'email'    => 'admin@change.me',
+          'password' => 'test',
+          'role'     => 'registered',
+        ];
+
+        $this->authRepository->registerAndActivate($data, false);
     }
 
     public function testRegisterAndActivateRolesException()
@@ -148,12 +190,46 @@ class AuthRepositoryTest extends TestCase
 
     public function testActivate()
     {
-        //
+        config(['odotmedia.dashboard.activations' => true]);
+
+        $data = [
+          'email'    => 'admin2@change.me',
+          'password' => 'test',
+          'role'     => 'registered',
+        ];
+
+        $activation = $this->authRepository->register($data, false);
+
+        $activationData = [
+          'email'           => $data['email'],
+          'activation_code' => $activation->code,
+        ];
+
+        $activated = $this->authRepository->activate($activationData, false);
+
+        $this->assertTrue($activated);
     }
 
     public function testActivateAuthenticationException()
     {
-        //
+        config(['odotmedia.dashboard.activations' => true]);
+
+        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\AuthenticationException');
+
+        $data = [
+          'email'    => 'admin2@change.me',
+          'password' => 'test',
+          'role'     => 'registered',
+        ];
+
+        $this->authRepository->register($data, false);
+
+        $activationData = [
+          'email'           => $data['email'],
+          'activation_code' => 'notthecode',
+        ];
+
+        $this->authRepository->activate($activationData, false);
     }
 
     public function testFindUserByCredentials()

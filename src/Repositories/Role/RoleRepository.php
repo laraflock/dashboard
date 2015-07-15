@@ -13,6 +13,7 @@ namespace Odotmedia\Dashboard\Repositories\Role;
 
 use Cartalyst\Sentinel\Roles\EloquentRole;
 use Cartalyst\Sentinel\Sentinel;
+use Illuminate\Database\QueryException;
 use Odotmedia\Dashboard\Exceptions\RolesException;
 use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
 
@@ -34,9 +35,10 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
 
     public function __construct(EloquentRole $role, Sentinel $sentinel)
     {
-        $this->role = $role;
+        $this->role     = $role;
         $this->sentinel = $sentinel;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -75,10 +77,11 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
             $this->validate($data);
         }
 
-        if (!$role = $this->sentinel->getRoleRepository()
-                             ->createModel()
-                             ->create($data)
-        ) {
+        try {
+            $role = $this->sentinel->getRoleRepository()
+                                   ->createModel()
+                                   ->create($data);
+        } catch (QueryException $e) {
             throw new RolesException('Role could not be created.');
         }
 
@@ -119,7 +122,7 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
         $role->permissions = $data['permissions'];
         $role->save();
 
-        return;
+        return $role;
     }
 
     /**
@@ -133,6 +136,6 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
 
         $role->delete();
 
-        return;
+        return true;
     }
 }

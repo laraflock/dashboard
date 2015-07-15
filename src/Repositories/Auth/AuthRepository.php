@@ -13,6 +13,7 @@ namespace Odotmedia\Dashboard\Repositories\Auth;
 
 use Cartalyst\Sentinel\Activations\IlluminateActivationRepository;
 use Cartalyst\Sentinel\Sentinel;
+use Illuminate\Database\QueryException;
 use Odotmedia\Dashboard\Exceptions\AuthenticationException;
 use Odotmedia\Dashboard\Exceptions\RolesException;
 use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
@@ -106,7 +107,9 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
             return true;
         }
 
-        if (!$user = $this->sentinel->register($data)) {
+        try {
+            $user = $this->sentinel->register($data);
+        } catch (QueryException $e) {
             throw new AuthenticationException('User could not be created.');
         }
 
@@ -143,7 +146,9 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
             $this->validate($data);
         }
 
-        if (!$user = $this->sentinel->registerAndActivate($data)) {
+        try {
+            $user = $this->sentinel->registerAndActivate($data);
+        } catch (QueryException $e) {
             throw new AuthenticationException('User could not be created.');
         }
 
@@ -181,7 +186,7 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
             throw new AuthenticationException('Activation could not be completed.');
         }
 
-        return;
+        return true;
     }
 
     /**
