@@ -189,7 +189,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function delete($id)
     {
         if (!$user = $this->getById($id)) {
-            throw new UsersException('User cannot be found.');
+            throw new UsersException('User could not be found.');
         }
 
         $user->delete();

@@ -87,7 +87,7 @@ class UsersController extends BaseDashboardController
     public function edit($id)
     {
         if (!$user = $this->userRepositoryInterface->getByIdWith($id, 'roles')) {
-            Flash::error('User does not exist.');
+            Flash::error('User could not be found.');
 
             return redirect()->route('users.index');
         }
