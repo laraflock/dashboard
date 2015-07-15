@@ -1,8 +1,8 @@
 # Dashboard
 [![Author](https://img.shields.io/badge/author-%40ianmolson-blue.svg)](https://twitter.com/ianmolson)
-[![Build Status](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/build.png?b=master)](https://scrutinizer-ci.com/g/odotmedia/dashboard/build-status/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/odotmedia/dashboard/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/odotmedia/dashboard/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/build.png?b=2.0)](https://scrutinizer-ci.com/g/odotmedia/dashboard/build-status/2.0)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/quality-score.png?b=2.0)](https://scrutinizer-ci.com/g/odotmedia/dashboard/?branch=2.0)
+[![Code Coverage](https://scrutinizer-ci.com/g/odotmedia/dashboard/badges/coverage.png?b=2.0)](https://scrutinizer-ci.com/g/odotmedia/dashboard/?branch=2.0)
 [![Github Release](https://img.shields.io/github/release/odotmedia/dashboard.svg)](https://github.com/odotmedia/dashboard)
 [![Packagist](https://img.shields.io/packagist/l/odotmedia/dashboard.svg)](https://packagist.org/packages/odotmedia/dashboard)
 
@@ -37,9 +37,7 @@ Bug reports, feature requests, and pull requests can be submitted following our 
 
 ## Roadmap
 
-### 1.1.0
-
-- AdminLTE Dashboard Theme with color configuration.
+Will look at future enhancements down the road.
 
 ## License
 
