@@ -94,9 +94,51 @@ class PermissionsControllerTest extends TestCase
         $this->assertEquals('danger', session('flash_notification.level'));
     }
 
+    public function testEdit()
+    {
+        $data = [
+          'name' => 'Test2',
+          'slug' => 'test2',
+        ];
+
+        $this->call('POST', '/dashboard/permissions/1/edit', $data);
+
+        $this->assertEquals('Permission successfully updated.', session('flash_notification.message'));
+        $this->assertEquals('success', session('flash_notification.level'));
+    }
+
+    public function testEditFromValidationException()
+    {
+        $data = [
+          'name' => 'Test 2',
+          'slug' => 'test 2',
+        ];
+
+        $this->call('POST', '/dashboard/permissions/1/edit', $data);
+
+        $this->assertEquals('Fix errors in the form below.', session('flash_notification.message'));
+        $this->assertEquals('danger', session('flash_notification.level'));
+    }
+
+    public function testEditPermissionsException()
+    {
+        $data = [
+          'name' => 'Test2',
+          'slug' => 'test2',
+        ];
+
+        $this->call('POST', '/dashboard/permissions/2/edit', $data);
+
+        $this->assertEquals('Permission could not be found.', session('flash_notification.message'));
+        $this->assertEquals('danger', session('flash_notification.level'));
+    }
+
     public function testDelete()
     {
+        $this->call('DELETE', '/dashboard/permissions/1/delete');
 
+        $this->assertEquals('Permission successfully deleted.', session('flash_notification.message'));
+        $this->assertEquals('success', session('flash_notification.level'));
     }
 
     public function testDeleteRouteWrongId()

@@ -61,12 +61,6 @@ class RolesController extends BaseDashboardController
               ->route('roles.create')
               ->withErrors($e->getErrors())
               ->withInput();
-        } catch (RolesException $e) {
-            Flash::error($e->getMessage());
-
-            return redirect()
-              ->route('roles.create')
-              ->withInput();
         }
 
         Flash::success('Role successfully created.');
