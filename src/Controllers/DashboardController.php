@@ -16,7 +16,7 @@ class DashboardController extends BaseDashboardController
     /**
      * The dashboard.
      *
-     * @link domain.com/dashboard
+     * @return \Illuminate\View\View
      */
     public function dashboard()
     {

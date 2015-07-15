@@ -102,6 +102,12 @@ class AuthController extends BaseDashboardController
      */
     public function registration(Request $request)
     {
+        if (!config('odotmedia.dashboard.registration')) {
+            Flash::error('Registration is not active. Please login.');
+
+            return redirect()->route('auth.login');
+        }
+
         try {
             $this->authRepositoryInterface->register($request->all());
         } catch (FormValidationException $e) {
@@ -110,12 +116,6 @@ class AuthController extends BaseDashboardController
             return redirect()
               ->route('auth.register')
               ->withErrors($e->getErrors())
-              ->withInput();
-        } catch (AuthenticationException $e) {
-            Flash::error($e->getMessage());
-
-            return redirect()
-              ->route('auth.register')
               ->withInput();
         } catch (RolesException $e) {
             Flash::error($e->getMessage());
@@ -131,7 +131,7 @@ class AuthController extends BaseDashboardController
             return redirect()->route('auth.login');
         }
 
-        Flash::success('Account created. Activation need please check your email.');
+        Flash::success('Account created. Activation needed, please check your email.');
 
         return redirect()->route('auth.login');
     }
@@ -171,6 +171,12 @@ class AuthController extends BaseDashboardController
      */
     public function activation(Request $request)
     {
+        if (!config('odotmedia.dashboard.activations')) {
+            Flash::error('Activations are not active. Please login.');
+
+            return redirect()->route('auth.login');
+        }
+
         try {
             $this->authRepositoryInterface->activate($request->all());
         } catch (FormValidationException $e) {

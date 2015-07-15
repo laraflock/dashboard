@@ -22,6 +22,7 @@ class TestCase extends Base
      */
     protected $baseUrl = 'http://localhost';
 
+    protected $session;
     protected $authRepository;
     protected $permissionRepository;
     protected $roleRepository;
