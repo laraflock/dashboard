@@ -78,7 +78,7 @@ class PermissionsController extends BaseDashboardController
     public function edit($id)
     {
         if (!$permission = $this->permissionRepositoryInterface->getById($id)) {
-            Flash::error('Permission does not exist.');
+            Flash::error('Permission could not be found.');
 
             return redirect()->route('permissions.index');
         }

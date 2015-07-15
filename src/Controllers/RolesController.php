@@ -84,7 +84,7 @@ class RolesController extends BaseDashboardController
     public function edit($id)
     {
         if (!$role = $this->roleRepositoryInterface->getById($id)) {
-            Flash::error('Role does not exist.');
+            Flash::error('Role could not be found.');
 
             return redirect()->route('roles.index');
         }
