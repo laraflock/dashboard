@@ -1,7 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Session;
+
 class BaseDashboardControllerTest extends TestCase
 {
+    protected $adminRole;
+
     public function setUp()
     {
         parent::setUp();
@@ -10,14 +14,20 @@ class BaseDashboardControllerTest extends TestCase
 
     protected function setupData()
     {
+        // Added Session Start to properly test CSRF Token
+        Session::start();
+
         $roleData = [
           'name' => 'Registered',
           'slug' => 'registered',
         ];
 
         $roleData2 = [
-          'name' => 'Administrator',
-          'slug' => 'administrator',
+          'name'        => 'Administrator',
+          'slug'        => 'administrator',
+          'permissions' => [
+            'admin' => "1",
+          ],
         ];
 
         $userData = [
@@ -25,22 +35,14 @@ class BaseDashboardControllerTest extends TestCase
           'password' => 'test',
         ];
 
-        $userData2 = [
-          'email'    => 'admin2@change.me',
-          'password' => 'test',
-        ];
-
         $this->roleRepository->create($roleData);
-        $this->roleRepository->create($roleData2);
+        $this->adminRole = $this->roleRepository->create($roleData2);
         $this->authRepository->registerAndActivate($userData, false);
-        config(['laraflock.dashboard.defaultRole' => 'administrator']);
-        $this->authRepository->registerAndActivate($userData2, false);
     }
 
     public function testDashboardNotLoggedIn()
     {
-        $this->visit('/dashboard')
-             ->seePageIs('/auth/login');
+        $this->call('GET', '/dashboard');
 
         $this->assertEquals('Access Denied', session('flash_notification.message'));
         $this->assertEquals('danger', session('flash_notification.level'));
@@ -51,11 +53,16 @@ class BaseDashboardControllerTest extends TestCase
         $data = [
           'email'    => 'admin@change.me',
           'password' => 'test',
+          '_token'   => csrf_token(),
         ];
 
-        $this->visit('/auth/login')
-             ->submitForm('Login', $data)
-             ->see('Access Denied');
+        $this->call('POST', '/auth/login', $data);
+
+        $user = $this->authRepository->check();
+
+        $this->assertInstanceOf(\Cartalyst\Sentinel\Users\EloquentUser::class, $user);
+
+        $this->call('GET', '/dashboard');
 
         $this->assertEquals('Access Denied', session('flash_notification.message'));
         $this->assertEquals('danger', session('flash_notification.level'));
