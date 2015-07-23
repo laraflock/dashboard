@@ -1,8 +1,8 @@
 # Dashboard
 [![Author](https://img.shields.io/badge/author-%40ianmolson-blue.svg)](https://twitter.com/ianmolson)
-[![Build Status](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/build.png?b=master)](https://scrutinizer-ci.com/g/laraflock/dashboard/build-status/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/build.png?b=3.0)](https://scrutinizer-ci.com/g/laraflock/dashboard/build-status/3.0)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/quality-score.png?b=3.0)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=3.0)
+[![Code Coverage](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/coverage.png?b=3.0)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=3.0)
 [![Github Release](https://img.shields.io/github/release/laraflock/dashboard.svg)](https://github.com/laraflock/dashboard)
 [![Packagist](https://img.shields.io/packagist/l/laraflock/dashboard.svg)](https://packagist.org/packages/laraflock/dashboard)
 
