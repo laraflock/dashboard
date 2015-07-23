@@ -57,15 +57,14 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, $role)
     {
         if (!$user = $this->authRepositoryInterface->getActiveUser()) {
+
             Flash::error('Access Denied');
 
             return redirect()->route('auth.login');
         }
 
         if (!($role = $this->roleRepositoryInterface->getBySlug($role)) || !$user->inRole($role)) {
-            if ($request->ajax()) {
-                return response('Unauthorized', 401);
-            }
+
             Flash::error('Access Denied');
 
             return redirect()->route('auth.unauthorized');
