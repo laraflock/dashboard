@@ -6,8 +6,8 @@ This project follows [Semantic Versioning](CONTRIBUTING.md).
 
 We do not give estimated times for completion on `Accepted` Proposals.
 
-- [Accepted](https://github.com/odotmedia/dashboard/labels/Accepted)
-- [Rejected](https://github.com/odotmedia/dashboard/labels/Rejected)
+- [Accepted](https://github.com/laraflock/dashboard/labels/Accepted)
+- [Rejected](https://github.com/laraflock/dashboard/labels/Rejected)
 
 ---
 

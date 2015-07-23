@@ -71,7 +71,7 @@ class AuthRepositoryTest extends TestCase
 
     public function testAuthenticateFormValidationException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\FormValidationException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\FormValidationException');
 
         $userData = [
           'email'    => 'admin',
@@ -83,7 +83,7 @@ class AuthRepositoryTest extends TestCase
 
     public function testAuthenticateAuthenticationException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\AuthenticationException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\AuthenticationException');
 
         $userData = [
           'email'    => 'admin@change.me',
@@ -95,7 +95,7 @@ class AuthRepositoryTest extends TestCase
 
     public function testRegister()
     {
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
         $data = [
           'email'    => 'admin2@change.me',
@@ -110,7 +110,7 @@ class AuthRepositoryTest extends TestCase
 
     public function testRegisterAuthenticationException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\AuthenticationException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\AuthenticationException');
 
         $data = [
           'email'    => 'admin@change.me',
@@ -123,9 +123,9 @@ class AuthRepositoryTest extends TestCase
 
     public function testRegisterRolesException()
     {
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\RolesException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\RolesException');
 
         $data = [
           'email'    => 'admin2@change.me',
@@ -151,7 +151,7 @@ class AuthRepositoryTest extends TestCase
 
     public function testRegisterAndActivateFormValidationException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\FormValidationException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\FormValidationException');
 
         $data = [
           'email'    => 'admin',
@@ -164,7 +164,7 @@ class AuthRepositoryTest extends TestCase
 
     public function testRegisterAndActivateAuthenticationException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\AuthenticationException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\AuthenticationException');
 
         $data = [
           'email'    => 'admin@change.me',
@@ -177,7 +177,7 @@ class AuthRepositoryTest extends TestCase
 
     public function testRegisterAndActivateRolesException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\RolesException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\RolesException');
 
         $data = [
           'email'    => 'admin2@change.me',
@@ -190,7 +190,7 @@ class AuthRepositoryTest extends TestCase
 
     public function testActivate()
     {
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
         $data = [
           'email'    => 'admin2@change.me',
@@ -212,9 +212,9 @@ class AuthRepositoryTest extends TestCase
 
     public function testActivateAuthenticationException()
     {
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\AuthenticationException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\AuthenticationException');
 
         $data = [
           'email'    => 'admin2@change.me',

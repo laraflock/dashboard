@@ -2,58 +2,58 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Controllers;
+namespace Laraflock\Dashboard\Controllers;
 
 use Illuminate\Routing\Controller;
-use Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface;
-use Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface;
-use Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface;
-use Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface;
+use Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface;
+use Laraflock\Dashboard\Repositories\Permission\PermissionRepositoryInterface;
+use Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface;
+use Laraflock\Dashboard\Repositories\User\UserRepositoryInterface;
 
 class BaseDashboardController extends Controller
 {
     /**
      * Auth interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
+     * @var \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface
      */
     protected $authRepositoryInterface;
 
     /**
      * Permission interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface
+     * @var \Laraflock\Dashboard\Repositories\Permission\PermissionRepositoryInterface
      */
     protected $permissionRepositoryInterface;
 
     /**
      * Role interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface
+     * @var \Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface
      */
     protected $roleRepositoryInterface;
 
     /**
      * User interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface
+     * @var \Laraflock\Dashboard\Repositories\User\UserRepositoryInterface
      */
     protected $userRepositoryInterface;
 
     /**
      * The constructor.
      *
-     * @param \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface             $authRepositoryInterface
-     * @param \Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface $permissionRepositoryInterface
-     * @param \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface             $roleRepositoryInterface
-     * @param \Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface             $userRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface             $authRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\Permission\PermissionRepositoryInterface $permissionRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface             $roleRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\User\UserRepositoryInterface             $userRepositoryInterface
      */
     public function __construct(AuthRepositoryInterface $authRepositoryInterface, PermissionRepositoryInterface $permissionRepositoryInterface, RoleRepositoryInterface $roleRepositoryInterface, UserRepositoryInterface $userRepositoryInterface)
     {
@@ -61,7 +61,7 @@ class BaseDashboardController extends Controller
 
         $this->middleware('roles:administrator');
 
-        $viewNamespace = config('odotmedia.dashboard.viewNamespace');
+        $viewNamespace = config('laraflock.dashboard.viewNamespace');
 
         $this->authRepositoryInterface       = $authRepositoryInterface;
         $this->permissionRepositoryInterface = $permissionRepositoryInterface;
@@ -83,6 +83,6 @@ class BaseDashboardController extends Controller
      */
     public function view($view, $data = [])
     {
-        return view(sprintf("%s::%s", config('odotmedia.dashboard.viewNamespace'), $view), $data);
+        return view(sprintf("%s::%s", config('laraflock.dashboard.viewNamespace'), $view), $data);
     }
 }

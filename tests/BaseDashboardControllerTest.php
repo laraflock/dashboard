@@ -33,7 +33,7 @@ class BaseDashboardControllerTest extends TestCase
         $this->roleRepository->create($roleData);
         $this->roleRepository->create($roleData2);
         $this->authRepository->registerAndActivate($userData, false);
-        config(['odotmedia.dashboard.defaultRole' => 'administrator']);
+        config(['laraflock.dashboard.defaultRole' => 'administrator']);
         $this->authRepository->registerAndActivate($userData2, false);
     }
 

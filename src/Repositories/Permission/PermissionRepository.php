@@ -2,33 +2,33 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Repositories\Permission;
+namespace Laraflock\Dashboard\Repositories\Permission;
 
 use Illuminate\Database\QueryException;
-use Odotmedia\Dashboard\Exceptions\PermissionsException;
-use Odotmedia\Dashboard\Models\Permission;
-use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
+use Laraflock\Dashboard\Exceptions\PermissionsException;
+use Laraflock\Dashboard\Models\Permission;
+use Laraflock\Dashboard\Repositories\Base\BaseRepository;
 
 class PermissionRepository extends BaseRepository implements PermissionRepositoryInterface
 {
     /**
      * Permission instance.
      *
-     * @var \Odotmedia\Dashboard\Models\Permission
+     * @var \Laraflock\Dashboard\Models\Permission
      */
     protected $permission;
 
     /**
      * The constructor.
      *
-     * @param \Odotmedia\Dashboard\Models\Permission $permission
+     * @param \Laraflock\Dashboard\Models\Permission $permission
      */
     public function __construct(Permission $permission)
     {

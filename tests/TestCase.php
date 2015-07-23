@@ -2,16 +2,16 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\TestCase as Base;
-use Odotmedia\Dashboard\Providers\DashboardServiceProvider;
+use Laraflock\Dashboard\Providers\DashboardServiceProvider;
 
 class TestCase extends Base
 {
@@ -74,10 +74,10 @@ class TestCase extends Base
         // Run migrations.
         $this->artisan('migrate');
 
-        $this->authRepository       = app()->make('Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface');
-        $this->permissionRepository = app()->make('Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface');
-        $this->roleRepository       = app()->make('Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface');
-        $this->userRepository       = app()->make('Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface');
+        $this->authRepository       = app()->make('Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface');
+        $this->permissionRepository = app()->make('Laraflock\Dashboard\Repositories\Permission\PermissionRepositoryInterface');
+        $this->roleRepository       = app()->make('Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface');
+        $this->userRepository       = app()->make('Laraflock\Dashboard\Repositories\User\UserRepositoryInterface');
     }
 
     public function tearDown()

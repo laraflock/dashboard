@@ -2,41 +2,41 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Controllers;
+namespace Laraflock\Dashboard\Controllers;
 
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
-use Odotmedia\Dashboard\Exceptions\AuthenticationException;
-use Odotmedia\Dashboard\Exceptions\FormValidationException;
-use Odotmedia\Dashboard\Exceptions\RolesException;
-use Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface;
+use Laraflock\Dashboard\Exceptions\AuthenticationException;
+use Laraflock\Dashboard\Exceptions\FormValidationException;
+use Laraflock\Dashboard\Exceptions\RolesException;
+use Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface;
 
 class AuthController extends BaseDashboardController
 {
     /**
      * Auth interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
+     * @var \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface
      */
     protected $authRepositoryInterface;
 
     /**
      * The constructor.
      *
-     * @param \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface $authRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface $authRepositoryInterface
      */
     public function __construct(AuthRepositoryInterface $authRepositoryInterface)
     {
         $this->authRepositoryInterface = $authRepositoryInterface;
 
-        $viewNamespace = config('odotmedia.dashboard.viewNamespace');
+        $viewNamespace = config('laraflock.dashboard.viewNamespace');
 
         view()->share(['viewNamespace' => $viewNamespace]);
     }
@@ -84,7 +84,7 @@ class AuthController extends BaseDashboardController
      */
     public function register()
     {
-        if (!config('odotmedia.dashboard.registration')) {
+        if (!config('laraflock.dashboard.registration')) {
             Flash::error('Registration is not active. Please login.');
 
             return redirect()->route('auth.login');
@@ -102,7 +102,7 @@ class AuthController extends BaseDashboardController
      */
     public function registration(Request $request)
     {
-        if (!config('odotmedia.dashboard.registration')) {
+        if (!config('laraflock.dashboard.registration')) {
             Flash::error('Registration is not active. Please login.');
 
             return redirect()->route('auth.login');
@@ -125,7 +125,7 @@ class AuthController extends BaseDashboardController
               ->withInput();
         }
 
-        if (!config('odotmedia.dashboard.activations')) {
+        if (!config('laraflock.dashboard.activations')) {
             Flash::success('Account activated. Please login below.');
 
             return redirect()->route('auth.login');
@@ -153,7 +153,7 @@ class AuthController extends BaseDashboardController
             $code = null;
         }
 
-        if (!config('odotmedia.dashboard.activations')) {
+        if (!config('laraflock.dashboard.activations')) {
             Flash::error('Activations are not active. Please login.');
 
             return redirect()->route('auth.login');
@@ -171,7 +171,7 @@ class AuthController extends BaseDashboardController
      */
     public function activation(Request $request)
     {
-        if (!config('odotmedia.dashboard.activations')) {
+        if (!config('laraflock.dashboard.activations')) {
             Flash::error('Activations are not active. Please login.');
 
             return redirect()->route('auth.login');

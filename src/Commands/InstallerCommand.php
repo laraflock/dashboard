@@ -2,14 +2,14 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Commands;
+namespace Laraflock\Dashboard\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -47,21 +47,21 @@ class InstallerCommand extends Command
     /**
      * Auth interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepository
+     * @var \Laraflock\Dashboard\Repositories\Auth\AuthRepository
      */
     protected $authRepository;
 
     /**
      * Permission interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Permission\PermissionRepository
+     * @var \Laraflock\Dashboard\Repositories\Permission\PermissionRepository
      */
     protected $permissionRepository;
 
     /**
      * Role interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Role\RoleRepository
+     * @var \Laraflock\Dashboard\Repositories\Role\RoleRepository
      */
     protected $roleRepository;
 
@@ -70,9 +70,9 @@ class InstallerCommand extends Command
      */
     public function __construct()
     {
-        $this->authRepository       = app()->make('Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface');
-        $this->permissionRepository = app()->make('Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface');
-        $this->roleRepository       = app()->make('Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface');
+        $this->authRepository       = app()->make('Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface');
+        $this->permissionRepository = app()->make('Laraflock\Dashboard\Repositories\Permission\PermissionRepositoryInterface');
+        $this->roleRepository       = app()->make('Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface');
 
         parent::__construct();
     }
@@ -128,7 +128,7 @@ class InstallerCommand extends Command
 |                                               |
 |               Dashboard Installer             |
 |               Copyright (c) 2015              |
-|                 Odot Media LLC                |
+|                   Laraflock                   |
 |                                               |
 |          Thanks for using Dashboard!          |
 |                                               |

@@ -2,14 +2,14 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Repositories\Role;
+namespace Laraflock\Dashboard\Repositories\Role;
 
 interface RoleRepositoryInterface
 {
@@ -46,8 +46,8 @@ interface RoleRepositoryInterface
      *
      * @return mixed
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
+     * @throws \Laraflock\Dashboard\Exceptions\FormValidationException
+     * @throws \Laraflock\Dashboard\Exceptions\RolesException
      */
     public function create(array $data, $validate = true);
 
@@ -58,8 +58,8 @@ interface RoleRepositoryInterface
      * @param int   $id
      * @param bool  $validate
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
+     * @throws \Laraflock\Dashboard\Exceptions\FormValidationException
+     * @throws \Laraflock\Dashboard\Exceptions\RolesException
      */
     public function update(array $data, $id, $validate = true);
 
@@ -68,7 +68,7 @@ interface RoleRepositoryInterface
      *
      * @param int $id
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
+     * @throws \Laraflock\Dashboard\Exceptions\RolesException
      */
     public function delete($id);
 }

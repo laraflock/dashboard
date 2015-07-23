@@ -2,14 +2,14 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Repositories\Auth;
+namespace Laraflock\Dashboard\Repositories\Auth;
 
 interface AuthRepositoryInterface
 {
@@ -32,8 +32,8 @@ interface AuthRepositoryInterface
      *
      * @param array $data
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
+     * @throws \Laraflock\Dashboard\Exceptions\AuthenticationException
+     * @throws \Laraflock\Dashboard\Exceptions\FormValidationException
      *
      * @return mixed
      */
@@ -45,9 +45,9 @@ interface AuthRepositoryInterface
      * @param array $data
      * @param bool  $validate
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
+     * @throws \Laraflock\Dashboard\Exceptions\AuthenticationException
+     * @throws \Laraflock\Dashboard\Exceptions\FormValidationException
+     * @throws \Laraflock\Dashboard\Exceptions\RolesException
      *
      * @return mixed
      */
@@ -59,9 +59,9 @@ interface AuthRepositoryInterface
      * @param array $data
      * @param bool  $validate
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
+     * @throws \Laraflock\Dashboard\Exceptions\AuthenticationException
+     * @throws \Laraflock\Dashboard\Exceptions\FormValidationException
+     * @throws \Laraflock\Dashboard\Exceptions\RolesException
      *
      * @return mixed
      */
@@ -73,7 +73,7 @@ interface AuthRepositoryInterface
      * @param array $data
      * @param bool  $validate
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
+     * @throws \Laraflock\Dashboard\Exceptions\AuthenticationException
      *
      * @return mixed
      */

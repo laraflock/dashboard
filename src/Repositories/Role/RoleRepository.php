@@ -2,20 +2,20 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Repositories\Role;
+namespace Laraflock\Dashboard\Repositories\Role;
 
 use Cartalyst\Sentinel\Roles\EloquentRole;
 use Cartalyst\Sentinel\Sentinel;
 use Illuminate\Database\QueryException;
-use Odotmedia\Dashboard\Exceptions\RolesException;
-use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
+use Laraflock\Dashboard\Exceptions\RolesException;
+use Laraflock\Dashboard\Repositories\Base\BaseRepository;
 
 class RoleRepository extends BaseRepository implements RoleRepositoryInterface
 {

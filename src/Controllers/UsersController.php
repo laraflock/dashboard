@@ -2,20 +2,21 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Controllers;
+namespace Laraflock\Dashboard\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 use Laracasts\Flash\Flash;
-use Odotmedia\Dashboard\Exceptions\FormValidationException;
-use Odotmedia\Dashboard\Exceptions\UsersException;
+use Laraflock\Dashboard\Exceptions\FormValidationException;
+use Laraflock\Dashboard\Exceptions\UsersException;
 
 class UsersController extends BaseDashboardController
 {
@@ -28,7 +29,8 @@ class UsersController extends BaseDashboardController
     {
         $users = $this->userRepositoryInterface->getAllWith('roles');
 
-        return $this->view('users.index')->with(['users' => $users]);
+        return $this->view('users.index')
+                    ->with(['users' => $users]);
     }
 
     /**
@@ -38,18 +40,11 @@ class UsersController extends BaseDashboardController
      */
     public function create()
     {
-        $roles       = [];
-        $roleChoices = $this->roleRepositoryInterface->getAll();
+        $roles = $this->roleRepositoryInterface->getAll()
+                                               ->lists('name', 'slug');
 
-        if (empty($roleChoices)) {
-            return $this->view('users.create')->with('roles', $roles);
-        }
-
-        foreach ($roleChoices as $role) {
-            $roles[$role->slug] = $role->name;
-        }
-
-        return $this->view('users.create')->with('roles', $roles);
+        return $this->view('users.create')
+                    ->with('roles', $roles);
     }
 
     /**
@@ -92,36 +87,21 @@ class UsersController extends BaseDashboardController
             return redirect()->route('users.index');
         }
 
-        $currentRoles = ['Not Available'];
-        $userRoles    = $user->getRoles();
+        $currentRoles = $user->getRoles()
+                             ->lists('name');
 
-        if (!empty($userRoles)) {
-            $currentRoles = [];
-
-            foreach ($userRoles as $userRole) {
-                $currentRoles[] = $userRole->name;
-            }
+        if (empty($userRoles)) {
+            $currentRoles = new Collection(['name' => 'Not Available']);
         }
 
-        sort($currentRoles);
+        $currentRoles->sortBy('name');
+        $currentRoles = implode(', ', $currentRoles->toArray());
 
-        $currentRoles = implode(', ', $currentRoles);
+        $roles = $this->roleRepositoryInterface->getAll()
+                                               ->lists('name', 'slug');
 
-        $roles       = [];
-        $roleChoices = $this->roleRepositoryInterface->getAll();
-
-        if (empty($roleChoices)) {
-            return $this->view('users.create')->with(['user'        => $user,
-                                                          'currentRoles' => $currentRoles,
-                                                          'roles'       => $roles
-            ]);
-        }
-
-        foreach ($roleChoices as $role) {
-            $roles[$role->slug] = $role->name;
-        }
-
-        return $this->view('users.edit')->with(['user' => $user, 'currentRoles' => $currentRoles, 'roles' => $roles]);
+        return $this->view('users.edit')
+                    ->with(['user' => $user, 'currentRoles' => $currentRoles, 'roles' => $roles]);
     }
 
     /**

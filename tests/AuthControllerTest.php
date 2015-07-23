@@ -94,7 +94,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegisterRoute()
     {
-        config(['odotmedia.dashboard.registration' => true]);
+        config(['laraflock.dashboard.registration' => true]);
 
         $this->visit('/auth/register')
              ->assertResponseOk();
@@ -102,7 +102,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegistration()
     {
-        config(['odotmedia.dashboard.registration' => true]);
+        config(['laraflock.dashboard.registration' => true]);
 
         $data = [
           'email'                 => 'admin2@change.me',
@@ -118,7 +118,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegistrationFormValidationException()
     {
-        config(['odotmedia.dashboard.registration' => true]);
+        config(['laraflock.dashboard.registration' => true]);
 
         $data = [
           'email'                 => '',
@@ -134,8 +134,8 @@ class AuthControllerTest extends TestCase
 
     public function testRegistrationRoleException()
     {
-        config(['odotmedia.dashboard.registration' => true]);
-        config(['odotmedia.dashboard.defaultRole' => 'fake']);
+        config(['laraflock.dashboard.registration' => true]);
+        config(['laraflock.dashboard.defaultRole' => 'fake']);
 
         $data = [
           'email'                 => 'admin2@change.me',
@@ -151,8 +151,8 @@ class AuthControllerTest extends TestCase
 
     public function testRegistrationWithActivation()
     {
-        config(['odotmedia.dashboard.registration' => true]);
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.registration' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
         $data = [
           'email'                 => 'admin2@change.me',
@@ -184,7 +184,7 @@ class AuthControllerTest extends TestCase
 
     public function testActivateRoute()
     {
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
         $this->visit('/auth/register')
              ->assertResponseOk();
@@ -192,7 +192,7 @@ class AuthControllerTest extends TestCase
 
     public function testActivateRouteWithParameters()
     {
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
         $this->visit('/auth/register?email=admin2@change.me&code=test')
              ->assertResponseOk();
@@ -200,8 +200,8 @@ class AuthControllerTest extends TestCase
 
     public function testUserActivation()
     {
-        config(['odotmedia.dashboard.registration' => true]);
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.registration' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
         $data = [
           'email'    => 'admin2@change.me',
@@ -224,8 +224,8 @@ class AuthControllerTest extends TestCase
 
     public function testUserActivationFormValidationException()
     {
-        config(['odotmedia.dashboard.registration' => true]);
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.registration' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
         $this->call('POST', '/auth/activate');
 
@@ -235,8 +235,8 @@ class AuthControllerTest extends TestCase
 
     public function testUserActivationAuthenticationExceptionActivationAlreadyCompleted()
     {
-        config(['odotmedia.dashboard.registration' => true]);
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.registration' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
         $data = [
           'email'    => 'admin2@change.me',
@@ -261,8 +261,8 @@ class AuthControllerTest extends TestCase
 
     public function testUserActivationAuthenticationExceptionWrongCode()
     {
-        config(['odotmedia.dashboard.registration' => true]);
-        config(['odotmedia.dashboard.activations' => true]);
+        config(['laraflock.dashboard.registration' => true]);
+        config(['laraflock.dashboard.activations' => true]);
 
         $data = [
           'email'    => 'admin2@change.me',

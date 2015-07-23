@@ -44,7 +44,7 @@ return [
     |
     */
 
-    'credits'                   => 'Odot Media LLC',
+    'credits'                   => 'Laraflock',
     /*
     |--------------------------------------------------------------------------
     | Default Role on User Creation
@@ -117,18 +117,18 @@ return [
     | automatically bind inside the service provider. If left blank the
     | default repository class will be loaded.
     |
-    | Default Repository: Odotmedia\Dashboard\Repositories\Auth\AuthRepository
+    | Default Repository: Laraflock\Dashboard\Repositories\Auth\AuthRepository
     |
     | * NOTICE *
     | If you would like to use your own repository class, be sure to implement
     | the following interface and extend the base repository class:
     |
-    | Base Repository: Odotmedia\Dashboard\Repositories\Base\BaseRepository
-    | Auth Interface: Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
+    | Base Repository: Laraflock\Dashboard\Repositories\Base\BaseRepository
+    | Auth Interface: Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface
     |
     */
 
-    'authRepositoryClass'       => 'Odotmedia\Dashboard\Repositories\Auth\AuthRepository',
+    'authRepositoryClass'       => 'Laraflock\Dashboard\Repositories\Auth\AuthRepository',
     /*
     |--------------------------------------------------------------------------
     | Permission Repository Class
@@ -138,18 +138,18 @@ return [
     | automatically bind inside the service provider. If left blank the
     | default repository class will be loaded.
     |
-    | Default Repository: Odotmedia\Dashboard\Repositories\Permission\PermissionRepository
+    | Default Repository: Laraflock\Dashboard\Repositories\Permission\PermissionRepository
     |
     | * NOTICE *
     | If you would like to use your own repository class, be sure to implement
     | the following interface and extend the base repository class:
     |
-    | Base Repository: Odotmedia\Dashboard\Repositories\Base\BaseRepository
-    | Permission Interface: Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface
+    | Base Repository: Laraflock\Dashboard\Repositories\Base\BaseRepository
+    | Permission Interface: Laraflock\Dashboard\Repositories\Permission\PermissionRepositoryInterface
     |
     */
 
-    'permissionRepositoryClass' => 'Odotmedia\Dashboard\Repositories\Permission\PermissionRepository',
+    'permissionRepositoryClass' => 'Laraflock\Dashboard\Repositories\Permission\PermissionRepository',
     /*
     |--------------------------------------------------------------------------
     | Role Repository Class
@@ -159,18 +159,18 @@ return [
     | automatically bind inside the service provider. If left blank the
     | default repository class will be loaded.
     |
-    | Default Repository: Odotmedia\Dashboard\Repositories\Role\RoleRepository
+    | Default Repository: Laraflock\Dashboard\Repositories\Role\RoleRepository
     |
     | * NOTICE *
     | If you would like to use your own repository class, be sure to implement
     | the following interface and extend the base repository class:
     |
-    | Base Repository: Odotmedia\Dashboard\Repositories\Base\BaseRepository
-    | Role Interface: Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface
+    | Base Repository: Laraflock\Dashboard\Repositories\Base\BaseRepository
+    | Role Interface: Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface
     |
     */
 
-    'roleRepositoryClass'       => 'Odotmedia\Dashboard\Repositories\Role\RoleRepository',
+    'roleRepositoryClass'       => 'Laraflock\Dashboard\Repositories\Role\RoleRepository',
     /*
     |--------------------------------------------------------------------------
     | User Repository Class
@@ -180,18 +180,18 @@ return [
     | automatically bind inside the service provider. If left blank the
     | default repository class will be loaded.
     |
-    | Default Repository: Odotmedia\Dashboard\Repositories\User\UserRepository
+    | Default Repository: Laraflock\Dashboard\Repositories\User\UserRepository
     |
     | * NOTICE *
     | If you would like to use your own repository class, be sure to implement
     | the following interface and extend the base repository class:
     |
-    | Base Repository: Odotmedia\Dashboard\Repositories\Base\BaseRepository
-    | User Interface: Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface
+    | Base Repository: Laraflock\Dashboard\Repositories\Base\BaseRepository
+    | User Interface: Laraflock\Dashboard\Repositories\User\UserRepositoryInterface
     |
     */
 
-    'userRepositoryClass'       => 'Odotmedia\Dashboard\Repositories\User\UserRepository',
+    'userRepositoryClass'       => 'Laraflock\Dashboard\Repositories\User\UserRepository',
     /*
     |--------------------------------------------------------------------------
     | AdminLTE Theme

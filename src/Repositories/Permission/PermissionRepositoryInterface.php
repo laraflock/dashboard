@@ -2,14 +2,14 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Repositories\Permission;
+namespace Laraflock\Dashboard\Repositories\Permission;
 
 interface PermissionRepositoryInterface
 {
@@ -36,7 +36,7 @@ interface PermissionRepositoryInterface
      * @param bool  $validate
      *
      * @return static
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
+     * @throws \Laraflock\Dashboard\Exceptions\FormValidationException
      */
     public function create(array $data, $validate = true);
 
@@ -47,8 +47,8 @@ interface PermissionRepositoryInterface
      * @param int   $id
      * @param bool  $validate
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\PermissionsException
+     * @throws \Laraflock\Dashboard\Exceptions\FormValidationException
+     * @throws \Laraflock\Dashboard\Exceptions\PermissionsException
      */
     public function update(array $data, $id, $validate = true);
 
@@ -57,7 +57,7 @@ interface PermissionRepositoryInterface
      *
      * @param int $id
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\PermissionsException
+     * @throws \Laraflock\Dashboard\Exceptions\PermissionsException
      */
     public function delete($id);
 }

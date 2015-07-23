@@ -2,20 +2,20 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     2.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Controllers;
+namespace Laraflock\Dashboard\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Laracasts\Flash\Flash;
-use Odotmedia\Dashboard\Exceptions\FormValidationException;
-use Odotmedia\Dashboard\Exceptions\RolesException;
+use Laraflock\Dashboard\Exceptions\FormValidationException;
+use Laraflock\Dashboard\Exceptions\RolesException;
 
 class RolesController extends BaseDashboardController
 {
