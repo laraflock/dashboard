@@ -4,7 +4,7 @@
     @include($viewNamespace . '::global.head')
     @yield('header-extras')
 </head>
-<body class="{{ config('odotmedia.dashboard.theme') }} sidebar-mini">
+<body class="{{ config('laraflock.dashboard.theme') }} sidebar-mini">
 <div class="wrapper">
     @include($viewNamespace . '::global.header')
     @include($viewNamespace . '::global.sidebar')
@@ -22,9 +22,9 @@
     </div>
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> {{ config('odotmedia.dashboard.version') }}
+            <b>Version</b> {{ config('laraflock.dashboard.version') }}
         </div>
-        <strong>Copyright &copy; {{ date('Y') }} {{ config('odotmedia.dashboard.credits') }}.</strong> All rights reserved.
+        <strong>Copyright &copy; {{ date('Y') }} {{ config('laraflock.dashboard.credits') }}.</strong> All rights reserved.
     </footer>
 </div>
 @include($viewNamespace . '::global.footer-scripts')

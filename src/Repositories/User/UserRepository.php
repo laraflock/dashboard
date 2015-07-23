@@ -2,36 +2,36 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     3.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Repositories\User;
+namespace Laraflock\Dashboard\Repositories\User;
 
 use Cartalyst\Sentinel\Sentinel;
 use Cartalyst\Sentinel\Users\EloquentUser;
-use Odotmedia\Dashboard\Exceptions\RolesException;
-use Odotmedia\Dashboard\Exceptions\UsersException;
-use Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface;
-use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
-use Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface;
+use Laraflock\Dashboard\Exceptions\RolesException;
+use Laraflock\Dashboard\Exceptions\UsersException;
+use Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface;
+use Laraflock\Dashboard\Repositories\Base\BaseRepository;
+use Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
     /**
      * Auth interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
+     * @var \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface
      */
     protected $auth;
 
     /**
      * Role interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface
+     * @var \Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface
      */
     protected $role;
 
@@ -52,8 +52,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     /**
      * The constructor.
      *
-     * @param \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface $auth
-     * @param \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface $role
+     * @param \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface $auth
+     * @param \Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface $role
      * @param \Cartalyst\Sentinel\Sentinel                                   $sentinel
      * @param \Cartalyst\Sentinel\Users\EloquentUser                         $user
      */

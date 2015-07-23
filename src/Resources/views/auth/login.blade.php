@@ -18,7 +18,7 @@
         </div>
     </div>
     {!! BootForm::close() !!}
-    @if(config('odotmedia.dashboard.registration'))
+    @if(config('laraflock.dashboard.registration'))
         <a href="#">I forgot my password</a><br>
         <a href="{{ route('auth.register') }}" class="text-center">Register a new membership</a>
     @endif

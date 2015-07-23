@@ -7,7 +7,7 @@
 <body class="login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ route('dashboard.index') }}">{{ config('odotmedia.dashboard.title') }}</a>
+        <a href="{{ route('dashboard.index') }}">{{ config('laraflock.dashboard.title') }}</a>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
         @include('flash::message')

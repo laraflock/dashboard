@@ -2,14 +2,14 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     3.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Providers;
+namespace Laraflock\Dashboard\Providers;
 
 use AdamWathan\BootForms\BootFormsServiceProvider;
 use AdamWathan\BootForms\Facades\BootForm;
@@ -26,12 +26,12 @@ use Laracasts\Flash\Flash;
 use Laracasts\Flash\FlashServiceProvider;
 use Laravelista\Ekko\EkkoServiceProvider;
 use Laravelista\Ekko\Facades\Ekko;
-use Odotmedia\Dashboard\Commands\FreshCommand;
-use Odotmedia\Dashboard\Commands\InstallerCommand;
-use Odotmedia\Dashboard\Commands\SetupCommand;
-use Odotmedia\Dashboard\Commands\UninstallCommand;
-use Odotmedia\Dashboard\Middleware\UserMiddleware;
-use Odotmedia\Dashboard\Middleware\RoleMiddleware;
+use Laraflock\Dashboard\Commands\FreshCommand;
+use Laraflock\Dashboard\Commands\InstallerCommand;
+use Laraflock\Dashboard\Commands\SetupCommand;
+use Laraflock\Dashboard\Commands\UninstallCommand;
+use Laraflock\Dashboard\Middleware\UserMiddleware;
+use Laraflock\Dashboard\Middleware\RoleMiddleware;
 
 class DashboardServiceProvider extends ServiceProvider
 {
@@ -41,7 +41,7 @@ class DashboardServiceProvider extends ServiceProvider
     public function boot()
     {
         // Setup Default namespace until config file is published.
-        if (!$namespace = config('odotmedia.dashboard.viewNamespace')) {
+        if (!$namespace = config('laraflock.dashboard.viewNamespace')) {
             $namespace = 'dashboard';
         }
 
@@ -52,17 +52,17 @@ class DashboardServiceProvider extends ServiceProvider
         ]);
 
         // Use package routes.
-        if (config('odotmedia.dashboard.routes')) {
+        if (config('laraflock.dashboard.routes')) {
             include __DIR__ . '/../routes.php';
         }
 
         // Publish config.
         $config = realpath(__DIR__ . '/../config.php');
 
-        $this->mergeConfigFrom($config, 'odotmedia.dashboard');
+        $this->mergeConfigFrom($config, 'laraflock.dashboard');
 
         $this->publishes([
-          $config => config_path('odotmedia.dashboard.php'),
+          $config => config_path('laraflock.dashboard.php'),
         ], 'config');
 
         // Publish migrations.
@@ -74,7 +74,7 @@ class DashboardServiceProvider extends ServiceProvider
 
         // Publish assets.
         $this->publishes([
-          __DIR__ . '/../Resources/assets' => public_path('vendor/odotmedia'),
+          __DIR__ . '/../Resources/assets' => public_path('vendor/laraflock'),
         ], 'public');
 
         // Setup interfaces.
@@ -96,8 +96,8 @@ class DashboardServiceProvider extends ServiceProvider
      * Register the middleware to the application
      *
      * Register the following middleware:
-     * - \Odotmedia\Dashboard\Middleware\UserMiddleware
-     * - \Odotmedia\Dashboard\Middleware\RoleMiddleware
+     * - \Laraflock\Dashboard\Middleware\UserMiddleware
+     * - \Laraflock\Dashboard\Middleware\RoleMiddleware
      */
     protected function setupMiddleware()
     {
@@ -147,26 +147,26 @@ class DashboardServiceProvider extends ServiceProvider
     {
         // Bind the Auth Repository Interface
         $this->app->bind(
-          'Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface',
-          config('odotmedia.dashboard.authRepositoryClass')
+          'Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface',
+          config('laraflock.dashboard.authRepositoryClass')
         );
 
         // Bind the Permission Repository Interface
         $this->app->bind(
-          'Odotmedia\Dashboard\Repositories\Permission\PermissionRepositoryInterface',
-          config('odotmedia.dashboard.permissionRepositoryClass')
+          'Laraflock\Dashboard\Repositories\Permission\PermissionRepositoryInterface',
+          config('laraflock.dashboard.permissionRepositoryClass')
         );
 
         // Bind the Role Repository Interface
         $this->app->bind(
-          'Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface',
-          config('odotmedia.dashboard.roleRepositoryClass')
+          'Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface',
+          config('laraflock.dashboard.roleRepositoryClass')
         );
 
         // Bind the User Repository Interface
         $this->app->bind(
-          'Odotmedia\Dashboard\Repositories\User\UserRepositoryInterface',
-          config('odotmedia.dashboard.userRepositoryClass')
+          'Laraflock\Dashboard\Repositories\User\UserRepositoryInterface',
+          config('laraflock.dashboard.userRepositoryClass')
         );
     }
 

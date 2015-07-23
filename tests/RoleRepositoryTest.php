@@ -53,7 +53,7 @@ class RoleRepositoryTest extends TestCase
 
     public function testCreateFormValidationException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\FormValidationException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\FormValidationException');
 
         $data = [
           'name' => 'Registered',
@@ -65,7 +65,7 @@ class RoleRepositoryTest extends TestCase
 
     public function testCreateRolesException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\RolesException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\RolesException');
 
         $data = [
           'name' => 'Registered',
@@ -89,7 +89,7 @@ class RoleRepositoryTest extends TestCase
 
     public function testUpdateRolesException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\RolesException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\RolesException');
 
         $data = [
           'name' => 'Registered2',
@@ -101,7 +101,7 @@ class RoleRepositoryTest extends TestCase
 
     public function testUpdateFormValidationException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\FormValidationException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\FormValidationException');
 
         $data = [
           'name' => 'Registered 2',
@@ -120,7 +120,7 @@ class RoleRepositoryTest extends TestCase
 
     public function testDeleteRolesException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\RolesException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\RolesException');
 
         $this->roleRepository->delete(2);
     }

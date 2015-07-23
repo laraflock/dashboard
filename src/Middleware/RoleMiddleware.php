@@ -2,42 +2,42 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     3.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Middleware;
+namespace Laraflock\Dashboard\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
-use Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface;
-use Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface;
+use Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface;
+use Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface;
 
 class RoleMiddleware
 {
     /**
      * Auth repository interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface
+     * @var \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface
      */
     protected $authRepositoryInterface;
 
     /**
      * Role repository interface.
      *
-     * @var \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface
+     * @var \Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface
      */
     protected $roleRepositoryInterface;
 
     /**
      * The constructor.
      *
-     * @param \Odotmedia\Dashboard\Repositories\Auth\AuthRepositoryInterface $authRepositoryInterface
-     * @param \Odotmedia\Dashboard\Repositories\Role\RoleRepositoryInterface $roleRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface $authRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface $roleRepositoryInterface
      */
     public function __construct(AuthRepositoryInterface $authRepositoryInterface, RoleRepositoryInterface $roleRepositoryInterface)
     {

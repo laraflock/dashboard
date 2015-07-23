@@ -2,14 +2,14 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     3.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Repositories\User;
+namespace Laraflock\Dashboard\Repositories\User;
 
 interface UserRepositoryInterface
 {
@@ -54,7 +54,7 @@ interface UserRepositoryInterface
      * @param array $data
      *
      * @return bool
-     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
+     * @throws \Laraflock\Dashboard\Exceptions\AuthenticationException
      */
     public function create(array $data, $validate = true);
 
@@ -65,9 +65,9 @@ interface UserRepositoryInterface
      * @param int   $id
      * @param bool  $validate
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
-     * @throws \Odotmedia\Dashboard\Exceptions\RolesException
-     * @throws \Odotmedia\Dashboard\Exceptions\UsersException
+     * @throws \Laraflock\Dashboard\Exceptions\FormValidationException
+     * @throws \Laraflock\Dashboard\Exceptions\RolesException
+     * @throws \Laraflock\Dashboard\Exceptions\UsersException
      */
     public function update(array $data, $id, $validate = true);
 
@@ -77,8 +77,8 @@ interface UserRepositoryInterface
      * @param array $data
      * @param bool  $validate
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\AuthenticationException
-     * @throws \Odotmedia\Dashboard\Exceptions\FormValidationException
+     * @throws \Laraflock\Dashboard\Exceptions\AuthenticationException
+     * @throws \Laraflock\Dashboard\Exceptions\FormValidationException
      */
     public function updatePassword(array $data, $validate = true);
 
@@ -87,7 +87,7 @@ interface UserRepositoryInterface
      *
      * @param int $id
      *
-     * @throws \Odotmedia\Dashboard\Exceptions\UsersException
+     * @throws \Laraflock\Dashboard\Exceptions\UsersException
      */
     public function delete($id);
 }

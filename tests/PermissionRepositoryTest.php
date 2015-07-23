@@ -29,7 +29,7 @@ class PermissionRepositoryTest extends TestCase
     {
         $permission = $this->permissionRepository->getById(1);
 
-        $this->assertInstanceOf(\Odotmedia\Dashboard\Models\Permission::class, $permission);
+        $this->assertInstanceOf(\Laraflock\Dashboard\Models\Permission::class, $permission);
     }
 
     public function testGetByIdNull()
@@ -48,12 +48,12 @@ class PermissionRepositoryTest extends TestCase
 
         $permission = $this->permissionRepository->create($data, false);
 
-        $this->assertInstanceOf(\Odotmedia\Dashboard\Models\Permission::class, $permission);
+        $this->assertInstanceOf(\Laraflock\Dashboard\Models\Permission::class, $permission);
     }
 
     public function testCreateFormValidationException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\FormValidationException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\FormValidationException');
 
         $data = [
           'name' => 'Administrator (Full Access)',
@@ -65,7 +65,7 @@ class PermissionRepositoryTest extends TestCase
 
     public function testCreatePermissionsException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\PermissionsException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\PermissionsException');
 
         $data = [
           'name' => 'Administrator (Full Access)',
@@ -84,12 +84,12 @@ class PermissionRepositoryTest extends TestCase
 
         $permission = $this->permissionRepository->update($data, 1, false);
 
-        $this->assertInstanceOf(\Odotmedia\Dashboard\Models\Permission::class, $permission);
+        $this->assertInstanceOf(\Laraflock\Dashboard\Models\Permission::class, $permission);
     }
 
     public function testUpdatePermissionsException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\PermissionsException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\PermissionsException');
 
         $data = [
           'name' => 'Administrator',
@@ -101,7 +101,7 @@ class PermissionRepositoryTest extends TestCase
 
     public function testUpdateFormValidationException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\FormValidationException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\FormValidationException');
 
         $data = [
             'name' => 'Administrator',
@@ -120,7 +120,7 @@ class PermissionRepositoryTest extends TestCase
 
     public function testDeletePermissionsException()
     {
-        $this->setExpectedException('Odotmedia\Dashboard\Exceptions\PermissionsException');
+        $this->setExpectedException('Laraflock\Dashboard\Exceptions\PermissionsException');
 
         $this->permissionRepository->delete(2);
     }

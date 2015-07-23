@@ -1,22 +1,18 @@
 {
-  "name": "odotmedia/dashboard",
+  "name": "laraflock/dashboard",
   "description": "Laravel 5.1 (LTS) Dashboard Base",
   "keywords": [
     "laravel",
     "dashboard",
     "admin",
-    "odotmedia"
+    "laraflock"
   ],
-  "homepage": "https://github.com/odotmedia/dashboard",
+  "homepage": "https://github.com/laraflock/dashboard",
   "license": "MIT",
   "authors": [
     {
-      "name": "Odot Media LLC",
-      "email": "info@odotmedia.com"
-    },
-    {
       "name": "Ian Olson",
-      "email": "ian@odotmedia.com",
+      "email": "me@ianolson.io",
       "role": "Developer"
     }
   ],
@@ -41,12 +37,12 @@
       "tests"
     ],
     "psr-4": {
-      "Odotmedia\\Dashboard\\": "src/"
+      "Laraflock\\Dashboard\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Odotmedia\\Dashboard\\Test\\": "tests/"
+      "Laraflock\\Dashboard\\Test\\": "tests/"
     }
   }
 }

@@ -4,7 +4,7 @@
 @section('page-subtitle', 'All Users')
 @section('header-extras')
     {{-- Data Table Styles --}}
-    <link href="{{ asset('vendor/odotmedia/datatables/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('vendor/laraflock/datatables/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css"/>
 @stop
 @section('content')
     <div class="box">
@@ -52,8 +52,8 @@
 @stop
 @section('footer-extras')
     {{-- Data Table Scripts --}}
-    <script src="{{ asset('vendor/odotmedia/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('vendor/odotmedia/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/laraflock/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/laraflock/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $('#users').dataTable({

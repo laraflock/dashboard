@@ -2,22 +2,22 @@
 
 /**
  * @package     Dashboard
- * @version     1.0.0
- * @author      Ian Olson <ian@odotmedia.com>
+ * @version     3.0.0
+ * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
- * @copyright   2015, Odot Media LLC
- * @link        https://odotmedia.com
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
  */
 
-namespace Odotmedia\Dashboard\Repositories\Auth;
+namespace Laraflock\Dashboard\Repositories\Auth;
 
 use Cartalyst\Sentinel\Activations\IlluminateActivationRepository;
 use Cartalyst\Sentinel\Sentinel;
 use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Database\QueryException;
-use Odotmedia\Dashboard\Exceptions\AuthenticationException;
-use Odotmedia\Dashboard\Exceptions\RolesException;
-use Odotmedia\Dashboard\Repositories\Base\BaseRepository;
+use Laraflock\Dashboard\Exceptions\AuthenticationException;
+use Laraflock\Dashboard\Exceptions\RolesException;
+use Laraflock\Dashboard\Repositories\Base\BaseRepository;
 
 class AuthRepository extends BaseRepository implements AuthRepositoryInterface
 {
@@ -102,7 +102,7 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
             $this->validate($data);
         }
 
-        if (!config('odotmedia.dashboard.activations')) {
+        if (!config('laraflock.dashboard.activations')) {
             $this->registerAndActivate($data, false);
 
             return true;
@@ -119,7 +119,7 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
         }
 
         if (!isset($data['role'])) {
-            $data['role'] = config('odotmedia.dashboard.defaultRole');
+            $data['role'] = config('laraflock.dashboard.defaultRole');
         }
 
         if (!$role = $this->sentinel->findRoleBySlug($data['role'])) {
@@ -158,7 +158,7 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
         }
 
         if (!isset($data['role'])) {
-            $data['role'] = config('odotmedia.dashboard.defaultRole');
+            $data['role'] = config('laraflock.dashboard.defaultRole');
         }
 
         if (!$role = $this->sentinel->findRoleBySlug($data['role'])) {
