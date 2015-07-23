@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * @package     Dashboard
+ * @version     3.0.0
+ * @author      Ian Olson <me@ianolson.io>
+ * @license     MIT
+ * @copyright   2015, Laraflock
+ * @link        https://github.com/laraflock
+ */
+
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 

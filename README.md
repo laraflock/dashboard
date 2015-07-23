@@ -1,8 +1,8 @@
 # Dashboard
 [![Author](https://img.shields.io/badge/author-%40ianmolson-blue.svg)](https://twitter.com/ianmolson)
-[![Build Status](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/build.png?b=2.0)](https://scrutinizer-ci.com/g/laraflock/dashboard/build-status/2.0)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/quality-score.png?b=2.0)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=2.0)
-[![Code Coverage](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/coverage.png?b=2.0)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=2.0)
+[![Build Status](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/build.png?b=master)](https://scrutinizer-ci.com/g/laraflock/dashboard/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=master)
 [![Github Release](https://img.shields.io/github/release/laraflock/dashboard.svg)](https://github.com/laraflock/dashboard)
 [![Packagist](https://img.shields.io/packagist/l/laraflock/dashboard.svg)](https://packagist.org/packages/laraflock/dashboard)
 
@@ -16,6 +16,7 @@ Reader-friendly Documentation can be found here. [Dashboard Wiki](https://github
 
 Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
 
+- [3.0](CHANGELOG.md) - 2015-07-23
 - [2.0](CHANGELOG.md) - 2015-07-15
 - [1.0](CHANGELOG.md) - 2015-07-09
 
@@ -23,8 +24,9 @@ Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a fu
 
 The following support channels can be used for contact.
 
-- [Twitter](https://twitter.com/ianmolson)
-- [Email](mailto:me@ianolson.io)
+- [Twitter](https://twitter.com/laraflock)
+- [Email](mailto:info@laraflock.com)
+- [Gitter](https://gitter.im/laraflock/dashboard)
 
 Bug reports, feature requests, and pull requests can be submitted following our [Contribution Guide](CONTRIBUTING.md).
 
@@ -36,9 +38,7 @@ Bug reports, feature requests, and pull requests can be submitted following our 
 
 ## Roadmap
 
-- General Support Package Integration
-
-I'm also open to any and all pull requests, if you would like to contribute just send over a pull request and we can start a discussion there regarding the updates.
+Will look at future enhancements down the road.
 
 ## License
 

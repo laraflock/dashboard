@@ -17,7 +17,7 @@
     }
   ],
   "require": {
-    "php": ">=5.5.9",
+    "php": ">=5.6.0",
     "illuminate/support": "~5.1",
     "adamwathan/bootforms": "^0.6.3",
     "cartalyst/sentinel": "2.0.*",

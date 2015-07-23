@@ -2,7 +2,7 @@
 
 /**
  * @package     Dashboard
- * @version     2.0.0
+ * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -74,7 +74,7 @@ class DashboardServiceProvider extends ServiceProvider
 
         // Publish assets.
         $this->publishes([
-          __DIR__ . '/../Resources/assets' => public_path('vendor/odotmedia'),
+          __DIR__ . '/../Resources/assets' => public_path('vendor/laraflock'),
         ], 'public');
 
         // Setup interfaces.

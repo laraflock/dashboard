@@ -2,7 +2,7 @@
 
 /**
  * @package     Dashboard
- * @version     2.0.0
+ * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -52,7 +52,7 @@ class UninstallCommand extends Command
         $files = new Filesystem;
 
         // Delete published assets from Laravel.
-        $files->deleteDirectory(base_path('public/vendor/odotmedia'));
+        $files->deleteDirectory(base_path('public/vendor/laraflock'));
 
         // Delete published views from Laravel.
         $files->deleteDirectory(base_path('resources/views/vendor/dashboard'));
