@@ -13,6 +13,7 @@ namespace Laraflock\Dashboard\Controllers;
 
 use Illuminate\Routing\Controller;
 use Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface;
+use Laraflock\Dashboard\Repositories\Module\ModuleRepositoryInterface;
 use Laraflock\Dashboard\Repositories\Permission\PermissionRepositoryInterface;
 use Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface;
 use Laraflock\Dashboard\Repositories\User\UserRepositoryInterface;
@@ -50,12 +51,19 @@ class BaseDashboardController extends Controller
     /**
      * The constructor.
      *
-     * @param \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface             $authRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface $authRepositoryInterface
      * @param \Laraflock\Dashboard\Repositories\Permission\PermissionRepositoryInterface $permissionRepositoryInterface
-     * @param \Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface             $roleRepositoryInterface
-     * @param \Laraflock\Dashboard\Repositories\User\UserRepositoryInterface             $userRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface $roleRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\User\UserRepositoryInterface $userRepositoryInterface
+     * @param \Laraflock\Dashboard\Repositories\Module\ModuleRepositoryInterface $moduleRepositoryInterface
      */
-    public function __construct(AuthRepositoryInterface $authRepositoryInterface, PermissionRepositoryInterface $permissionRepositoryInterface, RoleRepositoryInterface $roleRepositoryInterface, UserRepositoryInterface $userRepositoryInterface)
+    public function __construct(
+        AuthRepositoryInterface $authRepositoryInterface,
+        PermissionRepositoryInterface $permissionRepositoryInterface,
+        RoleRepositoryInterface $roleRepositoryInterface,
+        UserRepositoryInterface $userRepositoryInterface,
+        ModuleRepositoryInterface $moduleRepositoryInterface
+    )
     {
         $this->middleware('user');
 
@@ -70,7 +78,11 @@ class BaseDashboardController extends Controller
 
         $user = $this->authRepositoryInterface->getActiveUser();
 
-        view()->share(['activeUser' => $user, 'viewNamespace' => $viewNamespace]);
+        view()->share([
+            'activeUser' => $user,
+            'viewNamespace' => $viewNamespace,
+            'modules' => $moduleRepositoryInterface
+        ]);
     }
 
     /**

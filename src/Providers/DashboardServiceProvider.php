@@ -51,19 +51,19 @@ class DashboardServiceProvider extends ServiceProvider
           __DIR__ . '/../Resources/views' => base_path('resources/views/vendor/' . $namespace),
         ], 'views');
 
-        // Use package routes.
-        if (config('laraflock.dashboard.routes')) {
-            include __DIR__ . '/../routes.php';
-        }
-
         // Publish config.
         $config = realpath(__DIR__ . '/../config.php');
 
         $this->mergeConfigFrom($config, 'laraflock.dashboard');
 
         $this->publishes([
-          $config => config_path('laraflock.dashboard.php'),
+            $config => config_path('laraflock.dashboard.php'),
         ], 'config');
+
+        // Use package routes.
+        if (config('laraflock.dashboard.routes')) {
+            include __DIR__ . '/../routes.php';
+        }
 
         // Publish migrations.
         $migrations = realpath(__DIR__ . '/../Database/Migrations');
@@ -167,6 +167,12 @@ class DashboardServiceProvider extends ServiceProvider
         $this->app->bind(
           'Laraflock\Dashboard\Repositories\User\UserRepositoryInterface',
           config('laraflock.dashboard.userRepositoryClass')
+        );
+
+        // Bind the Module Repository Interface
+        $this->app->singleton(
+            'Laraflock\Dashboard\Repositories\Module\ModuleRepositoryInterface',
+            config('laraflock.dashboard.moduleRepositoryClass')
         );
     }
 
