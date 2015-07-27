@@ -114,8 +114,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Use package auth repository class, or use your own. This will
-    | automatically bind inside the service provider. If left blank the
-    | default repository class will be loaded.
+    | automatically bind inside the service provider.
     |
     | Default Repository: Laraflock\Dashboard\Repositories\Auth\AuthRepository
     |
@@ -135,8 +134,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Use package permission repository class, or use your own. This will
-    | automatically bind inside the service provider. If left blank the
-    | default repository class will be loaded.
+    | automatically bind inside the service provider.
     |
     | Default Repository: Laraflock\Dashboard\Repositories\Permission\PermissionRepository
     |
@@ -156,8 +154,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Use package role repository class, or use your own. This will
-    | automatically bind inside the service provider. If left blank the
-    | default repository class will be loaded.
+    | automatically bind inside the service provider.
     |
     | Default Repository: Laraflock\Dashboard\Repositories\Role\RoleRepository
     |
@@ -177,8 +174,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Use package user repository class, or use your own. This will
-    | automatically bind inside the service provider. If left blank the
-    | default repository class will be loaded.
+    | automatically bind inside the service provider.
     |
     | Default Repository: Laraflock\Dashboard\Repositories\User\UserRepository
     |
