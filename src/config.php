@@ -6,11 +6,13 @@ return [
     | Version
     |--------------------------------------------------------------------------
     |
-    | Display version of the application in the footer of the dashboard.
+    | Display version of the application in the footer of the dashboard. This
+    | is not in the reference of the actual package, this is what version of
+    | the application you are building is.
     |
     */
 
-    'version'                   => '2.0',
+    'version'                   => '1.0',
     /*
     |--------------------------------------------------------------------------
     | Dashboard Title
