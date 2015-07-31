@@ -5,6 +5,7 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/coverage.png?b=3.0)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=3.0)
 [![Github Release](https://img.shields.io/github/release/laraflock/dashboard.svg)](https://github.com/laraflock/dashboard)
 [![Packagist](https://img.shields.io/packagist/l/laraflock/dashboard.svg)](https://packagist.org/packages/laraflock/dashboard)
+[![Packagist](https://img.shields.io/packagist/dt/laraflock/dashboard.svg)](https://packagist.org/packages/laraflock/dashboard)
 
 This is a base package to use to quickly start a project. Functionality and workflow for events, emails, listeners have all been left out of this package so you can do whatever fits your project.
 
