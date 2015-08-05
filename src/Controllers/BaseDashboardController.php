@@ -57,10 +57,6 @@ class BaseDashboardController extends Controller
      */
     public function __construct(AuthRepositoryInterface $authRepositoryInterface, PermissionRepositoryInterface $permissionRepositoryInterface, RoleRepositoryInterface $roleRepositoryInterface, UserRepositoryInterface $userRepositoryInterface)
     {
-        $this->middleware('user');
-
-        $this->middleware('roles:administrator');
-
         $viewNamespace = config('laraflock.dashboard.viewNamespace');
 
         $this->authRepositoryInterface       = $authRepositoryInterface;
