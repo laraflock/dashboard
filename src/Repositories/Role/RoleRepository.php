@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -77,6 +76,13 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
             $this->validate($data);
         }
 
+        // Convert the checkbox values of "1" to true, so permission checking works with Sentinel.
+        if (isset($data['permissions'])) {
+            foreach ($data['permissions'] as $permission => $value) {
+                $data['permissions'][$permission] = true;
+            }
+        }
+
         try {
             $role = $this->sentinel->getRoleRepository()
                                    ->createModel()
@@ -113,7 +119,12 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
             $this->validate($data);
         }
 
-        if (!isset($data['permissions'])) {
+        // Convert the checkbox values of "1" to true, so permission checking works with Sentinel.
+        if (isset($data['permissions'])) {
+            foreach ($data['permissions'] as $permission => $value) {
+                $data['permissions'][$permission] = true;
+            }
+        } else {
             $data['permissions'] = [];
         }
 

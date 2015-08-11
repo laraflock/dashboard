@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -372,7 +371,7 @@ STEP
           'name'        => 'Administrator',
           'slug'        => 'administrator',
           'permissions' => [
-            'admin' => "1",
+            'admin' => true,
           ],
         ], false);
 
