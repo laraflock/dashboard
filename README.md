@@ -45,4 +45,4 @@ Will look at future enhancements down the road.
 
 This software is released under the [MIT](LICENSE.md) License.
 
-&copy; 2014-2015 Laraflock, All rights reserved.
+&copy; 2015 Laraflock, All rights reserved.
