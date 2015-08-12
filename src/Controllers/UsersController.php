@@ -89,7 +89,7 @@ class UsersController extends BaseDashboardController
         $currentRoles = $user->getRoles()
                              ->lists('name');
 
-        if (empty($userRoles)) {
+        if (empty($currentRoles)) {
             $currentRoles = new Collection(['name' => 'Not Available']);
         }
 
