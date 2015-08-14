@@ -89,6 +89,7 @@ class InstallerCommand extends Command
         $this->setupEnvFile();
         $this->triggerPublish();
         $this->call('dashboard:fresh');
+        $this->setupSeedStubs();
         $this->triggerMigrations();
         $this->createDefaultUser();
         $this->info('Setup is complete. Keep coding!');
@@ -387,5 +388,56 @@ STEP
         // Attach user to admin role.
         $role->users()
              ->attach($user);
+    }
+
+    /**
+     * Setup stub files for seeders.
+     *
+     * @return void
+     */
+    protected function setupSeedStubs()
+    {
+        // Get the user configuration data.
+        $config = $this->user;
+
+        $user       = __DIR__ . '/stubs/UserTableSeeder.stub';
+        $role       = __DIR__ . '/stubs/RoleTableSeeder.stub';
+        $permission = __DIR__ . '/stubs/PermissionTableSeeder.stub';
+
+        // Update the UserTableSeeder stub file with actual credentials.
+        $userContents = str_replace(
+          array_map(function ($key) {
+              return '{{' . $key . '}}';
+          }, array_keys($config)),
+          array_values($config),
+          $this->laravel['files']->get($user)
+        );
+
+        // Get the contents of the RoleTableSeeder stub file.
+        $roleContents = $this->laravel['files']->get($role);
+
+        // Get the contents of the PermissionTableSeeder stub file.
+        $permissionContents = $this->laravel['files']->get($permission);
+
+        // Check if we can actually write the UserTableSeeder file.
+        if ($this->laravel['files']->put(($userFile = $this->laravel['path.database'] . '/seeds/UserTableSeeder.php'),
+            $userContents) === false
+        ) {
+            throw new \RuntimeException("Could not write env file to [$userFile].");
+        }
+
+        // Check if we can actually write the RoleTableSeeder file.
+        if ($this->laravel['files']->put(($roleFile = $this->laravel['path.database'] . '/seeds/RoleTableSeeder.php'),
+            $roleContents) === false
+        ) {
+            throw new \RuntimeException("Could not write env file to [$roleFile].");
+        }
+
+        // Check if we can actually write the PermissionTableSeeder file.
+        if ($this->laravel['files']->put(($permissionFile = $this->laravel['path.database'] . '/seeds/PermissionTableSeeder.php'),
+            $permissionContents) === false
+        ) {
+            throw new \RuntimeException("Could not write env file to [$permissionFile].");
+        }
     }
 }

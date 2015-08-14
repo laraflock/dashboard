@@ -52,6 +52,7 @@ class SetupCommand extends InstallerCommand
         $this->userSetup();
         $this->triggerPublish();
         $this->call('dashboard:fresh');
+        $this->setupSeedStubs();
         $this->triggerMigrations();
         $this->createDefaultUser();
         $this->info('Setup is complete. Keep coding!');
