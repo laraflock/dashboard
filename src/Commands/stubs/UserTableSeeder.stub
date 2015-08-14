@@ -58,8 +58,10 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $defaultUser = [
-          'email'    => '{{email}}',
-          'password' => '{{password}}',
+          'email'      => '{{email}}',
+          'password'   => '{{pass}}',
+          'first_name' => '{{first_name}}',
+          'last_name'  => '{{last_name}}',
         ];
 
         $this->auth->registerAndActivate($defaultUser, false);
