@@ -12,13 +12,9 @@ namespace Laraflock\Dashboard\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Console\ConfirmableTrait;
-use Symfony\Component\Console\Input\InputOption;
 
 class FreshCommand extends Command
 {
-    use ConfirmableTrait;
-
     /**
      * The name and signature of the console command.
      *
@@ -40,10 +36,6 @@ class FreshCommand extends Command
      */
     public function handle()
     {
-        if (!$this->confirmToProceed()) {
-            return;
-        }
-
         $files = new Filesystem;
 
         $files->deleteDirectory(app_path('Http/Controllers/Auth'));
