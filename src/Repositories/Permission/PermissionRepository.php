@@ -67,7 +67,7 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
         try {
             $permission = $this->permission->create($data);
         } catch (QueryException $e) {
-            throw new PermissionsException(trans('laraflock.dashboard.errors.permission.create'));
+            throw new PermissionsException(trans('dashboard::dashboard.errors.permission.create'));
         }
 
         return $permission;
@@ -79,7 +79,7 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
     public function update(array $data, $id, $validate = true)
     {
         if (!$permission = $this->getById($id)) {
-            throw new PermissionsException(trans('laraflock.dashboard.errors.permission.found'));
+            throw new PermissionsException(trans('dashboard::dashboard.errors.permission.found'));
         }
 
         $this->rules = [
@@ -108,7 +108,7 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
     public function delete($id)
     {
         if (!$permission = $this->getById($id)) {
-            throw new PermissionsException(trans('laraflock.dashboard.errors.permission.found'));
+            throw new PermissionsException(trans('dashboard::dashboard.errors.permission.found'));
         }
 
         $permission->delete();

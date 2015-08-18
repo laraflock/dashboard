@@ -2,13 +2,13 @@
 @extends($viewNamespace . '::layouts.master')
 
 {{-- Meta Title --}}
-@section('title', trans('laraflock.dashboard.roles.edit.title'))
+@section('title', trans('dashboard::dashboard.roles.edit.title'))
 
 {{-- Page Title --}}
-@section('page-title', trans('laraflock.dashboard.roles.edit.page_title'))
+@section('page-title', trans('dashboard::dashboard.roles.edit.page_title'))
 
 {{-- Page Subtitle --}}
-@section('page-subtitle', trans('laraflock.dashboard.roles.edit.page_subtitle'))
+@section('page-subtitle', trans('dashboard::dashboard.roles.edit.page_subtitle'))
 
 {{-- Content Section --}}
 @section('content')
@@ -20,10 +20,10 @@
     {{-- Role Box --}}
     <div class="box">
         <div class="box-body">
-            {!! BootForm::text(trans('laraflock.dashboard.form.name'), 'name') !!}
-            {!! BootForm::text(trans('laraflock.dashboard.form.slug'), 'slug') !!}
+            {!! BootForm::text(trans('dashboard::dashboard.form.name'), 'name') !!}
+            {!! BootForm::text(trans('dashboard::dashboard.form.slug'), 'slug') !!}
             <div class="form-group">
-                <label>{{ trans('laraflock.dashboard.form.permissions') }}</label>
+                <label>{{ trans('dashboard::dashboard.form.permissions') }}</label>
 
                 <div class="clearfix"></div>
                 @foreach($permissions as $permission)

@@ -2,10 +2,10 @@
 @extends($viewNamespace . '::layouts.master')
 
 {{-- Meta Title --}}
-@section('title', trans('laraflock.dashboard.dashboard.title'))
+@section('title', trans('dashboard::dashboard.dashboard.title'))
 
 {{-- Page Title --}}
-@section('page-title', trans('laraflock.dashboard.dashboard.page_title'))
+@section('page-title', trans('dashboard::dashboard.dashboard.page_title'))
 
 {{-- Page Subtitle --}}
 @section('page-subtitle', '')

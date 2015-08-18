@@ -22,15 +22,15 @@
     {{-- DataTable Box --}}
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">{{ trans('laraflock.dashboard.roles.all.table_title') }}</h3>
+            <h3 class="box-title">{{ trans('dashboard::dashboard.roles.all.table_title') }}</h3>
         </div>
         <div class="box-body">
             <table id="index" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>{{ trans('laraflock.dashboard.table.name') }}</th>
-                    <th>{{ trans('laraflock.dashboard.table.slug') }}</th>
-                    <th class="datatable-nosort">{{ trans('laraflock.dashboard.table.actions') }}</th>
+                    <th>{{ trans('dashboard::dashboard.table.name') }}</th>
+                    <th>{{ trans('dashboard::dashboard.table.slug') }}</th>
+                    <th class="datatable-nosort">{{ trans('dashboard::dashboard.table.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,8 +40,8 @@
                         <td>{{ $role->slug }}</td>
                         <td class="text-center col-xs-1">
                             {!! BootForm::open()->delete()->action(route('roles.delete', ['id' => $role->id])) !!}
-                            <a href="{{ route('roles.edit', ['id' => $role->id]) }}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="top" title="{{ trans('laraflock.dashboard.buttons.edit') }}"><i class="fa fa-pencil"></i></a>
-                            {!! BootForm::submit('<i class="fa fa-trash"></i><span class="sr-only">' . trans('laraflock.dashboard.buttons.delete') . '</span>')->addClass('btn btn-xs btn-danger')->removeClass('btn-default')->data('toggle', 'tooltip')->data('placement', 'top')->title(trans('laraflock.dashboard.buttons.delete')) !!}
+                            <a href="{{ route('roles.edit', ['id' => $role->id]) }}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="top" title="{{ trans('dashboard::dashboard.buttons.edit') }}"><i class="fa fa-pencil"></i></a>
+                            {!! BootForm::submit('<i class="fa fa-trash"></i><span class="sr-only">' . trans('dashboard::dashboard.buttons.delete') . '</span>')->addClass('btn btn-xs btn-danger')->removeClass('btn-default')->data('toggle', 'tooltip')->data('placement', 'top')->title(trans('dashboard::dashboard.buttons.delete')) !!}
                             {!! BootForm::close() !!}
                         </td>
                     </tr>

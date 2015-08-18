@@ -125,7 +125,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function update(array $data, $id, $validate = true)
     {
         if (!$user = $this->getById($id)) {
-            throw new UsersException(trans('laraflock.dashboard.errors.user.found'));
+            throw new UsersException(trans('dashboard::dashboard.errors.user.found'));
         }
 
         if ($user->email != $data['email']) {
@@ -143,7 +143,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         if (isset($data['role'])) {
 
             if (!$role = $this->role->getBySlug($data['role'])) {
-                throw new RolesException(trans('laraflock.dashboard.errors.role.found'));
+                throw new RolesException(trans('dashboard::dashboard.errors.role.found'));
             }
 
             if (!$user->inRole($role)) {
@@ -188,7 +188,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function delete($id)
     {
         if (!$user = $this->getById($id)) {
-            throw new UsersException(trans('laraflock.dashboard.errors.user.found'));
+            throw new UsersException(trans('dashboard::dashboard.errors.user.found'));
         }
 
         $user->delete();

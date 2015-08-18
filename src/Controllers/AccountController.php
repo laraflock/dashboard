@@ -55,7 +55,7 @@ class AccountController extends BaseDashboardController
                 return redirect()->route('dashboard.index');
             }
 
-            Flash::success(trans('laraflock.dashboard.flash.account.success'));
+            Flash::success(trans('dashboard::dashboard.flash.account.success'));
 
             return redirect()->route('account.edit');
         }
@@ -70,13 +70,13 @@ class AccountController extends BaseDashboardController
                   ->route('account.edit')
                   ->withErrors($e->getErrors());
             } catch (AuthenticationException $e) {
-                Flash::error(trans('laraflock.dashboard.flash.password.fail'));
+                Flash::error(trans('dashboard::dashboard.flash.password.fail'));
 
                 return redirect()
                   ->route('account.edit');
             }
 
-            Flash::success(trans('laraflock.dashboard.flash.password.success'));
+            Flash::success(trans('dashboard::dashboard.flash.password.success'));
 
             return redirect()->route('account.edit');
         }

@@ -56,20 +56,20 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, $role)
     {
         if (!$user = $this->auth->getActiveUser()) {
-            Flash::error(trans('laraflock.dashboard.flash.access_denied'));
+            Flash::error(trans('dashboard::dashboard.flash.access_denied'));
 
             return redirect()->route('auth.login');
         }
 
         if (!$role = $this->role->getBySlug($role)) {
-            Flash::error(trans('laraflock.dashboard.flash.access_denied'));
+            Flash::error(trans('dashboard::dashboard.flash.access_denied'));
 
             // Redirect back to the previous page where request was made.
             return redirect()->back();
         }
 
         if (!$user->inRole($role)) {
-            Flash::error(trans('laraflock.dashboard.flash.access_denied'));
+            Flash::error(trans('dashboard::dashboard.flash.access_denied'));
 
             // Redirect back to the previous page where request was made.
             return redirect()->back();

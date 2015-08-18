@@ -62,7 +62,7 @@ class PermissionsController extends BaseDashboardController
               ->withInput();
         }
 
-        Flash::success(trans('laraflock.dashboard.flash.permission.create.success'));
+        Flash::success(trans('dashboard::dashboard.flash.permission.create.success'));
 
         return redirect()->route('permissions.index');
     }
@@ -77,7 +77,7 @@ class PermissionsController extends BaseDashboardController
     public function edit($id)
     {
         if (!$permission = $this->permissionRepositoryInterface->getById($id)) {
-            Flash::error(trans('laraflock.dashboard.errors.permission.found'));
+            Flash::error(trans('dashboard::dashboard.errors.permission.found'));
 
             return redirect()->route('permissions.index');
         }
@@ -110,7 +110,7 @@ class PermissionsController extends BaseDashboardController
             return redirect()->route('permissions.index');
         }
 
-        Flash::success(trans('laraflock.dashboard.flash.permission.edit.success'));
+        Flash::success(trans('dashboard::dashboard.flash.permission.edit.success'));
 
         return redirect()->route('permissions.edit', ['id' => $id]);
     }
@@ -132,7 +132,7 @@ class PermissionsController extends BaseDashboardController
             return redirect()->route('permissions.index');
         }
 
-        Flash::success(trans('laraflock.dashboard.flash.permission.delete.success'));
+        Flash::success(trans('dashboard::dashboard.flash.permission.delete.success'));
 
         return redirect()->route('permissions.index');
     }

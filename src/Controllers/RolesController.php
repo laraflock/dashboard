@@ -62,7 +62,7 @@ class RolesController extends BaseDashboardController
               ->withInput();
         }
 
-        Flash::success(trans('laraflock.dashboard.flash.role.create.success'));
+        Flash::success(trans('dashboard::dashboard.flash.role.create.success'));
 
         return redirect()->route('roles.index');
     }
@@ -77,7 +77,7 @@ class RolesController extends BaseDashboardController
     public function edit($id)
     {
         if (!$role = $this->roleRepositoryInterface->getById($id)) {
-            Flash::error(trans('laraflock.dashboard.errors.role.found'));
+            Flash::error(trans('dashboard::dashboard.errors.role.found'));
 
             return redirect()->route('roles.index');
         }
@@ -112,7 +112,7 @@ class RolesController extends BaseDashboardController
             return redirect()->route('roles.index');
         }
 
-        Flash::success(trans('laraflock.dashboard.flash.role.edit.success'));
+        Flash::success(trans('dashboard::dashboard.flash.role.edit.success'));
 
         return redirect()->route('roles.edit', ['id' => $id]);
     }
@@ -134,7 +134,7 @@ class RolesController extends BaseDashboardController
             return redirect()->route('roles.index');
         }
 
-        Flash::success(trans('laraflock.dashboard.flash.role.delete.success'));
+        Flash::success(trans('dashboard::dashboard.flash.role.delete.success'));
 
         return redirect()->route('roles.index');
     }

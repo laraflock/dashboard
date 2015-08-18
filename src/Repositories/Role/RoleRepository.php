@@ -88,7 +88,7 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
                                    ->createModel()
                                    ->create($data);
         } catch (QueryException $e) {
-            throw new RolesException(trans('laraflock.dashboard.errors.role.create'));
+            throw new RolesException(trans('dashboard::dashboard.errors.role.create'));
         }
 
         return $role;
@@ -100,7 +100,7 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
     public function update(array $data, $id, $validate = true)
     {
         if (!$role = $this->getById($id)) {
-            throw new RolesException(trans('laraflock.dashboard.errors.role.found'));
+            throw new RolesException(trans('dashboard::dashboard.errors.role.found'));
         }
 
         if ($role->name != $data['name']) {
@@ -142,7 +142,7 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
     public function delete($id)
     {
         if (!$role = $this->getById($id)) {
-            throw new RolesException(trans('laraflock.dashboard.errors.role.found'));
+            throw new RolesException(trans('dashboard::dashboard.errors.role.found'));
         }
 
         $role->delete();

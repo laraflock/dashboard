@@ -2,13 +2,13 @@
 @extends($viewNamespace . '::layouts.master')
 
 {{-- Meta Title --}}
-@section('title', trans('laraflock.dashboard.users.all.title'))
+@section('title', trans('dashboard::dashboard.users.all.title'))
 
 {{-- Page Title --}}
-@section('page-title', trans('laraflock.dashboard.users.all.page_title'))
+@section('page-title', trans('dashboard::dashboard.users.all.page_title'))
 
 {{-- Page Subtitle --}}
-@section('page-subtitle', trans('laraflock.dashboard.users.all.page_subtitle'))
+@section('page-subtitle', trans('dashboard::dashboard.users.all.page_subtitle'))
 
 {{-- Header Extras to be Included --}}
 @section('header-extras')
@@ -22,18 +22,18 @@
     {{-- DataTable Box --}}
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">{{ trans('laraflock.dashboard.users.all.table_title') }}</h3>
+            <h3 class="box-title">{{ trans('dashboard::dashboard.users.all.table_title') }}</h3>
         </div>
         <div class="box-body">
             <table id="index" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>{{ trans('laraflock.dashboard.table.id') }}</th>
-                    <th>{{ trans('laraflock.dashboard.table.first_name') }}</th>
-                    <th>{{ trans('laraflock.dashboard.table.last_name') }}</th>
-                    <th>{{ trans('laraflock.dashboard.table.email') }}</th>
-                    <th>{{ trans('laraflock.dashboard.table.role') }}</th>
-                    <th class="datatable-nosort">{{ trans('laraflock.dashboard.table.actions') }}</th>
+                    <th>{{ trans('dashboard::dashboard.table.id') }}</th>
+                    <th>{{ trans('dashboard::dashboard.table.first_name') }}</th>
+                    <th>{{ trans('dashboard::dashboard.table.last_name') }}</th>
+                    <th>{{ trans('dashboard::dashboard.table.email') }}</th>
+                    <th>{{ trans('dashboard::dashboard.table.role') }}</th>
+                    <th class="datatable-nosort">{{ trans('dashboard::dashboard.table.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,8 +52,8 @@
                         </td>
                         <td class="text-center col-xs-1">
                             {!! BootForm::open()->delete()->action(route('users.delete', ['id' => $user->id])) !!}
-                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="top" title="{{ trans('laraflock.dashboard.buttons.edit') }}"><i class="fa fa-pencil"></i></a>
-                            {!! BootForm::submit('<i class="fa fa-trash"></i><span class="sr-only">' . trans('laraflock.dashboard.buttons.delete') . '</span>')->addClass('btn btn-xs btn-danger')->removeClass('btn-default')->data('toggle', 'tooltip')->data('placement', 'top')->title(trans('laraflock.dashboard.buttons.delete')) !!}
+                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="top" title="{{ trans('dashboard::dashboard.buttons.edit') }}"><i class="fa fa-pencil"></i></a>
+                            {!! BootForm::submit('<i class="fa fa-trash"></i><span class="sr-only">' . trans('dashboard::dashboard.buttons.delete') . '</span>')->addClass('btn btn-xs btn-danger')->removeClass('btn-default')->data('toggle', 'tooltip')->data('placement', 'top')->title(trans('dashboard::dashboard.buttons.delete')) !!}
                             {!! BootForm::close() !!}
                         </td>
                     </tr>
