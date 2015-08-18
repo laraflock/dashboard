@@ -1,6 +1,7 @@
 # Dashboard
 [![Author](https://img.shields.io/badge/author-%40ianmolson-blue.svg)](https://twitter.com/ianmolson)
 [![Build Status](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/build.png?b=3.0)](https://scrutinizer-ci.com/g/laraflock/dashboard/build-status/3.0)
+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/quality-score.png?b=3.0)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=3.0)
 [![Code Coverage](https://scrutinizer-ci.com/g/laraflock/dashboard/badges/coverage.png?b=3.0)](https://scrutinizer-ci.com/g/laraflock/dashboard/?branch=3.0)
 [![Github Release](https://img.shields.io/github/release/laraflock/dashboard.svg)](https://github.com/laraflock/dashboard)
@@ -17,6 +18,7 @@ Reader-friendly Documentation can be found here. [Dashboard Wiki](https://github
 
 Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
 
+- [3.1](CHANGELOG.md) - 2015-08-18
 - [3.0](CHANGELOG.md) - 2015-07-23
 - [2.0](CHANGELOG.md) - 2015-07-15
 - [1.0](CHANGELOG.md) - 2015-07-09
