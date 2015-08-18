@@ -84,7 +84,7 @@ class AuthController extends BaseDashboardController
     public function register()
     {
         if (!config('laraflock.dashboard.registration')) {
-            Flash::error('Registration is not active. Please login.');
+            Flash::error(trans('laraflock.dashboard.flash.registration.not_active'));
 
             return redirect()->route('auth.login');
         }
@@ -102,7 +102,7 @@ class AuthController extends BaseDashboardController
     public function registration(Request $request)
     {
         if (!config('laraflock.dashboard.registration')) {
-            Flash::error('Registration is not active. Please login.');
+            Flash::error(trans('laraflock.dashboard.flash.registration.not_active'));
 
             return redirect()->route('auth.login');
         }
@@ -125,12 +125,12 @@ class AuthController extends BaseDashboardController
         }
 
         if (!config('laraflock.dashboard.activations')) {
-            Flash::success('Account activated. Please login below.');
+            Flash::success(trans('laraflock.dashboard.flash.registration.activated'));
 
             return redirect()->route('auth.login');
         }
 
-        Flash::success('Account created. Activation needed, please check your email.');
+        Flash::success(trans('laraflock.dashboard.flash.registration.created'));
 
         return redirect()->route('auth.login');
     }
@@ -153,7 +153,7 @@ class AuthController extends BaseDashboardController
         }
 
         if (!config('laraflock.dashboard.activations')) {
-            Flash::error('Activations are not active. Please login.');
+            Flash::error(trans('laraflock.dashboard.flash.activation.not_active'));
 
             return redirect()->route('auth.login');
         }
@@ -171,7 +171,7 @@ class AuthController extends BaseDashboardController
     public function activation(Request $request)
     {
         if (!config('laraflock.dashboard.activations')) {
-            Flash::error('Activations are not active. Please login.');
+            Flash::error(trans('laraflock.dashboard.flash.activation.not_active'));
 
             return redirect()->route('auth.login');
         }
@@ -193,7 +193,7 @@ class AuthController extends BaseDashboardController
               ->withInput();
         }
 
-        Flash::success('Account successfully activated.');
+        Flash::success(trans('laraflock.dashboard.flash.activation.success'));
 
         return redirect()->route('auth.login');
     }

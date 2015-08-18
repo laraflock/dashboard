@@ -62,7 +62,7 @@ class PermissionsController extends BaseDashboardController
               ->withInput();
         }
 
-        Flash::success('Permission successfully created.');
+        Flash::success(trans('laraflock.dashboard.flash.permission.create.success'));
 
         return redirect()->route('permissions.index');
     }
@@ -77,7 +77,7 @@ class PermissionsController extends BaseDashboardController
     public function edit($id)
     {
         if (!$permission = $this->permissionRepositoryInterface->getById($id)) {
-            Flash::error('Permission could not be found.');
+            Flash::error(trans('laraflock.dashboard.errors.permission.found'));
 
             return redirect()->route('permissions.index');
         }
@@ -110,7 +110,7 @@ class PermissionsController extends BaseDashboardController
             return redirect()->route('permissions.index');
         }
 
-        Flash::success('Permission successfully updated.');
+        Flash::success(trans('laraflock.dashboard.flash.permission.edit.success'));
 
         return redirect()->route('permissions.edit', ['id' => $id]);
     }
@@ -132,7 +132,7 @@ class PermissionsController extends BaseDashboardController
             return redirect()->route('permissions.index');
         }
 
-        Flash::success('Permission successfully deleted.');
+        Flash::success(trans('laraflock.dashboard.flash.permission.delete.success'));
 
         return redirect()->route('permissions.index');
     }

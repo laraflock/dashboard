@@ -1,26 +1,39 @@
+{{-- Extends Master Layout --}}
 @extends($viewNamespace . '::layouts.master')
-@section('title', 'Users - Dashboard')
-@section('page-title', 'Users')
-@section('page-subtitle', 'All Users')
+
+{{-- Meta Title --}}
+@section('title', trans('laraflock.dashboard.users.all.title'))
+
+{{-- Page Title --}}
+@section('page-title', trans('laraflock.dashboard.users.all.page_title'))
+
+{{-- Page Subtitle --}}
+@section('page-subtitle', trans('laraflock.dashboard.users.all.page_subtitle'))
+
+{{-- Header Extras to be Included --}}
 @section('header-extras')
     {{-- Data Table Styles --}}
     <link href="{{ asset('vendor/laraflock/datatables/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css"/>
 @stop
+
+{{-- Content Section --}}
 @section('content')
+
+    {{-- DataTable Box --}}
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Users</h3>
+            <h3 class="box-title">{{ trans('laraflock.dashboard.users.all.table_title') }}</h3>
         </div>
         <div class="box-body">
-            <table id="users" class="table table-bordered table-striped">
+            <table id="index" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>First</th>
-                    <th>Last</th>
-                    <th>E-mail</th>
-                    <th>Role</th>
-                    <th class="datatable-nosort">Actions</th>
+                    <th>{{ trans('laraflock.dashboard.table.id') }}</th>
+                    <th>{{ trans('laraflock.dashboard.table.first_name') }}</th>
+                    <th>{{ trans('laraflock.dashboard.table.last_name') }}</th>
+                    <th>{{ trans('laraflock.dashboard.table.email') }}</th>
+                    <th>{{ trans('laraflock.dashboard.table.role') }}</th>
+                    <th class="datatable-nosort">{{ trans('laraflock.dashboard.table.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,8 +52,8 @@
                         </td>
                         <td class="text-center col-xs-1">
                             {!! BootForm::open()->delete()->action(route('users.delete', ['id' => $user->id])) !!}
-                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
-                            {!! BootForm::submit('<i class="fa fa-trash"></i><span class="sr-only">Delete</span>')->addClass('btn btn-xs btn-danger')->removeClass('btn-default')->data('toggle', 'tooltip')->data('placement', 'top')->title('Delete') !!}
+                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="top" title="{{ trans('laraflock.dashboard.buttons.edit') }}"><i class="fa fa-pencil"></i></a>
+                            {!! BootForm::submit('<i class="fa fa-trash"></i><span class="sr-only">' . trans('laraflock.dashboard.buttons.delete') . '</span>')->addClass('btn btn-xs btn-danger')->removeClass('btn-default')->data('toggle', 'tooltip')->data('placement', 'top')->title(trans('laraflock.dashboard.buttons.delete')) !!}
                             {!! BootForm::close() !!}
                         </td>
                     </tr>
@@ -50,13 +63,18 @@
         </div>
     </div>
 @stop
+
+{{-- Footer Extras to be Included --}}
 @section('footer-extras')
+
     {{-- Data Table Scripts --}}
     <script src="{{ asset('vendor/laraflock/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/laraflock/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
+
+    {{-- Initiate DataTable --}}
     <script type="text/javascript">
         $(function () {
-            $('#users').dataTable({
+            $('#index').dataTable({
                 columnDefs: [{
                     targets: "datatable-nosort",
                     orderable: false

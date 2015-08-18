@@ -66,7 +66,7 @@ class UsersController extends BaseDashboardController
               ->withInput();
         }
 
-        Flash::success('User successfully created.');
+        Flash::success(trans('laraflock.dashboard.flash.user.create.success'));
 
         return redirect()->route('users.index');
     }
@@ -81,7 +81,7 @@ class UsersController extends BaseDashboardController
     public function edit($id)
     {
         if (!$user = $this->userRepositoryInterface->getByIdWith($id, 'roles')) {
-            Flash::error('User could not be found.');
+            Flash::error(trans('laraflock.dashboard.errors.user.found'));
 
             return redirect()->route('users.index');
         }
@@ -128,7 +128,7 @@ class UsersController extends BaseDashboardController
             return redirect()->route('users.index');
         }
 
-        Flash::success('User successfully updated.');
+        Flash::success(trans('laraflock.dashboard.flash.user.edit.success'));
 
         return redirect()->route('users.edit', ['id' => $id]);
     }
@@ -150,7 +150,7 @@ class UsersController extends BaseDashboardController
             return redirect()->route('users.index');
         }
 
-        Flash::success('User successfully deleted.');
+        Flash::success(trans('laraflock.dashboard.flash.user.delete.success'));
 
         return redirect()->route('users.index');
     }

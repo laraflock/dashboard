@@ -80,7 +80,7 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
         $this->validate($data);
 
         if (!$user = $this->sentinel->authenticate($data, $remember)) {
-            throw new AuthenticationException('Email \ Password combination incorrect.');
+            throw new AuthenticationException(trans('laraflock.dashboard.errors.auth.incorrect'));
         }
 
         return $user;
@@ -110,11 +110,11 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
         try {
             $user = $this->sentinel->register($data);
         } catch (QueryException $e) {
-            throw new AuthenticationException('User could not be created.');
+            throw new AuthenticationException(trans('laraflock.dashboard.errors.auth.create'));
         }
 
         if (!$user instanceof EloquentUser) {
-            throw new AuthenticationException('User could not be created.');
+            throw new AuthenticationException(trans('laraflock.dashboard.errors.auth.create'));
         }
 
         if (!isset($data['role'])) {
@@ -122,14 +122,14 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
         }
 
         if (!$role = $this->sentinel->findRoleBySlug($data['role'])) {
-            throw new RolesException('Role could not be found.');
+            throw new RolesException(trans('laraflock.dashboard.errors.role.found'));
         }
 
         $role->users()
              ->attach($user);
 
         if (!$activation = $this->illuminateActivationRepository->create($user)) {
-            throw new AuthenticationException('Activation could not be created.');
+            throw new AuthenticationException(trans('laraflock.dashboard.errors.auth.activation.create'));
         }
 
         return $activation;
@@ -153,7 +153,7 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
         try {
             $user = $this->sentinel->registerAndActivate($data);
         } catch (QueryException $e) {
-            throw new AuthenticationException('User could not be created.');
+            throw new AuthenticationException(trans('laraflock.dashboard.errors.auth.create'));
         }
 
         if (!isset($data['role'])) {
@@ -161,7 +161,7 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
         }
 
         if (!$role = $this->sentinel->findRoleBySlug($data['role'])) {
-            throw new RolesException('Role could not be found.');
+            throw new RolesException(trans('laraflock.dashboard.errors.role.found'));
         }
 
         $role->users()
@@ -187,7 +187,7 @@ class AuthRepository extends BaseRepository implements AuthRepositoryInterface
         $user = $this->findByCredentials(['login' => $data['email']]);
 
         if (!$this->illuminateActivationRepository->complete($user, $data['activation_code'])) {
-            throw new AuthenticationException('Activation could not be completed.');
+            throw new AuthenticationException(trans('laraflock.dashboard.errors.auth.activation.complete'));
         }
 
         return true;

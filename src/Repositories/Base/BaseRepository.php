@@ -34,7 +34,7 @@ class BaseRepository
         $validator = Validator::make($data, $this->rules);
 
         if ($validator->fails()) {
-            throw new FormValidationException('Fix errors in the form below.', $validator);
+            throw new FormValidationException(trans('laraflock.dashboard.errors.form.validation'), $validator);
         }
     }
 }

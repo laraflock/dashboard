@@ -45,7 +45,7 @@ class UserMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (!$this->auth->check()) {
-            Flash::error('Access Denied');
+            Flash::error(trans('laraflock.dashboard.flash.access_denied'));
 
             return redirect()->route('auth.login');
         }

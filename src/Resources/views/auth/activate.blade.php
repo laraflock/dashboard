@@ -1,20 +1,25 @@
+{{-- Extends Auth Layout --}}
 @extends($viewNamespace . '::layouts.auth')
-@section('title', 'Activate Account - Dashboard')
+
+{{-- Meta Title --}}
+@section('title', trans('laraflock.dashboard.activate.title'))
+
+{{-- Login Box Section --}}
 @section('login-box-body')
-    <p class="login-box-msg">Activate Account</p>
+    <p class="login-box-msg">{{ trans('laraflock.dashboard.activate.form_title') }}</p>
     {!! BootForm::open()->post()->action(route('auth.activate')) !!}
     <fieldset>
-        {!! BootForm::email('E-mail', 'email')->placeholder('E-mail address')->defaultValue($email)->autofocus() !!}
-        {!! BootForm::text('Activation Code', 'activation_code')->placeholder('Enter Code Here')->defaultValue($code) !!}
+        {!! BootForm::email(trans('laraflock.dashboard.form.email'), 'email')->placeholder(trans('laraflock.dashboard.form.email_placeholder'))->defaultValue($email)->autofocus() !!}
+        {!! BootForm::text(trans('laraflock.dashboard.form.activation_code'), 'activation_code')->placeholder(trans('laraflock.dashboard.form.activation_code_placeholder'))->defaultValue($code) !!}
     </fieldset>
     <div class="row">
         <div class="col-xs-8"></div>
         <div class="col-xs-4">
-            {!! BootForm::submit('Activate', 'activate')->addClass('btn btn-primary btn-block btn-flat') !!}
+            {!! BootForm::submit(trans('laraflock.dashboard.buttons.activate'), 'activate')->addClass('btn btn-primary btn-block btn-flat') !!}
         </div>
     </div>
     {!! BootForm::close() !!}
     <div class="text-center">
-        <a href="#">Resend Code?</a>
+        <a href="#">{{ trans('laraflock.dashboard.activate.resend_code') }}</a>
     </div>
 @stop
