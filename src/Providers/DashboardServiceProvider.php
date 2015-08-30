@@ -51,6 +51,9 @@ class DashboardServiceProvider extends ServiceProvider
           __DIR__ . '/../Resources/views' => base_path('resources/views/vendor/' . $namespace),
         ], 'views');
 
+        // Load translations.
+        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'dashboard');
+
         // Publish config.
         $config = realpath(__DIR__ . '/../config.php');
 
