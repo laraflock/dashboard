@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -53,6 +52,7 @@ class SetupCommand extends InstallerCommand
         $this->userSetup();
         $this->triggerPublish();
         $this->call('dashboard:fresh');
+        $this->setupSeedStubs();
         $this->triggerMigrations();
         $this->createDefaultUser();
         $this->info('Setup is complete. Keep coding!');

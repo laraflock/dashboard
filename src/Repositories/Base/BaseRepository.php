@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -35,7 +34,7 @@ class BaseRepository
         $validator = Validator::make($data, $this->rules);
 
         if ($validator->fails()) {
-            throw new FormValidationException('Fix errors in the form below.', $validator);
+            throw new FormValidationException(trans('dashboard::dashboard.errors.form.validation'), $validator);
         }
     }
 }

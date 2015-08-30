@@ -1,16 +1,29 @@
+{{-- Extends Master Layout --}}
 @extends($viewNamespace . '::layouts.master')
-@section('title', 'Edit Role - Dashboard')
-@section('page-title', 'Roles')
-@section('page-subtitle', 'Edit')
+
+{{-- Meta Title --}}
+@section('title', trans('dashboard::dashboard.roles.edit.title'))
+
+{{-- Page Title --}}
+@section('page-title', trans('dashboard::dashboard.roles.edit.page_title'))
+
+{{-- Page Subtitle --}}
+@section('page-subtitle', trans('dashboard::dashboard.roles.edit.page_subtitle'))
+
+{{-- Content Section --}}
 @section('content')
+    {!! BootForm::open()->post()->action(route('roles.edit', ['id' => $role->id])) !!}
+
+    {{-- Bind Model to Form for Filling out Inputs --}}
+    {!! BootForm::bind($role) !!}
+
+    {{-- Role Box --}}
     <div class="box">
         <div class="box-body">
-            {!! BootForm::open()->post()->action(route('roles.edit', ['id' => $role->id])) !!}
-            {!! BootForm::bind($role) !!}
-            {!! BootForm::text('Name', 'name') !!}
-            {!! BootForm::text('Slug', 'slug') !!}
+            {!! BootForm::text(trans('dashboard::dashboard.form.name'), 'name') !!}
+            {!! BootForm::text(trans('dashboard::dashboard.form.slug'), 'slug') !!}
             <div class="form-group">
-                <label>Permissions</label>
+                <label>{{ trans('dashboard::dashboard.form.permissions') }}</label>
 
                 <div class="clearfix"></div>
                 @foreach($permissions as $permission)
@@ -21,9 +34,10 @@
                     @endif
                 @endforeach
             </div>
-            <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-undo fa-fw"></i> Reset</button>
-            {!! BootForm::submit('<i class="fa fa-save fa-fw"></i> Save')->addClass('btn-sm btn-success')->removeClass('btn-default') !!}
-            {!! BootForm::close() !!}
         </div>
     </div>
+
+    {{-- Include Form Actions for Edit --}}
+    @include($viewNamespace . '::helpers.form.actions-edit')
+    {!! BootForm::close() !!}
 @stop

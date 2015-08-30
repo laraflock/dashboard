@@ -22,9 +22,9 @@
     </div>
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> {{ config('laraflock.dashboard.version') }}
+            <b>{{ trans('dashboard::dashboard.global.version') }}</b> {{ trans('dashboard::dashboard.global.version_num') }}
         </div>
-        <strong>Copyright &copy; {{ date('Y') }} {{ config('laraflock.dashboard.credits') }}.</strong> All rights reserved.
+        <strong>{{ trans('dashboard::dashboard.global.copyright') }} &copy; {{ date('Y') }} {{ trans('dashboard::dashboard.global.credits') }}.</strong> {{ trans('dashboard::dashboard.global.rights_reserved') }}
     </footer>
 </div>
 @include($viewNamespace . '::global.footer-scripts')

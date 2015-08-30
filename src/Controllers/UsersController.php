@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -67,7 +66,7 @@ class UsersController extends BaseDashboardController
               ->withInput();
         }
 
-        Flash::success('User successfully created.');
+        Flash::success(trans('dashboard::dashboard.flash.user.create.success'));
 
         return redirect()->route('users.index');
     }
@@ -82,7 +81,7 @@ class UsersController extends BaseDashboardController
     public function edit($id)
     {
         if (!$user = $this->userRepositoryInterface->getByIdWith($id, 'roles')) {
-            Flash::error('User could not be found.');
+            Flash::error(trans('dashboard::dashboard.errors.user.found'));
 
             return redirect()->route('users.index');
         }
@@ -90,7 +89,7 @@ class UsersController extends BaseDashboardController
         $currentRoles = $user->getRoles()
                              ->lists('name');
 
-        if (empty($userRoles)) {
+        if (empty($currentRoles)) {
             $currentRoles = new Collection(['name' => 'Not Available']);
         }
 
@@ -129,7 +128,7 @@ class UsersController extends BaseDashboardController
             return redirect()->route('users.index');
         }
 
-        Flash::success('User successfully updated.');
+        Flash::success(trans('dashboard::dashboard.flash.user.edit.success'));
 
         return redirect()->route('users.edit', ['id' => $id]);
     }
@@ -151,7 +150,7 @@ class UsersController extends BaseDashboardController
             return redirect()->route('users.index');
         }
 
-        Flash::success('User successfully deleted.');
+        Flash::success(trans('dashboard::dashboard.flash.user.delete.success'));
 
         return redirect()->route('users.index');
     }

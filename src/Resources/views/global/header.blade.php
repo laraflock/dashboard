@@ -1,11 +1,11 @@
 <header class="main-header">
     <a href="{{ route('dashboard.index') }}" class="logo">
-        <span class="logo-mini">{{ config('laraflock.dashboard.smallTitle') }}</span>
-        <span class="logo-lg">{{ config('laraflock.dashboard.title') }}</span>
+        <span class="logo-mini">{{ trans('dashboard::dashboard.global.small_title') }}</span>
+        <span class="logo-lg">{{ trans('dashboard::dashboard.global.title') }}</span>
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">{{ trans('dashboard::dashboard.global.toggle_nav') }}</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -24,15 +24,15 @@
 
                                 <p>
                                     {{ $activeUser->first_name }} {{ $activeUser->last_name }}
-                                    <small>Member since {{ Carbon::parse($activeUser->created_at)->toFormattedDateString() }}</small>
+                                    <small>{{ trans('dashboard::dashboard.header.member_since') }} {{ Carbon::parse($activeUser->created_at)->toFormattedDateString() }}</small>
                                 </p>
                             </li>
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ route('account.edit') }}" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="{{ route('account.edit') }}" class="btn btn-default btn-flat">{{ trans('dashboard::dashboard.buttons.profile') }}</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ route('auth.logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="{{ route('auth.logout') }}" class="btn btn-default btn-flat">{{ trans('dashboard::dashboard.buttons.logout') }}</a>
                                 </div>
                             </li>
                         </ul>

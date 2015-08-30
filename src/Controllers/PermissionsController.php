@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -63,7 +62,7 @@ class PermissionsController extends BaseDashboardController
               ->withInput();
         }
 
-        Flash::success('Permission successfully created.');
+        Flash::success(trans('dashboard::dashboard.flash.permission.create.success'));
 
         return redirect()->route('permissions.index');
     }
@@ -78,7 +77,7 @@ class PermissionsController extends BaseDashboardController
     public function edit($id)
     {
         if (!$permission = $this->permissionRepositoryInterface->getById($id)) {
-            Flash::error('Permission could not be found.');
+            Flash::error(trans('dashboard::dashboard.errors.permission.found'));
 
             return redirect()->route('permissions.index');
         }
@@ -111,7 +110,7 @@ class PermissionsController extends BaseDashboardController
             return redirect()->route('permissions.index');
         }
 
-        Flash::success('Permission successfully updated.');
+        Flash::success(trans('dashboard::dashboard.flash.permission.edit.success'));
 
         return redirect()->route('permissions.edit', ['id' => $id]);
     }
@@ -133,7 +132,7 @@ class PermissionsController extends BaseDashboardController
             return redirect()->route('permissions.index');
         }
 
-        Flash::success('Permission successfully deleted.');
+        Flash::success(trans('dashboard::dashboard.flash.permission.delete.success'));
 
         return redirect()->route('permissions.index');
     }

@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -32,6 +31,7 @@ use Laraflock\Dashboard\Commands\SetupCommand;
 use Laraflock\Dashboard\Commands\UninstallCommand;
 use Laraflock\Dashboard\Middleware\UserMiddleware;
 use Laraflock\Dashboard\Middleware\RoleMiddleware;
+use Laraflock\Dashboard\Middleware\PermissionMiddleware;
 
 class DashboardServiceProvider extends ServiceProvider
 {
@@ -98,11 +98,13 @@ class DashboardServiceProvider extends ServiceProvider
      * Register the following middleware:
      * - \Laraflock\Dashboard\Middleware\UserMiddleware
      * - \Laraflock\Dashboard\Middleware\RoleMiddleware
+     * - \Laraflock\Dashboard\Middleware\PermissionMiddleware
      */
     protected function setupMiddleware()
     {
         $this->app['router']->middleware('user', UserMiddleware::class);
         $this->app['router']->middleware('roles', RoleMiddleware::class);
+        $this->app['router']->middleware('permissions', PermissionMiddleware::class);
     }
 
     /**

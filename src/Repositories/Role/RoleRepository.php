@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -77,12 +76,19 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
             $this->validate($data);
         }
 
+        // Convert the checkbox values of "1" to true, so permission checking works with Sentinel.
+        if (isset($data['permissions'])) {
+            foreach ($data['permissions'] as $permission => $value) {
+                $data['permissions'][$permission] = true;
+            }
+        }
+
         try {
             $role = $this->sentinel->getRoleRepository()
                                    ->createModel()
                                    ->create($data);
         } catch (QueryException $e) {
-            throw new RolesException('Role could not be created.');
+            throw new RolesException(trans('dashboard::dashboard.errors.role.create'));
         }
 
         return $role;
@@ -94,7 +100,7 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
     public function update(array $data, $id, $validate = true)
     {
         if (!$role = $this->getById($id)) {
-            throw new RolesException('Role could not be found.');
+            throw new RolesException(trans('dashboard::dashboard.errors.role.found'));
         }
 
         if ($role->name != $data['name']) {
@@ -113,7 +119,12 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
             $this->validate($data);
         }
 
-        if (!isset($data['permissions'])) {
+        // Convert the checkbox values of "1" to true, so permission checking works with Sentinel.
+        if (isset($data['permissions'])) {
+            foreach ($data['permissions'] as $permission => $value) {
+                $data['permissions'][$permission] = true;
+            }
+        } else {
             $data['permissions'] = [];
         }
 
@@ -131,7 +142,7 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
     public function delete($id)
     {
         if (!$role = $this->getById($id)) {
-            throw new RolesException('Role could not be found.');
+            throw new RolesException(trans('dashboard::dashboard.errors.role.found'));
         }
 
         $role->delete();

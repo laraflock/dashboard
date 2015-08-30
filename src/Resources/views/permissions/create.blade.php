@@ -1,16 +1,28 @@
+{{-- Extends Master Layout --}}
 @extends($viewNamespace . '::layouts.master')
-@section('title', 'Add New Permission - Dashboard')
-@section('page-title', 'Permissions')
-@section('page-subtitle', 'Create')
+
+{{-- Meta Title --}}
+@section('title', trans('dashboard::dashboard.permissions.create.title'))
+
+{{-- Page Title --}}
+@section('page-title', trans('dashboard::dashboard.permissions.create.page_title'))
+
+{{-- Page Subtitle --}}
+@section('page-subtitle', trans('dashboard::dashboard.permissions.create.page_subtitle'))
+
+{{-- Content Section --}}
 @section('content')
+    {!! BootForm::open()->post()->action(route('permissions.index')) !!}
+
+    {{-- Permission Box --}}
     <div class="box">
         <div class="box-body">
-            {!! BootForm::open()->post()->action(route('permissions.index')) !!}
             {!! BootForm::text('Name', 'name') !!}
             {!! BootForm::text('Slug', 'slug') !!}
-            <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-undo fa-fw"></i> Reset</button>
-            {!! BootForm::submit('<i class="fa fa-save fa-fw"></i> Save')->addClass('btn-sm btn-success')->removeClass('btn-default') !!}
-            {!! BootForm::close() !!}
         </div>
     </div>
+
+    {{-- Include Form Actions for Create --}}
+    @include($viewNamespace . '::helpers.form.actions-create')
+    {!! BootForm::close() !!}
 @stop

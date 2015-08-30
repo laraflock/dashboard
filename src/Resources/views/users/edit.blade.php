@@ -1,32 +1,37 @@
+{{-- Extends Master Layout --}}
 @extends($viewNamespace . '::layouts.master')
-@section('title', 'Edit User - Dashboard')
-@section('page-title', 'Users')
-@section('page-subtitle', 'Edit')
+
+{{-- Meta Title --}}
+@section('title', trans('dashboard::dashboard.users.edit.title'))
+
+{{-- Page Title --}}
+@section('page-title', trans('dashboard::dashboard.users.edit.page_title'))
+
+{{-- Page Subtitle --}}
+@section('page-subtitle', trans('dashboard::dashboard.users.edit.page_subtitle'))
+
+{{-- Content Section --}}
 @section('content')
+    {!! BootForm::open()->post()->action(route('users.edit', ['id' => $user->id])) !!}
+
+    {{-- Bind Model to Form for Filling out Inputs --}}
+    {!! BootForm::bind($user) !!}
+
+    {{-- User Box --}}
     <div class="box">
         <div class="box-body">
-            {!! BootForm::open()->post()->action(route('users.edit', ['id' => $user->id])) !!}
-            {!! BootForm::bind($user) !!}
-            {!! BootForm::text('First Name', 'first_name') !!}
-            {!! BootForm::text('Last Name', 'last_name') !!}
-            {!! BootForm::email('E-mail', 'email') !!}
+            {!! BootForm::text(trans('dashboard::dashboard.form.first_name'), 'first_name') !!}
+            {!! BootForm::text(trans('dashboard::dashboard.form.last_name'), 'last_name') !!}
+            {!! BootForm::email(trans('dashboard::dashboard.form.email'), 'email') !!}
             @if($currentRoles)
-                {!! BootForm::select('Role <small>(Current: ' . $currentRoles . ')</small>', 'role', $roles) !!}
+                {!! BootForm::select(trans('dashboard::dashboard.form.role') . ' <small>(' . trans('dashboard::dashboard.form.current') . ': ' . $currentRoles . ')</small>', 'role', $roles) !!}
             @else
-                {!! BootForm::select('Role', 'role', $roles) !!}
+                {!! BootForm::select(trans('dashboard::dashboard.form.role'), 'role', $roles) !!}
             @endif
-            <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-undo fa-fw"></i> Reset
-            </button>
-            {!! BootForm::submit('<i class="fa fa-save fa-fw"></i> Save')->addClass('btn-sm btn-success')->removeClass('btn-default') !!}
-            {!! BootForm::close() !!}
         </div>
     </div>
-@stop
-@section('footer-extras')
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-@stop
 
+    {{-- Include Form Actions for Edit --}}
+    @include($viewNamespace . '::helpers.form.actions-edit')
+    {!! BootForm::close() !!}
+@stop

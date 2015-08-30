@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -56,7 +55,7 @@ class AccountController extends BaseDashboardController
                 return redirect()->route('dashboard.index');
             }
 
-            Flash::success('Account successfully updated.');
+            Flash::success(trans('dashboard::dashboard.flash.account.success'));
 
             return redirect()->route('account.edit');
         }
@@ -71,13 +70,13 @@ class AccountController extends BaseDashboardController
                   ->route('account.edit')
                   ->withErrors($e->getErrors());
             } catch (AuthenticationException $e) {
-                Flash::error('Old password is incorrect.');
+                Flash::error(trans('dashboard::dashboard.flash.password.fail'));
 
                 return redirect()
                   ->route('account.edit');
             }
 
-            Flash::success('Password successfully updated.');
+            Flash::success(trans('dashboard::dashboard.flash.password.success'));
 
             return redirect()->route('account.edit');
         }

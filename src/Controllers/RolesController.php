@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -63,7 +62,7 @@ class RolesController extends BaseDashboardController
               ->withInput();
         }
 
-        Flash::success('Role successfully created.');
+        Flash::success(trans('dashboard::dashboard.flash.role.create.success'));
 
         return redirect()->route('roles.index');
     }
@@ -78,7 +77,7 @@ class RolesController extends BaseDashboardController
     public function edit($id)
     {
         if (!$role = $this->roleRepositoryInterface->getById($id)) {
-            Flash::error('Role could not be found.');
+            Flash::error(trans('dashboard::dashboard.errors.role.found'));
 
             return redirect()->route('roles.index');
         }
@@ -113,7 +112,7 @@ class RolesController extends BaseDashboardController
             return redirect()->route('roles.index');
         }
 
-        Flash::success('Role successfully updated.');
+        Flash::success(trans('dashboard::dashboard.flash.role.edit.success'));
 
         return redirect()->route('roles.edit', ['id' => $id]);
     }
@@ -135,7 +134,7 @@ class RolesController extends BaseDashboardController
             return redirect()->route('roles.index');
         }
 
-        Flash::success('Role successfully deleted.');
+        Flash::success(trans('dashboard::dashboard.flash.role.delete.success'));
 
         return redirect()->route('roles.index');
     }

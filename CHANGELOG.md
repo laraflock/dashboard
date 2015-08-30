@@ -11,7 +11,17 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
-### v2.0.0 - 2015-07-15
+### v3.1.0 - 2015-08-18
+
+- Stable Release
+- [Enhancement] Added Permission based middleware
+- [Enhancement] Added Localization Translations to the Package
+- [Enhancement] Better Blade Comments for Views
+- [Enhancement] Updated Seeder generator for User after Initial Setup
+- [Bug Fix] Updated FreshCommand to not use ConfirmableTrait
+- [Bug Fix] Wrong variable used for current roles in UserController
+
+### v3.0.0 - 2015-07-15
 
 - Stable Release
 - Updated Namespaces to Laraflock for the new organization developing under.

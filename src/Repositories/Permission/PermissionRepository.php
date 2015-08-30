@@ -2,7 +2,6 @@
 
 /**
  * @package     Dashboard
- * @version     3.0.0
  * @author      Ian Olson <me@ianolson.io>
  * @license     MIT
  * @copyright   2015, Laraflock
@@ -68,7 +67,7 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
         try {
             $permission = $this->permission->create($data);
         } catch (QueryException $e) {
-            throw new PermissionsException('Permission could not be created.');
+            throw new PermissionsException(trans('dashboard::dashboard.errors.permission.create'));
         }
 
         return $permission;
@@ -80,7 +79,7 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
     public function update(array $data, $id, $validate = true)
     {
         if (!$permission = $this->getById($id)) {
-            throw new PermissionsException('Permission could not be found.');
+            throw new PermissionsException(trans('dashboard::dashboard.errors.permission.found'));
         }
 
         $this->rules = [
@@ -109,7 +108,7 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
     public function delete($id)
     {
         if (!$permission = $this->getById($id)) {
-            throw new PermissionsException('Permission could not be found.');
+            throw new PermissionsException(trans('dashboard::dashboard.errors.permission.found'));
         }
 
         $permission->delete();

@@ -1,18 +1,31 @@
+{{-- Extends Master Layout --}}
 @extends($viewNamespace . '::layouts.master')
-@section('title', 'Edit Permission - Dashboard')
-@section('page-title', 'Permissions')
-@section('page-subtitle', 'Edit')
+
+{{-- Meta Title --}}
+@section('title', trans('dashboard::dashboard.permissions.edit.title'))
+
+{{-- Page Title --}}
+@section('page-title', trans('dashboard::dashboard.permissions.edit.page_title'))
+
+{{-- Page Subtitle --}}
+@section('page-subtitle', trans('dashboard::dashboard.permissions.edit.page_subtitle'))
+
+{{-- Content Section --}}
 @section('content')
+    {!! BootForm::open()->post()->action(route('permissions.edit', ['id' => $permission->id])) !!}
+
+    {{-- Bind Model to Form for Filling out Inputs --}}
+    {!! BootForm::bind($permission) !!}
+
+    {{-- Permission Box --}}
     <div class="box">
         <div class="box-body">
-            {!! BootForm::open()->post()->action(route('permissions.edit', ['id' => $permission->id])) !!}
-            {!! BootForm::bind($permission) !!}
-            {!! BootForm::text('Name', 'name') !!}
-            {!! BootForm::text('Slug', 'slug') !!}
-            <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-undo fa-fw"></i> Reset
-            </button>
-            {!! BootForm::submit('<i class="fa fa-save fa-fw"></i> Save')->addClass('btn-sm btn-success')->removeClass('btn-default') !!}
-            {!! BootForm::close() !!}
+            {!! BootForm::text(trans('dashboard::dashboard.form.name'), 'name') !!}
+            {!! BootForm::text(trans('dashboard::dashboard.form.slug'), 'slug') !!}
         </div>
     </div>
+
+    {{-- Include Form Actions for Edit --}}
+    @include($viewNamespace . '::helpers.form.actions-edit')
+    {!! BootForm::close() !!}
 @stop
