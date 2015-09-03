@@ -6,9 +6,11 @@
  */
 (function ($, AdminLTE) {
 
+  "use strict";
+
   /**
    * List of all the available skins
-   * 
+   *
    * @type Array
    */
   var my_skins = [
@@ -212,7 +214,7 @@
 
   /**
    * Toggles layout classes
-   * 
+   *
    * @param String cls the layout class to toggle
    * @returns void
    */
@@ -224,9 +226,10 @@
       AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
     if ($('body').hasClass('fixed') && cls == 'fixed') {
       AdminLTE.pushMenu.expandOnHover();
-      AdminLTE.controlSidebar._fixForFixed($('.control-sidebar'));
       AdminLTE.layout.activate();
     }
+    AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
+    AdminLTE.controlSidebar._fix($(".control-sidebar"));
   }
 
   /**
@@ -246,7 +249,7 @@
 
   /**
    * Store a new settings in the browser
-   * 
+   *
    * @param String name Name of the setting
    * @param String val Value of the setting
    * @returns void
@@ -255,13 +258,13 @@
     if (typeof (Storage) !== "undefined") {
       localStorage.setItem(name, val);
     } else {
-      alert('Please use a modern browser to properly view this template!');
+      window.alert('Please use a modern browser to properly view this template!');
     }
   }
 
   /**
    * Get a prestored setting
-   * 
+   *
    * @param String name Name of of the setting
    * @returns String The value of the setting | null
    */
@@ -269,13 +272,13 @@
     if (typeof (Storage) !== "undefined") {
       return localStorage.getItem(name);
     } else {
-      alert('Please use a modern browser to properly view this template!');
+      window.alert('Please use a modern browser to properly view this template!');
     }
   }
 
   /**
    * Retrieve default settings and apply them to the template
-   * 
+   *
    * @returns void
    */
   function setup() {
@@ -312,24 +315,24 @@
         sidebar.addClass("control-sidebar-dark")
       }
     });
-    
+
     $("[data-enable='expandOnHover']").on('click', function () {
-      $(this).attr('disabled', true);      
+      $(this).attr('disabled', true);
       AdminLTE.pushMenu.expandOnHover();
-      if(!$('body').hasClass('sidebar-collapse'))
+      if (!$('body').hasClass('sidebar-collapse'))
         $("[data-layout='sidebar-collapse']").click();
     });
-    
+
     // Reset options
-    if($('body').hasClass('fixed')) {
+    if ($('body').hasClass('fixed')) {
       $("[data-layout='fixed']").attr('checked', 'checked');
     }
-    if($('body').hasClass('layout-boxed')) {
+    if ($('body').hasClass('layout-boxed')) {
       $("[data-layout='layout-boxed']").attr('checked', 'checked');
     }
-    if($('body').hasClass('sidebar-collapse')) {
+    if ($('body').hasClass('sidebar-collapse')) {
       $("[data-layout='sidebar-collapse']").attr('checked', 'checked');
     }
-    
+
   }
 })(jQuery, $.AdminLTE);
