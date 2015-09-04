@@ -190,6 +190,27 @@ return [
     */
 
     'userRepositoryClass'       => 'Laraflock\Dashboard\Repositories\User\UserRepository',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Module Repository Class
+    |--------------------------------------------------------------------------
+    |
+    | Use package module repository class, or use your own. This will
+    | automatically bind inside the service provider. If left blank the
+    | default repository class will be loaded.
+    |
+    | Default Repository: Laraflock\Dashboard\Repositories\Module\ModuleRepository
+    |
+    | * NOTICE *
+    | If you would like to use your own repository class, be sure to implement
+    | the following interface and extend the base repository class:
+    |
+    | Module Repository Interface: Laraflock\Dashboard\Repositories\Module\ModuleRepositoryInterface
+    |
+     */
+    'moduleRepositoryClass'     => 'Laraflock\Dashboard\Repositories\Module\ModuleRepository',
+
     /*
     |--------------------------------------------------------------------------
     | AdminLTE Theme

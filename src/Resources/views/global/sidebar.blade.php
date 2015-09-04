@@ -59,6 +59,44 @@
                         <a href="{{ route('permissions.create') }}">{{ trans('dashboard::dashboard.nav.permission.create') }}</a></li>
                 </ul>
             </li>
+            @foreach($modules->getRegistered() as $module)
+                <li class="header">{{ $module->getName() }}</li>
+                @foreach($module->getMenuItems() as $label => $linkOptions)
+                    <li>
+                        <a href="{{ array_get($linkOptions, 'href', '#') }}">
+                            @if(array_get($linkOptions, 'icon'))
+                                @if(strstr(array_get($linkOptions, 'icon'), ':'))
+                                    @include(array_get($linkOptions, 'icon'))
+                                @else
+                                    <i class="{{ array_get($linkOptions, 'icon') }}"></i>
+                                @endif
+                            @endif
+                            <span>{{ $label }}</span>
+                            @if(array_get($linkOptions, 'items'))
+                                <i class="fa fa-angle-left pull-right"></i>
+                            @endif
+                        </a>
+                        @if(array_get($linkOptions, 'items'))
+                            <ul class="treeview-menu">
+                                @foreach(array_get($linkOptions, 'items', []) as $label => $linkOptions)
+                                    <li>
+                                        <a href="{{ array_get($linkOptions, 'href', '#') }}">
+                                            @if(array_get($linkOptions, 'icon'))
+                                                @if(strstr(array_get($linkOptions, 'icon'), ':'))
+                                                    @include(array_get($linkOptions, 'icon'))
+                                                @else
+                                                    <i class="{{ array_get($linkOptions, 'icon') }}"></i>
+                                                @endif
+                                            @endif
+                                            <span>{{ $label }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </li>
+                @endforeach
+            @endforeach
         </ul>
     </section>
 </aside>
