@@ -11,6 +11,11 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v3.2.0 - 2015-09-10
+
+- Stable Release
+- [Feature] Added native support for Dashboard Modules
+
 ### v3.1.0 - 2015-08-18
 
 - Stable Release
