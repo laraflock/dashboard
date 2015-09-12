@@ -21,7 +21,7 @@ interface ModuleInterface
     /**
      * A unique string Id identifying your module
      *
-     * @info can only contain digits, alphabet characters and underscores
+     * @info can only contain digits, alphabet characters, dashes and underscores
      * @info recommended is the package name
      *
      * @return string
