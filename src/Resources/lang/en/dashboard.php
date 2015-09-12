@@ -145,7 +145,8 @@ return [
         'message' => 'There was an error with your request.',
     ],
     'dashboard'    => [
-
+        'title'     => 'Dashboard',
+        'page_title' => 'Dashboard',
     ],
     'header'       => [
         'member_since' => 'Member since',
