@@ -23,6 +23,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Laracasts\Flash\Flash;
 use Laracasts\Flash\FlashServiceProvider;
+use Laraflock\Dashboard\Composers\ViewComposer;
 use Laravelista\Ekko\EkkoServiceProvider;
 use Laravelista\Ekko\Facades\Ekko;
 use Laraflock\Dashboard\Commands\FreshCommand;
@@ -50,6 +51,11 @@ class DashboardServiceProvider extends ServiceProvider
         $this->publishes([
           __DIR__ . '/../Resources/views' => base_path('resources/views/vendor/' . $namespace),
         ], 'views');
+
+        // register view composer
+        view()->composer(
+            $namespace, ViewComposer::class
+        );
 
         // Load translations.
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'dashboard');
