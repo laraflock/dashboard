@@ -26,6 +26,7 @@ class BaseDashboardController extends Controller
      */
     public function view($view, $data = [])
     {
-        return view(sprintf("%s::%s", config('laraflock.dashboard.viewNamespace'), $view), $data)->composer('*', ViewComposer::class);
+        view()->composer('*', ViewComposer::class);
+        return view(sprintf("%s::%s", config('laraflock.dashboard.viewNamespace'), $view), $data);
     }
 }
