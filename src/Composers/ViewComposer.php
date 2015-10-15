@@ -10,53 +10,51 @@
 
 namespace Laraflock\Dashboard\Composers;
 
+use Illuminate\Contracts\View\View;
 use Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface;
 use Laraflock\Dashboard\Repositories\Module\ModuleRepositoryInterface;
 
 class ViewComposer {
 
     /**
-     * Permission interface.
-     *
-     * @var \Laraflock\Dashboard\Repositories\Permission\PermissionRepositoryInterface
+     * @var AuthRepositoryInterface
      */
-    protected $permissionRepositoryInterface;
+    protected $auth;
 
     /**
-     * Role interface.
-     *
-     * @var \Laraflock\Dashboard\Repositories\Role\RoleRepositoryInterface
+     * @var ModuleRepositoryInterface
      */
-    protected $roleRepositoryInterface;
-
-    /**
-     * User interface.
-     *
-     * @var \Laraflock\Dashboard\Repositories\User\UserRepositoryInterface
-     */
-    protected $userRepositoryInterface;
+    protected $module;
 
     /**
      * The constructor.
      *
-     * @param \Laraflock\Dashboard\Repositories\Auth\AuthRepositoryInterface $authRepositoryInterface
-     * @param \Laraflock\Dashboard\Repositories\Module\ModuleRepositoryInterface $moduleRepositoryInterface
+     * @param AuthRepositoryInterface   $auth
+     * @param ModuleRepositoryInterface $module
      */
     public function __construct(
-        AuthRepositoryInterface $authRepositoryInterface,
-        ModuleRepositoryInterface $moduleRepositoryInterface
+        AuthRepositoryInterface $auth,
+        ModuleRepositoryInterface $module
     )
     {
+        $this->auth       = $auth;
+        $this->module    = $moduleRepositoryInterface;
+    }
+
+    /**
+     * Bind data to the view.
+     *
+     * @param  View  $view
+     * @return void
+     */
+    public function compose(View $view) {
+
         $viewNamespace = config('laraflock.dashboard.viewNamespace');
 
-        $this->authRepositoryInterface       = $authRepositoryInterface;
+        $user = $this->auth->getActiveUser();
 
-        $user = $this->authRepositoryInterface->getActiveUser();
-
-        view()->share([
-            'activeUser' => $user,
-            'viewNamespace' => $viewNamespace,
-            'modules' => $moduleRepositoryInterface
-        ]);
+        $view->with('activeUser', $user);
+        $view->with('viewNamespace', $viewNamespace);
+        $view->with('modules', $this->module)
     }
 }

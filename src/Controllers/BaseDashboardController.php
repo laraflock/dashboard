@@ -11,6 +11,7 @@
 namespace Laraflock\Dashboard\Controllers;
 
 use Illuminate\Routing\Controller;
+use Laraflock\Dashboard\Composers\ViewComposer;
 
 class BaseDashboardController extends Controller
 {
@@ -25,6 +26,6 @@ class BaseDashboardController extends Controller
      */
     public function view($view, $data = [])
     {
-        return view(sprintf("%s::%s", config('laraflock.dashboard.viewNamespace'), $view), $data);
+        return view(sprintf("%s::%s", config('laraflock.dashboard.viewNamespace'), $view), $data)->composer('*', ViewComposer::class);
     }
 }

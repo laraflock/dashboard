@@ -52,11 +52,6 @@ class DashboardServiceProvider extends ServiceProvider
           __DIR__ . '/../Resources/views' => base_path('resources/views/vendor/' . $namespace),
         ], 'views');
 
-        // register view composer
-        view()->composer(
-            $namespace, ViewComposer::class
-        );
-
         // Load translations.
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'dashboard');
 
