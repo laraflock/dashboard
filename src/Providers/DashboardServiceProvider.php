@@ -23,7 +23,6 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Laracasts\Flash\Flash;
 use Laracasts\Flash\FlashServiceProvider;
-use Laraflock\Dashboard\Composers\ViewComposer;
 use Laravelista\Ekko\EkkoServiceProvider;
 use Laravelista\Ekko\Facades\Ekko;
 use Laraflock\Dashboard\Commands\FreshCommand;

@@ -38,7 +38,7 @@ class ViewComposer {
     )
     {
         $this->auth       = $auth;
-        $this->module    = $moduleRepositoryInterface;
+        $this->module    = $module;
     }
 
     /**
@@ -55,6 +55,6 @@ class ViewComposer {
 
         $view->with('activeUser', $user);
         $view->with('viewNamespace', $viewNamespace);
-        $view->with('modules', $this->module)
+        $view->with('modules', $this->module);
     }
 }
