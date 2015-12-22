@@ -22,7 +22,8 @@
     "adamwathan/bootforms": "^0.6.3",
     "cartalyst/sentinel": "2.0.*",
     "laracasts/flash": "~1.3",
-    "laravelista/ekko": "~1.0.3"
+    "laravelista/ekko": "~1.0.3",
+    "symfony/dom-crawler": "^3.0"
   },
   "require-dev": {
     "laravel/laravel": "~5.1",

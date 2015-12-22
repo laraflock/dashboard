@@ -49,26 +49,36 @@ class RoleMiddleware
      *
      * @param Request      $request
      * @param Closure      $next
-     * @param string|array $role
+     * @param string|array $roles
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, $roles)
     {
+        $accessDenied = true;
+
         if (!$user = $this->auth->getActiveUser()) {
             Flash::error(trans('dashboard::dashboard.flash.access_denied'));
 
             return redirect()->route('auth.login');
         }
 
-        if (!$role = $this->role->getBySlug($role)) {
-            Flash::error(trans('dashboard::dashboard.flash.access_denied'));
-
-            // Redirect back to the previous page where request was made.
-            return redirect()->back();
+        if (!is_array($roles)) {
+            $roles = [$roles];
         }
 
-        if (!$user->inRole($role)) {
+        foreach ($roles as $role) {
+
+            if (!$role = $this->role->getBySlug($role)) {
+                continue;
+            }
+
+            if ($user->inRole($role)) {
+                $accessDenied = false;
+            }
+        }
+
+        if ($accessDenied) {
             Flash::error(trans('dashboard::dashboard.flash.access_denied'));
 
             // Redirect back to the previous page where request was made.
