@@ -39,23 +39,34 @@ class PermissionMiddleware
      *
      * @param Request      $request
      * @param Closure      $next
-     * @param string|array $permission
+     * @param string|array $permissions
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $permission)
+    public function handle(Request $request, Closure $next, $permissions)
     {
-        // Check to see if the user is logged in.
+        $accessDenied = true;
+
         if (!$user = $this->auth->getActiveUser()) {
             Flash::error(trans('dashboard::dashboard.flash.access_denied'));
 
-            return redirect()->route('auth.login');
+            return redirect()->back();
         }
 
-        if (!$user->hasAccess($permission)) {
+        if (!is_array($permissions)) {
+            $permissions = [$permissions];
+        }
+
+        foreach ($permissions as $permission) {
+
+            if ($user->hasAccess($permission)) {
+                $accessDenied = false;
+            }
+        }
+
+        if ($accessDenied) {
             Flash::error(trans('dashboard::dashboard.flash.access_denied'));
 
-            // Redirect back to the previous page where request was made.
             return redirect()->back();
         }
 
