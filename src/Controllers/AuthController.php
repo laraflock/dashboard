@@ -10,6 +10,7 @@
 
 namespace Laraflock\Dashboard\Controllers;
 
+use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 use Laraflock\Dashboard\Exceptions\AuthenticationException;
@@ -68,6 +69,10 @@ class AuthController extends BaseDashboardController
               ->route('auth.login')
               ->withErrors($e->getErrors());
         } catch (AuthenticationException $e) {
+            Flash::error($e->getMessage());
+
+            return redirect()->route('auth.login');
+        } catch (ThrottlingException $e) {
             Flash::error($e->getMessage());
 
             return redirect()->route('auth.login');
