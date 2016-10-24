@@ -43,7 +43,7 @@ class PermissionMiddleware
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $permissions)
+    public function handle(Request $request, Closure $next, ...$permissions)
     {
         $accessDenied = true;
 
