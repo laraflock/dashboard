@@ -45,11 +45,8 @@ class PermissionMiddleware
      */
     public function handle(Request $request, Closure $next, ...$permissions)
     {
-        $accessDenied = true;
-
         if (!$user = $this->auth->getActiveUser()) {
             Flash::error(trans('dashboard::dashboard.flash.access_denied'));
-
             return redirect()->back();
         }
 
@@ -57,19 +54,11 @@ class PermissionMiddleware
             $permissions = [$permissions];
         }
 
-        foreach ($permissions as $permission) {
-
-            if ($user->hasAccess($permission)) {
-                $accessDenied = false;
-            }
+        if ($user->hasAnyAccess($permissions)) {
+            return $next($request);
         }
 
-        if ($accessDenied) {
-            Flash::error(trans('dashboard::dashboard.flash.access_denied'));
-
-            return redirect()->back();
-        }
-
-        return $next($request);
+        Flash::error(trans('dashboard::dashboard.flash.access_denied'));
+        return redirect()->back();
     }
 }
